@@ -68,6 +68,23 @@ export default function AboutPage() {
             </svg>
           </a>
 
+          {/* Email */}
+          <a
+  href="mailto:dgabaworks@gmail.com"
+  aria-label="Email"
+  className="text-gray-600 hover:text-black transition"
+>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="24"
+    height="24"
+    fill="currentColor"
+    viewBox="0 0 24 24"
+  >
+    <path d="M2 4a2 2 0 012-2h16a2 2 0 012 2v16a2 2 0 01-2 2H4a2 2 0 01-2-2V4zm2 0v.01L12 13l8-8.99V4H4zm16 16V7.24l-7.29 7.3a1 1 0 01-1.42 0L4 7.24V20h16z"/>
+  </svg>
+</a>
+
         </div>
       </div>
 
