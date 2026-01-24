@@ -40,9 +40,8 @@ export default function SongPage() {
   </p>
 </div>
 
-      <br></br>
       {/* Lyrics */}
-      <p className="text-xs font-semibold tracking-widest text-gray-500 mt-8">
+      <p className="text-xs font-semibold tracking-widest text-gray-700 mt-8">
   LYRICS:
 </p>
       <pre className="whitespace-pre-wrap font-sans text-base leading-loose text-gray-800 max-w-3xl">
