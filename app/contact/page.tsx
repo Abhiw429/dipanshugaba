@@ -20,15 +20,15 @@ export default function ContactPage() {
         {/* Mail Button */}
 <a
   href="mailto:dgabaworks@gmail.com"
-  className="group relative inline-flex items-center justify-center overflow-hidden rounded-full border border-gray-300 px-8 py-4 text-base font-medium text-gray-900 transition hover:border-black"
+  className="group relative inline-flex items-center justify-center overflow-hidden rounded-full bg-black px-8 py-4 text-base font-medium text-white transition"
 >
   {/* Text */}
-  <span className="transition-opacity duration-300 group-hover:opacity-0">
+  <span className="transition-opacity duration-300 group-hover:opacity-0 text-gray-200">
     Mail Us
   </span>
 
   {/* Icon */}
-  <span className="absolute flex items-center justify-center opacity-0 transition-all duration-300 group-hover:opacity-100">
+  <span className="absolute flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100 text-white">
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="22"
