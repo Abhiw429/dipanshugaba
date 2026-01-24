@@ -17,13 +17,34 @@ export default function ContactPage() {
           EMAIL
         </div>
 
-        <a
-          href="mailto:dgabaworks@gmail.com"
-          className="text-2xl font-medium text-gray-900 hover:underline underline-offset-4"
-        >
-          dgabaworks@gmail.com
-        </a>
+        {/* Mail Button */}
+<a
+  href="mailto:dgabaworks@gmail.com"
+  className="group relative inline-flex items-center justify-center overflow-hidden rounded-full border border-gray-300 px-8 py-4 text-base font-medium text-gray-900 transition hover:border-black"
+>
+  {/* Text */}
+  <span className="transition-opacity duration-300 group-hover:opacity-0">
+    Mail Us
+  </span>
 
+  {/* Icon */}
+  <span className="absolute flex items-center justify-center opacity-0 transition-all duration-300 group-hover:opacity-100">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="22"
+      height="22"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <rect x="2" y="4" width="20" height="16" rx="2" />
+      <path d="M22 6l-10 7L2 6" />
+    </svg>
+  </span>
+</a>
         <p className="text-sm text-gray-600 max-w-md">
           Please include context, references, or timelines when reaching out.
         </p>
