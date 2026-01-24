@@ -1,11 +1,8 @@
-export default function About() {
+export default function AboutPage() {
   return (
-    <section className="max-w-3xl mx-auto space-y-6">
-      <h1 className="text-4xl font-bold">About</h1>
-      <p className="text-zinc-700">
-        Dipanshu Gaba is an independent artist exploring raw lyricism,
-        freeverses, and experimental sound.
-      </p>
+    <section>
+      <h1 className="text-3xl font-bold">About</h1>
+      <p>Artist bio here.</p>
     </section>
   );
 }
