@@ -1,11 +1,37 @@
-export default function SongPage() {
+eexport default function SongPage() {
   return (
-    <section className="space-y-4">
+    <section className="space-y-6 max-w-3xl">
+      
+      {/* Title */}
       <h1 className="text-2xl font-bold">Camouflage (Freeverse)</h1>
-      <pre className="whitespace-pre-wrap font-sans text-base leading-loose text-gray-800 max-w-3xl">
-{`All work created, written, and produced by Dipanshu Gaba.
-`}
-</pre>
+
+      {/* Listen on YouTube */}
+      <a
+        href="https://youtu.be/aZblaDVPMXU?si=YfJU1LqeGuHhv7j3"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="inline-flex items-center gap-2 border border-gray-300 px-4 py-2 rounded-full text-sm text-gray-700 hover:bg-black hover:text-white transition"
+      >
+        {/* YouTube Icon */}
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="20"
+          height="20"
+          fill="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path d="M23.498 6.186a2.996 2.996 0 00-2.108-2.118C19.53 3.5 12 3.5 12 3.5s-7.53 0-9.39.568A2.996 2.996 0 00.502 6.186 31.4 31.4 0 000 12a31.4 31.4 0 00.502 5.814 2.996 2.996 0 002.108 2.118C4.47 20.5 12 20.5 12 20.5s7.53 0 9.39-.568a2.996 2.996 0 002.108-2.118A31.4 31.4 0 0024 12a31.4 31.4 0 00-.502-5.814zM9.75 15.5v-7l6 3.5-6 3.5z" />
+        </svg>
+
+        <span>Listen on YouTube</span>
+      </a>
+
+      {/* Credits */}
+      <pre className="whitespace-pre-wrap font-sans text-base leading-loose text-gray-800">
+{`All work created, written, and produced by Dipanshu Gaba.`}
+      </pre>
+
+      {/* Lyrics */}
       <pre className="whitespace-pre-wrap font-sans text-base leading-loose text-gray-800 max-w-3xl">
 {`
 Prabal mhtav ho ya detya kann
