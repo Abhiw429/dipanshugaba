@@ -2,8 +2,10 @@ export default function SongPage() {
   return (
     <section className="space-y-4">
       <h1 className="text-2xl font-bold">Camouflage (Freeverse)</h1>
-      <p>By Dipanshu Gaba</p>
-
+      <pre className="whitespace-pre-wrap font-sans text-base leading-loose text-gray-800 max-w-3xl">
+{`All work created, written, and produced by Dipanshu Gaba.
+`}
+</pre>
       <pre className="whitespace-pre-wrap font-sans text-base leading-loose text-gray-800 max-w-3xl">
 {`
 Prabal mhtav ho ya detya kann
