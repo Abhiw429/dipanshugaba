@@ -1,9 +1,8 @@
-export default function Contact() {
+export default function ContactPage() {
   return (
-    <section className="max-w-xl mx-auto space-y-6">
-      <h1 className="text-4xl font-bold">Contact</h1>
-      <p>Email: dipanshugaba@gmail.com</p>
-      <p>Instagram / YouTube links coming soon.</p>
+    <section>
+      <h1 className="text-3xl font-bold">Contact</h1>
+      <p>Email: your@email.com</p>
     </section>
   );
 }
