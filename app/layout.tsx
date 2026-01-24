@@ -34,7 +34,7 @@ export default function RootLayout({
   <div className="max-w-6xl mx-auto px-6 py-6 text-center text-sm text-gray-600">
     © {new Date().getFullYear()} Dipanshu Gaba
     <span className="mx-2">|</span>
-    Designed &amp; Created by{" "}
+    Designed &amp; Developed by{" "}
     <a
       href="mailto:abhiw429@gmail.com"
       className="underline hover:text-black transition"
