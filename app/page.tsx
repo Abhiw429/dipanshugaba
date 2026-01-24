@@ -5,29 +5,37 @@ import Image from "next/image";
 import Link from "next/link";
 
 export default function Home() {
-  const [showBanner, setShowBanner] = useState(true);
+  const [showBanner, setShowBanner] = useState(false);
 
   useEffect(() => {
-    const seen = sessionStorage.getItem("munizr-banner-seen");
-    if (seen) setShowBanner(false);
+    const seen = sessionStorage.getItem("munzir-banner-seen");
+    if (!seen) setShowBanner(true);
   }, []);
 
   const closeBanner = () => {
     setShowBanner(false);
-    sessionStorage.setItem("munizr-banner-seen", "true");
+    sessionStorage.setItem("munzir-banner-seen", "true");
   };
 
   return (
     <>
-      {/* Coming Soon Banner (NOT fullscreen) */}
+      {/* Backdrop + Banner */}
       {showBanner && (
-        <div className="fixed inset-0 z-40 flex items-start justify-center pointer-events-none">
-          <div className="pointer-events-auto mt-24 relative w-[320px] rounded-2xl bg-white shadow-xl border border-gray-200 overflow-hidden">
+        <div className="fixed inset-0 z-40 flex items-start justify-center">
+          
+          {/* Blur Backdrop */}
+          <div
+            className="absolute inset-0 bg-black/30 backdrop-blur-md"
+            onClick={closeBanner}
+          />
+
+          {/* Banner Card */}
+          <div className="relative mt-24 w-[320px] rounded-2xl bg-white shadow-2xl border border-gray-200 overflow-hidden z-50">
             
-            {/* Close */}
+            {/* Close Button */}
             <button
               onClick={closeBanner}
-              className="absolute top-3 right-3 text-gray-400 hover:text-black"
+              className="absolute top-3 right-3 text-gray-400 hover:text-black transition"
               aria-label="Close"
             >
               ✕
@@ -35,8 +43,8 @@ export default function Home() {
 
             {/* Image */}
             <Image
-              src="/images/covers/munizr.jpg"
-              alt="Munizr – Coming Soon"
+              src="/images/covers/munzir.jpg"
+              alt="Munzir – Coming Soon"
               width={320}
               height={320}
               className="object-cover"
@@ -49,7 +57,7 @@ export default function Home() {
                 UPCOMING
               </p>
               <h3 className="text-lg font-bold">
-                Munizr
+                Munzir
               </h3>
               <p className="text-sm text-gray-600">
                 Coming Soon
@@ -80,7 +88,7 @@ export default function Home() {
           </Link>
         </div>
 
-        {/* Image */}
+        {/* Hero Image */}
         <Image
           src="/images/hero.jpg"
           alt="Dipanshu Gaba"
