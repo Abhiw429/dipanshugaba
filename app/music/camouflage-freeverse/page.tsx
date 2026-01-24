@@ -41,9 +41,7 @@ export default function SongPage() {
 </div>
 
       {/* Lyrics */}
-      <p className="text-xs font-semibold tracking-widest text-gray-700 mt-8">
-  LYRICS:
-</p>
+      <h3 className="text-2xl font-bold">LYRICS : </h3>
       <pre className="whitespace-pre-wrap font-sans text-base leading-loose text-gray-800 max-w-3xl">
 {`
 Prabal mhtav ho ya detya kann
