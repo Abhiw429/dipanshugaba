@@ -27,9 +27,18 @@ export default function SongPage() {
       </a>
 
       {/* Credits */}
-      <pre className="whitespace-pre-wrap font-sans text-base leading-loose text-gray-800">
-{`All work created, written, and produced by Dipanshu Gaba.`}
-      </pre>
+      <div className="rounded-2xl border border-gray-200 bg-gradient-to-br from-gray-50 to-white p-6 shadow-sm">
+  <p className="text-xs font-semibold tracking-widest text-gray-500 mb-3">
+    CREDITS:
+  </p>
+
+  <p className="text-lg text-gray-900 leading-relaxed">
+    All work created, written, and produced by
+    <span className="block mt-1 text-xl font-bold">
+      Dipanshu Gaba
+    </span>
+  </p>
+</div>
 
       {/* Lyrics */}
       <pre className="whitespace-pre-wrap font-sans text-base leading-loose text-gray-800 max-w-3xl">
