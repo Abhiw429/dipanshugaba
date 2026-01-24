@@ -34,12 +34,21 @@ export default function Home() {
             
             {/* Close Button */}
             <button
-              onClick={closeBanner}
-              className="absolute top-3 right-3 text-gray-400 hover:text-black transition"
-              aria-label="Close"
-            >
-              ✕
-            </button>
+  onClick={closeBanner}
+  aria-label="Close"
+  className="
+    absolute top-3 right-3 z-50
+    w-8 h-8
+    rounded-full
+    bg-red-600/90
+    flex items-center justify-center
+    shadow-md
+    hover:bg-red-700
+    transition
+  "
+>
+  <span className="text-gray-200 text-lg leading-none">×</span>
+</button>
 
             {/* Image */}
             <Image
