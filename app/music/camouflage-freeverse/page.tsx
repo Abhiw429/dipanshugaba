@@ -4,7 +4,8 @@ export default function SongPage() {
       <h1 className="text-2xl font-bold">Camouflage (Freeverse)</h1>
       <p>By Dipanshu Gaba</p>
 
-      <pre className="whitespace-pre-wrap font-sans text-base leading-relaxed text-gray-800">
+      <pre className="whitespace-pre-wrap font-sans text-base leading-loose text-gray-800 max-w-3xl">
+{`
 Prabal mhtav ho ya detya kann
 Satya meva jatya mann sashst singh
 Kast mastak keen nar
@@ -94,7 +95,9 @@ Kalam tod aur naam likh siyaahi se korre panno par
 Jaahaan iss khel ke top 4 love bohot
 To those ones who make songs and got some respect through this
 But...
-      </pre>
+`}
+</pre>
+
     </section>
   );
 }
