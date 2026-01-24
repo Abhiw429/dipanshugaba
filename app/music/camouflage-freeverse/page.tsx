@@ -40,7 +40,7 @@ export default function SongPage() {
   </p>
 </div>
 
-      
+      <br></br>
       {/* Lyrics */}
       <p className="text-xs font-semibold tracking-widest text-gray-500 mt-8">
   LYRICS:
