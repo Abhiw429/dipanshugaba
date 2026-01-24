@@ -1,4 +1,4 @@
-eexport default function SongPage() {
+export default function SongPage() {
   return (
     <section className="space-y-6 max-w-3xl">
       
