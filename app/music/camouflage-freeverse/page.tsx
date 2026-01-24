@@ -3,7 +3,9 @@ export default function SongPage() {
     <section className="space-y-4">
       <h1 className="text-2xl font-bold">Camouflage (Freeverse)</h1>
       <p>By Dipanshu Gaba</p>
-      <pre>Prabal mhtav ho ya detya kann
+
+      <pre className="whitespace-pre-wrap font-sans text-base leading-relaxed text-gray-800">
+Prabal mhtav ho ya detya kann
 Satya meva jatya mann sashst singh
 Kast mastak keen nar
 Moostkeem jb rhete
@@ -91,7 +93,8 @@ Matha phod apne metaphod pr khata khol
 Kalam tod aur naam likh siyaahi se korre panno par
 Jaahaan iss khel ke top 4 love bohot
 To those ones who make songs and got some respect through this
-But...</pre>
+But...
+      </pre>
     </section>
   );
 }
