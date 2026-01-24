@@ -36,7 +36,7 @@ export default function RootLayout({
     <span className="mx-2">|</span>
     Designed &amp; Developed by{" "}
     <a
-      href="mailto:abhiw429@gmail.com"
+      href="mailto:contact@abhinavs.work.gd"
       className="underline hover:text-black transition"
     >
       Abhinav
