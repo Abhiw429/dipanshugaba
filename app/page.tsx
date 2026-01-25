@@ -3,9 +3,9 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import MunzirIntro from "./components/MunzirIntro";
+import { usePathname } from "next/navigation";
 
-/* 🔁 RELEASE DATE */
+/* 🔁 CAMOUFLAGE RELEASE DATE */
 const RELEASE_DATE = new Date("2026-01-26T00:00:00");
 
 function getTimeLeft() {
@@ -21,96 +21,125 @@ function getTimeLeft() {
 }
 
 export default function Home() {
+  const pathname = usePathname();
   const [showIntro, setShowIntro] = useState(false);
   const [timeLeft, setTimeLeft] = useState(getTimeLeft());
 
-  /* Intro logic */
+  /* 🔒 INTRO — RUN ONLY ONCE, ONLY ON HOME */
   useEffect(() => {
+    if (pathname !== "/") return;
+
     const seen = sessionStorage.getItem("munzir-intro-seen");
     if (!seen) {
       setShowIntro(true);
       sessionStorage.setItem("munzir-intro-seen", "true");
 
-      setTimeout(() => {
+      const t = setTimeout(() => {
         setShowIntro(false);
-      }, 4000); // ⏱ 4 seconds
-    }
-  }, []);
+      }, 4000);
 
-  /* Countdown */
+      return () => clearTimeout(t);
+    }
+  }, [pathname]);
+
+  /* ⏳ CAMOUFLAGE COUNTDOWN */
   useEffect(() => {
     const timer = setInterval(() => {
       setTimeLeft(getTimeLeft());
     }, 1000);
+
     return () => clearInterval(timer);
   }, []);
 
   return (
     <>
-      {/* FULLSCREEN INTRO */}
-      {showIntro && <MunzirIntro />}
+      {/* 🔥 FULLSCREEN MUNZIR INTRO */}
+      {showIntro && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black animate-fadeOut">
+          <div className="flex flex-col items-center gap-6 animate-scaleIn">
+            <Image
+              src="/images/covers/munzir.jpg"
+              alt="Munzir Coming Soon"
+              width={320}
+              height={320}
+              priority
+              className="rounded-2xl shadow-2xl"
+            />
 
-      {/* HOME CONTENT */}
-      {!showIntro && (
-        <section className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-          {/* Text */}
-          <div className="space-y-6">
-            <h1 className="text-5xl font-extrabold">
-              DIPANSHU GABA
-            </h1>
+            <div className="text-center space-y-1">
+              <p className="text-xs tracking-widest text-gray-400">
+                UPCOMING
+              </p>
+              <h2 className="text-2xl font-bold text-white">
+                Munzir
+              </h2>
+              <p className="text-sm text-gray-400">
+                Coming Soon
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
 
-            <p className="text-gray-600 text-lg">
-              Artist · Rapper · Songwriter
+      {/* 🏠 HOME CONTENT */}
+      <section className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+        {/* Text */}
+        <div className="space-y-6">
+          <h1 className="text-5xl font-extrabold">
+            DIPANSHU GABA
+          </h1>
+
+          <p className="text-gray-600 text-lg">
+            Artist · Rapper · Songwriter
+          </p>
+
+          {/* 🎵 CAMOUFLAGE RELEASE BOX */}
+          <div className="rounded-2xl border border-gray-200 bg-white px-6 py-5 shadow-sm max-w-md">
+            <p className="text-sm font-semibold text-gray-900">
+              Camouflage (Freeverse)
             </p>
 
-            {/* Release Box */}
-            <div className="rounded-2xl border px-6 py-5 max-w-md">
-              <p className="font-semibold">
-                Camouflage (Freeverse)
-              </p>
-
-              {timeLeft ? (
-                <>
-                  <p className="mt-1 text-xs text-gray-500">
-                    Releasing on all streaming platforms on{" "}
-                    <span className="font-medium text-gray-700">
-                      26/01/2026
-                    </span>
-                  </p>
-
-                  <div className="mt-3 flex gap-5 font-mono">
-                    <span>{timeLeft.days}d</span>
-                    <span>{timeLeft.hours}h</span>
-                    <span>{timeLeft.minutes}m</span>
-                    <span>{timeLeft.seconds}s</span>
-                  </div>
-                </>
-              ) : (
-                <p className="mt-2 text-sm text-gray-600">
-                  Available on Spotify & Apple Music
+            {timeLeft ? (
+              <>
+                <p className="mt-1 text-xs text-gray-500">
+                  Releasing on all streaming platforms on{" "}
+                  <span className="font-medium text-gray-700">
+                    26/01/2026
+                  </span>
                 </p>
-              )}
-            </div>
 
-            <Link
-              href="/music"
-              className="inline-block border border-black px-6 py-3 text-sm hover:bg-black hover:text-white transition"
-            >
-              Explore Music
-            </Link>
+                <div className="mt-3 flex gap-6 text-sm font-medium text-gray-800 font-mono tabular-nums">
+                  <span>{timeLeft.days}d</span>
+                  <span>{timeLeft.hours}h</span>
+                  <span>{timeLeft.minutes}m</span>
+                  <span>{timeLeft.seconds}s</span>
+                </div>
+              </>
+            ) : (
+              <p className="mt-2 text-sm text-gray-600">
+                Available now on Spotify & Apple Music
+              </p>
+            )}
           </div>
 
-          {/* Hero Image */}
-          <Image
-            src="/images/hero.jpg"
-            alt="Dipanshu Gaba"
-            width={500}
-            height={600}
-            className="rounded-xl"
-            priority
-          />
-        </section>
-      )}
+          <Link
+            href="/music"
+            className="inline-block border border-black px-6 py-3 text-sm font-medium hover:bg-black hover:text-white transition"
+          >
+            Explore Music
+          </Link>
+        </div>
+
+        {/* Hero Image */}
+        <Image
+          src="/images/hero.jpg"
+          alt="Dipanshu Gaba"
+          width={500}
+          height={600}
+          className="rounded-xl"
+          priority
+        />
+      </section>
     </>
   );
 }
