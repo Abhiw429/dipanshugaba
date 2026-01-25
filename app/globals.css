@@ -33,54 +33,25 @@ Timeline (total = 4.2s):
 4.0–4.2s → split OUT
 */
 
-/* TOP PANEL */
 @keyframes splitInOutTop {
-  0% {
-    transform: translateY(-100%);
-  }
-  24% {
-    transform: translateY(0);
-  }
-  95% {
-    transform: translateY(0);
-  }
-  100% {
-    transform: translateY(-100%);
-  }
+  0% { transform: translateY(-100%); }
+  24% { transform: translateY(0); }
+  95% { transform: translateY(0); }
+  100% { transform: translateY(-100%); }
 }
 
-/* BOTTOM PANEL */
 @keyframes splitInOutBottom {
-  0% {
-    transform: translateY(100%);
-  }
-  24% {
-    transform: translateY(0);
-  }
-  95% {
-    transform: translateY(0);
-  }
-  100% {
-    transform: translateY(100%);
-  }
+  0% { transform: translateY(100%); }
+  24% { transform: translateY(0); }
+  95% { transform: translateY(0); }
+  100% { transform: translateY(100%); }
 }
 
-/* Munzir content */
 @keyframes introContent {
-  0% {
-    opacity: 0;
-    transform: scale(0.96);
-  }
-  30% {
-    opacity: 1;
-    transform: scale(1);
-  }
-  90% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
+  0% { opacity: 0; transform: scale(0.96); }
+  30% { opacity: 1; transform: scale(1); }
+  90% { opacity: 1; }
+  100% { opacity: 0; }
 }
 
 .animate-split-in-top {
