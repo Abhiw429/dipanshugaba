@@ -50,7 +50,7 @@ export default function MusicPage() {
             </h2>
 
             <span className="inline-block text-xs px-2 py-0.5 rounded-full bg-gray-100 text-gray-700">
-              Pyaj Malaai — EP
+              Pyaaj Malaai — EP
             </span>
           </div>
         </Link>
@@ -59,19 +59,19 @@ export default function MusicPage() {
       {/* Projects */}
       {activeTab === "Projects" && (
         <Link
-          href="/music/projects/pyaj-malaai"
+          href="/music/projects/pyaaj-malaai"
           className="flex items-center gap-6 border border-gray-200 rounded-xl p-4 hover:bg-gray-50 transition"
         >
           <Image
-            src="/images/covers/pyaj-malaai.jpg"
-            alt="Pyaj Malaai EP"
+            src="/images/covers/pyaaj-malaai.jpg"
+            alt="Pyaaj Malaai EP"
             width={120}
             height={120}
             className="rounded-lg"
           />
 
           <div>
-            <h2 className="text-xl font-semibold">Pyaj Malaai</h2>
+            <h2 className="text-xl font-semibold">Pyaaj Malaai</h2>
             <p className="text-sm text-gray-500">EP</p>
           </div>
         </Link>
