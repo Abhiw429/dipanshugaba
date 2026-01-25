@@ -80,7 +80,7 @@ export default function SongPage() {
       ? `${timeLeft.days}d ${timeLeft.hours}h ${timeLeft.minutes}m ${timeLeft.seconds}s`
       : "Listen on Spotify"}
   </span>
-</a>>
+</a>
 
         {/* Apple Music */}
        <a
