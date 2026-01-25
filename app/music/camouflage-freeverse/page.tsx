@@ -56,28 +56,31 @@ export default function SongPage() {
   className={`
     flex items-center gap-3
     border px-5 py-3 rounded-full
-    text-sm transition
-    min-w-[240px] justify-center
-    ${timeLeft ? "text-gray-700 cursor-default" : "hover:bg-black hover:text-white"}
+    min-w-[260px] justify-center
+    transition
+    ${timeLeft
+      ? "text-gray-800 cursor-default"
+      : "hover:bg-black hover:text-white"}
   `}
 >
-  {/* Icon */}
+  {/* Spotify Icon (LOCKED COLOR) */}
   <svg
     width="18"
     height="18"
     viewBox="0 0 24 24"
+    className="text-green-600 shrink-0"
     fill="currentColor"
   >
     <path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm5.47 17.3c-.22.36-.69.48-1.05.26-2.88-1.77-6.5-2.17-10.77-1.18-.41.09-.82-.16-.91-.57-.1-.41.16-.82.57-.91 4.67-1.07 8.7-.61 11.9 1.33.36.22.48.69.26 1.05z"/>
   </svg>
 
-  {/* Timer / Text */}
+  {/* Text / Timer */}
   <span className="font-mono tabular-nums whitespace-nowrap">
     {timeLeft
       ? `${timeLeft.days}d ${timeLeft.hours}h ${timeLeft.minutes}m ${timeLeft.seconds}s`
       : "Listen on Spotify"}
   </span>
-</a>
+</a>>
 
         {/* Apple Music */}
        <a
@@ -85,16 +88,19 @@ export default function SongPage() {
   className={`
     flex items-center gap-3
     border px-5 py-3 rounded-full
-    text-sm transition
-    min-w-[260px] justify-center
-    ${timeLeft ? "text-gray-700 cursor-default" : "hover:bg-black hover:text-white"}
+    min-w-[280px] justify-center
+    transition
+    ${timeLeft
+      ? "text-gray-800 cursor-default"
+      : "hover:bg-black hover:text-white"}
   `}
 >
-  {/* Icon */}
+  {/* Apple Icon (LOCKED COLOR) */}
   <svg
     width="18"
     height="18"
     viewBox="0 0 24 24"
+    className="text-gray-900 shrink-0"
     fill="currentColor"
   >
     <path d="M16.365 1.43c0 1.14-.52 2.29-1.3 3.13-.77.83-2.02 1.48-3.17 1.38-.15-1.07.44-2.21 1.19-3.03.83-.9 2.18-1.55 3.28-1.48z"/>
@@ -106,7 +112,6 @@ export default function SongPage() {
       : "Listen on Apple Music"}
   </span>
 </a>
-
       </div>
 
       {/* Credits */}
