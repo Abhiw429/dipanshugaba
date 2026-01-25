@@ -4,12 +4,38 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
+/* 🔁 CHANGE THIS TO YOUR DSP RELEASE DATE */
+const RELEASE_DATE = new Date("2026-02-10T00:00:00");
+
+function getTimeLeft() {
+  const now = Date.now();
+  const diff = RELEASE_DATE.getTime() - now;
+
+  if (diff <= 0) return null;
+
+  return {
+    days: Math.floor(diff / (1000 * 60 * 60 * 24)),
+    hours: Math.floor((diff / (1000 * 60 * 60)) % 24),
+    minutes: Math.floor((diff / (1000 * 60)) % 60),
+    seconds: Math.floor((diff / 1000) % 60),
+  };
+}
+
 export default function Home() {
   const [showBanner, setShowBanner] = useState(false);
+  const [timeLeft, setTimeLeft] = useState(getTimeLeft());
 
   useEffect(() => {
     const seen = sessionStorage.getItem("munzir-banner-seen");
     if (!seen) setShowBanner(true);
+  }, []);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTimeLeft(getTimeLeft());
+    }, 1000);
+
+    return () => clearInterval(timer);
   }, []);
 
   const closeBanner = () => {
@@ -34,21 +60,21 @@ export default function Home() {
             
             {/* Close Button */}
             <button
-  onClick={closeBanner}
-  aria-label="Close"
-  className="
-    absolute top-3 right-3 z-50
-    w-8 h-8
-    rounded-full
-    bg-red-600/90
-    flex items-center justify-center
-    shadow-md
-    hover:bg-red-700
-    transition
-  "
->
-  <span className="text-gray-200 text-lg leading-none">×</span>
-</button>
+              onClick={closeBanner}
+              aria-label="Close"
+              className="
+                absolute top-3 right-3 z-50
+                w-8 h-8
+                rounded-full
+                bg-red-600/90
+                flex items-center justify-center
+                shadow-md
+                hover:bg-red-700
+                transition
+              "
+            >
+              <span className="text-gray-200 text-lg leading-none">×</span>
+            </button>
 
             {/* Image */}
             <Image
@@ -65,12 +91,8 @@ export default function Home() {
               <p className="text-xs tracking-widest text-gray-500 font-semibold">
                 UPCOMING
               </p>
-              <h3 className="text-lg font-bold">
-                Munzir
-              </h3>
-              <p className="text-sm text-gray-600">
-                Coming Soon
-              </p>
+              <h3 className="text-lg font-bold">Munzir</h3>
+              <p className="text-sm text-gray-600">Coming Soon</p>
             </div>
           </div>
         </div>
@@ -88,6 +110,22 @@ export default function Home() {
           <p className="text-gray-600 text-lg">
             Artist · Rapper · Songwriter
           </p>
+
+          {/* Countdown */}
+          {timeLeft && (
+            <div className="space-y-2">
+              <p className="text-xs tracking-widest text-gray-500 uppercase">
+                Releasing on all streaming platforms in
+              </p>
+
+              <div className="flex gap-6 text-sm font-medium text-gray-800">
+                <span>{timeLeft.days}d</span>
+                <span>{timeLeft.hours}h</span>
+                <span>{timeLeft.minutes}m</span>
+                <span>{timeLeft.seconds}s</span>
+              </div>
+            </div>
+          )}
 
           <Link
             href="/music"
