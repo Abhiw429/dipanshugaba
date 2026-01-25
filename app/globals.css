@@ -22,65 +22,60 @@ body {
 }
 
 /* ============================= */
-/* Munzir Split Intro Animation */
+/* Munzir Split-IN / Split-OUT Intro */
 /* ============================= */
 
 /*
-Timeline (total 3.6s):
-0–0.4s  → intro enters (fade + scale)
-0.4–2.4s → hold
-2.4–3.6s → split away
+Timeline (total = 4.2s):
+0–1.0s   → home visible
+1.0–2.0s → split IN
+2.0–4.0s → hold
+4.0–4.2s → split OUT
 */
 
-/* TOP HALF */
-@keyframes splitTop {
+/* TOP PANEL */
+@keyframes splitInOutTop {
   0% {
-    transform: translateY(0) scale(0.96);
-    opacity: 0;
+    transform: translateY(-100%);
   }
-  11% {
-    transform: translateY(0) scale(1);
-    opacity: 1;
+  24% {
+    transform: translateY(0);
   }
-  66% {
-    transform: translateY(0) scale(1);
-    opacity: 1;
+  95% {
+    transform: translateY(0);
   }
   100% {
     transform: translateY(-100%);
-    opacity: 1;
   }
 }
 
-/* BOTTOM HALF */
-@keyframes splitBottom {
+/* BOTTOM PANEL */
+@keyframes splitInOutBottom {
   0% {
-    transform: translateY(0) scale(0.96);
-    opacity: 0;
+    transform: translateY(100%);
   }
-  11% {
-    transform: translateY(0) scale(1);
-    opacity: 1;
+  24% {
+    transform: translateY(0);
   }
-  66% {
-    transform: translateY(0) scale(1);
-    opacity: 1;
+  95% {
+    transform: translateY(0);
   }
   100% {
     transform: translateY(100%);
-    opacity: 1;
   }
 }
 
-/* Munzir content fades DURING split */
-@keyframes introFade {
+/* Munzir content */
+@keyframes introContent {
   0% {
     opacity: 0;
+    transform: scale(0.96);
   }
-  11% {
+  30% {
     opacity: 1;
+    transform: scale(1);
   }
-  66% {
+  90% {
     opacity: 1;
   }
   100% {
@@ -88,14 +83,14 @@ Timeline (total 3.6s):
   }
 }
 
-.animate-split-top {
-  animation: splitTop 3.6s ease-in-out forwards;
+.animate-split-in-top {
+  animation: splitInOutTop 4.2s ease-in-out forwards;
 }
 
-.animate-split-bottom {
-  animation: splitBottom 3.6s ease-in-out forwards;
+.animate-split-in-bottom {
+  animation: splitInOutBottom 4.2s ease-in-out forwards;
 }
 
-.animate-intro-fade {
-  animation: introFade 3.6s ease-in-out forwards;
+.animate-intro-content {
+  animation: introContent 4.2s ease-in-out forwards;
 }
