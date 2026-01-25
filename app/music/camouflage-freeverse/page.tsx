@@ -1,21 +1,24 @@
 "use client";
 
+import { useState } from "react";
+
 export default function SongPage() {
+  const [activeTab, setActiveTab] = useState<"lyrics" | "breakdown">("lyrics");
+
   return (
     <section className="space-y-8 max-w-3xl">
 
       {/* Title */}
       <h1 className="text-2xl font-bold">Camouflage (Freeverse)</h1>
 
-      {/* YouTube Button ONLY */}
-      <div className="flex gap-4 flex-wrap">
+      {/* YouTube Button */}
+      <div>
         <a
           href="https://youtu.be/aZblaDVPMXU?si=YfJU1LqeGuHhv7j3"
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-2 border px-5 py-3 rounded-full text-sm hover:bg-black hover:text-white transition"
         >
-          {/* YouTube Icon */}
           <svg
             width="18"
             height="18"
@@ -25,7 +28,6 @@ export default function SongPage() {
           >
             <path d="M23.498 6.186a2.996 2.996 0 00-2.108-2.118C19.53 3.5 12 3.5 12 3.5s-7.53 0-9.39.568A2.996 2.996 0 00.502 6.186 31.4 31.4 0 000 12a31.4 31.4 0 00.502 5.814 2.996 2.996 0 002.108 2.118C4.47 20.5 12 20.5 12 20.5s7.53 0 9.39-.568a2.996 2.996 0 002.108-2.118A31.4 31.4 0 0024 12a31.4 31.4 0 00-.502-5.814zM9.75 15.5v-7l6 3.5-6 3.5z" />
           </svg>
-
           <span>Listen on YouTube</span>
         </a>
       </div>
@@ -41,9 +43,34 @@ export default function SongPage() {
         </p>
       </div>
 
-      {/* Lyrics */}
-      <h3 className="text-2xl font-bold">LYRICS :</h3>
-      <pre className="whitespace-pre-wrap font-sans text-base leading-loose text-gray-800">
+      {/* Tabs */}
+      <div className="flex gap-6 border-b">
+        <button
+          onClick={() => setActiveTab("lyrics")}
+          className={`pb-2 text-sm font-medium ${
+            activeTab === "lyrics"
+              ? "border-b-2 border-black text-black"
+              : "text-gray-500 hover:text-black"
+          }`}
+        >
+          Lyrics
+        </button>
+
+        <button
+          onClick={() => setActiveTab("breakdown")}
+          className={`pb-2 text-sm font-medium ${
+            activeTab === "breakdown"
+              ? "border-b-2 border-black text-black"
+              : "text-gray-500 hover:text-black"
+          }`}
+        >
+          Breakdown
+        </button>
+      </div>
+
+      {/* Tab Content */}
+      {activeTab === "lyrics" && (
+        <pre className="whitespace-pre-wrap font-sans text-base leading-loose text-gray-800">
 {`Prabal mhtav ho ya detya kann
 Satya meva jatya mann sashst singh
 Kast mastak keen nar
@@ -133,8 +160,20 @@ Kalam tod aur naam likh siyaahi se korre panno par
 Jaahaan iss khel ke top 4 love bohot
 To those ones who make songs and got some respect through this
 But...`}
-      </pre>
+        </pre>
+      )}
 
+      {activeTab === "breakdown" && (
+        <div className="text-gray-600 leading-relaxed">
+          <p className="mb-4">
+            Breakdown coming soon.
+          </p>
+          <p className="text-sm text-gray-500">
+            This section will explore themes, references, writing choices, and
+            the intent behind the verses.
+          </p>
+        </div>
+      )}
     </section>
   );
 }
