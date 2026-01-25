@@ -116,7 +116,7 @@ export default function Home() {
                   </span>
                 </p>
 
-                <div className="mt-3 flex gap-6 text-sm font-medium text-gray-800 font-mono tabular-nums">
+                <div className="mt-3 flex gap-6 text-sm font-medium text-gray-800 tabular-nums">
                   <span>{timeLeft.days}d</span>
                   <span>{timeLeft.hours}h</span>
                   <span>{timeLeft.minutes}m</span>
