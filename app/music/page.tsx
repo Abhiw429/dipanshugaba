@@ -50,25 +50,30 @@ export default function MusicPage() {
         />
 
         {/* Info */}
-        <div className="space-y-1">
-          <h2 className="text-xl font-semibold">
-            Camouflage (Freeverse)
-          </h2>
+    <div className="space-y-1">
+  <h2 className="text-xl font-semibold">
+    Camouflage (Freeverse)
+  </h2>
 
-          {/* Countdown OR Available */}
-          {timeLeft ? (
-            <div className="flex gap-4 text-sm font-medium text-gray-700">
-              <span>{timeLeft.days}d</span>
-              <span>{timeLeft.hours}h</span>
-              <span>{timeLeft.minutes}m</span>
-              <span>{timeLeft.seconds}s</span>
-            </div>
-          ) : (
-            <p className="text-sm text-gray-600">
-              Available on all streaming platforms
-            </p>
-          )}
-        </div>
+  {timeLeft ? (
+    <>
+      <p className="text-xs text-gray-500">
+        Releasing on all streaming platforms in
+      </p>
+
+      <div className="flex gap-4 text-sm font-medium text-gray-800">
+        <span>{timeLeft.days}d</span>
+        <span>{timeLeft.hours}h</span>
+        <span>{timeLeft.minutes}m</span>
+        <span>{timeLeft.seconds}s</span>
+      </div>
+    </>
+  ) : (
+    <p className="text-sm text-gray-600">
+      Available on all streaming platforms
+    </p>
+  )}
+</div>
       </Link>
     </section>
   );
