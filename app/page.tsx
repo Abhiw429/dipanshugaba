@@ -9,7 +9,6 @@ export default function Home() {
   const pathname = usePathname();
   const [showIntro, setShowIntro] = useState(false);
 
-  /* 🔥 MUNZIR INTRO — ONCE PER SESSION, HOME ONLY */
   useEffect(() => {
     if (pathname !== "/") return;
 
@@ -18,47 +17,49 @@ export default function Home() {
       setShowIntro(true);
       sessionStorage.setItem("munzir-intro-seen", "true");
 
-      const timer = setTimeout(() => {
+      const t = setTimeout(() => {
         setShowIntro(false);
-      }, 2000); // ⏱ 2s intro
+      }, 1300); // intro duration
 
-      return () => clearTimeout(timer);
+      return () => clearTimeout(t);
     }
   }, [pathname]);
 
   return (
     <>
-      {/* 🌑 FULLSCREEN MUNZIR INTRO */}
+      {/* 🔥 SPLIT INTRO */}
       {showIntro && (
-        <div
-          className="
-            fixed inset-0 z-[100]
-            flex items-center justify-center
-            bg-black
-            animate-intro
-            pointer-events-none
-          "
-        >
-          <div className="flex flex-col items-center gap-6">
-            <Image
-              src="/images/covers/munzir.jpg"
-              alt="Munzir Coming Soon"
-              width={320}
-              height={320}
-              priority
-              className="rounded-2xl shadow-2xl"
-            />
+        <div className="fixed inset-0 z-[100] pointer-events-none">
+          
+          {/* TOP HALF */}
+          <div className="absolute top-0 left-0 w-full h-1/2 bg-black animate-slide-top" />
 
-            <div className="text-center space-y-1">
-              <p className="text-xs tracking-widest text-gray-400">
-                UPCOMING
-              </p>
-              <h2 className="text-2xl font-bold text-white">
-                Munzir
-              </h2>
-              <p className="text-sm text-gray-400">
-                Coming Soon
-              </p>
+          {/* BOTTOM HALF */}
+          <div className="absolute bottom-0 left-0 w-full h-1/2 bg-black animate-slide-bottom" />
+
+          {/* CENTER CONTENT */}
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="flex flex-col items-center gap-5">
+              <Image
+                src="/images/covers/munzir.jpg"
+                alt="Munzir Coming Soon"
+                width={280}
+                height={280}
+                className="rounded-2xl shadow-2xl"
+                priority
+              />
+
+              <div className="text-center">
+                <p className="text-xs tracking-widest text-gray-400">
+                  UPCOMING
+                </p>
+                <h2 className="text-2xl font-bold text-white">
+                  Munzir
+                </h2>
+                <p className="text-sm text-gray-400">
+                  Coming Soon
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -66,6 +67,7 @@ export default function Home() {
 
       {/* 🏠 HOME CONTENT */}
       <section className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+        
         {/* Left */}
         <div className="space-y-6">
           <h1 className="text-5xl font-extrabold">
