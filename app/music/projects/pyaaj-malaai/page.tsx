@@ -39,7 +39,26 @@ export default function PyaajMalaaiPage() {
               </p>
             </div>
           </Link>
+ {/* Munzir */}
+  <div className="flex items-center gap-4 border border-gray-200 rounded-xl p-4 bg-gray-50">
+    <Image
+      src="/images/covers/munzir.jpg"
+      alt="Munzir cover"
+      width={96}
+      height={96}
+      className="rounded-lg"
+    />
 
+    <div>
+      <h3 className="text-lg font-semibold">
+        Munzir
+      </h3>
+      <p className="text-sm text-gray-500">
+        Releasing soon
+      </p>
+    </div>
+  </div>
+</div>
           {/* Later you can add more tracks here */}
         </div>
 
