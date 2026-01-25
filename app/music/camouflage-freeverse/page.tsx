@@ -52,43 +52,57 @@ export default function SongPage() {
 
         {/* Spotify */}
         <a
-          href={!timeLeft ? "https://open.spotify.com" : undefined}
-          className={`flex items-center gap-3 border px-5 py-3 rounded-full text-sm transition ${
-            timeLeft
-              ? "text-gray-600 cursor-default"
-              : "hover:bg-black hover:text-white"
-          }`}
-        >
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zm5.5 17.3c-.2.3-.6.4-.9.2-2.5-1.5-5.7-1.9-9.4-1.1-.4.1-.7-.2-.8-.5-.1-.4.2-.7.5-.8 4-.9 7.6-.4 10.4 1.3.3.2.4.6.2.9z" />
-          </svg>
+  href={!timeLeft ? "https://open.spotify.com" : undefined}
+  className={`flex items-center gap-3 border px-5 py-3 rounded-full text-sm transition ${
+    timeLeft
+      ? "text-gray-700 cursor-default"
+      : "hover:bg-black hover:text-white"
+  }`}
+>
+  {/* Spotify Icon */}
+  <svg
+    width="18"
+    height="18"
+    viewBox="0 0 24 24"
+    fill="currentColor"
+    aria-hidden="true"
+  >
+    <path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm5.47 17.3c-.22.36-.69.48-1.05.26-2.88-1.77-6.5-2.17-10.77-1.18-.41.09-.82-.16-.91-.57-.1-.41.16-.82.57-.91 4.67-1.07 8.7-.61 11.9 1.33.36.22.48.69.26 1.05zm1.5-3.33c-.28.45-.86.59-1.31.31-3.3-2.03-8.33-2.62-12.23-1.43-.51.15-1.05-.14-1.2-.65-.15-.51.14-1.05.65-1.2 4.46-1.35 9.98-.69 13.8 1.66.45.28.59.86.31 1.31zm.13-3.47C15.28 8.2 8.6 7.98 4.96 9.1c-.61.18-1.26-.16-1.44-.77-.18-.61.16-1.26.77-1.44 4.18-1.27 11.15-1.03 15.57 1.61.56.34.74 1.06.4 1.62-.34.56-1.06.74-1.62.4z"/>
+  </svg>
 
-          {timeLeft ? (
-            <span>{timeLeft.days}d {timeLeft.hours}h {timeLeft.minutes}m {timeLeft.seconds}s</span>
-          ) : (
-            <span>Listen on Spotify</span>
-          )}
-        </a>
+  {timeLeft ? (
+    <span>{timeLeft.days}d {timeLeft.hours}h {timeLeft.minutes}m {timeLeft.seconds}s</span>
+  ) : (
+    <span>Listen on Spotify</span>
+  )}
+</a>
 
         {/* Apple Music */}
-        <a
-          href={!timeLeft ? "https://music.apple.com" : undefined}
-          className={`flex items-center gap-3 border px-5 py-3 rounded-full text-sm transition ${
-            timeLeft
-              ? "text-gray-600 cursor-default"
-              : "hover:bg-black hover:text-white"
-          }`}
-        >
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M16.365 1.43c0 1.14-.52 2.29-1.3 3.13-.77.83-2.02 1.48-3.17 1.38-.15-1.07.44-2.21 1.19-3.03.83-.9 2.18-1.55 3.28-1.48z"/>
-          </svg>
+       <a
+  href={!timeLeft ? "https://music.apple.com" : undefined}
+  className={`flex items-center gap-3 border px-5 py-3 rounded-full text-sm transition ${
+    timeLeft
+      ? "text-gray-700 cursor-default"
+      : "hover:bg-black hover:text-white"
+  }`}
+>
+  {/* Apple Music Icon */}
+  <svg
+    width="18"
+    height="18"
+    viewBox="0 0 24 24"
+    fill="currentColor"
+    aria-hidden="true"
+  >
+    <path d="M16.365 1.43c0 1.14-.52 2.29-1.3 3.13-.77.83-2.02 1.48-3.17 1.38-.15-1.07.44-2.21 1.19-3.03.83-.9 2.18-1.55 3.28-1.48zM20.75 17.09c-.32.74-.7 1.46-1.15 2.15-.61.92-1.11 1.55-1.5 1.88-.6.54-1.24.82-1.92.84-.49 0-1.08-.14-1.78-.42-.7-.28-1.34-.42-1.94-.42-.62 0-1.28.14-2 .42-.72.28-1.3.43-1.75.45-.65.03-1.3-.26-1.96-.87-.42-.37-.94-1.02-1.56-1.96-.67-1.01-1.22-2.18-1.66-3.51-.47-1.43-.7-2.81-.7-4.14 0-1.53.33-2.85 1-3.95.52-.9 1.21-1.6 2.08-2.11.87-.51 1.81-.77 2.82-.79.55 0 1.27.17 2.16.51.89.34 1.46.51 1.71.51.19 0 .82-.2 1.88-.6.99-.36 1.83-.51 2.51-.45 1.86.15 3.26.89 4.2 2.22-1.66 1.01-2.48 2.43-2.46 4.27.02 1.43.53 2.62 1.53 3.56.45.44.95.78 1.51 1.01z"/>
+  </svg>
 
-          {timeLeft ? (
-            <span>{timeLeft.days}d {timeLeft.hours}h {timeLeft.minutes}m {timeLeft.seconds}s</span>
-          ) : (
-            <span>Listen on Apple Music</span>
-          )}
-        </a>
+  {timeLeft ? (
+    <span>{timeLeft.days}d {timeLeft.hours}h {timeLeft.minutes}m {timeLeft.seconds}s</span>
+  ) : (
+    <span>Listen on Apple Music</span>
+  )}
+</a>
 
       </div>
 
