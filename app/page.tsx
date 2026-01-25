@@ -25,7 +25,7 @@ export default function Home() {
     // 2️⃣ Show intro after 1s
     const startIntro = setTimeout(() => {
       setShowIntro(true);
-    }, 1000);
+    }, 100);
 
     // 3️⃣ End intro AFTER full animation
     const endIntro = setTimeout(() => {
