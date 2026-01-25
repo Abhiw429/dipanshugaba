@@ -60,6 +60,27 @@ body {
     opacity: 1;
   }
 }
+/* ============================= */
+/* Munzir Split Intro Animation */
+/* ============================= */
+
+@keyframes slideTop {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-100%); }
+}
+
+@keyframes slideBottom {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(100%); }
+}
+
+.animate-slide-top {
+  animation: slideTop 1.2s ease-in-out forwards;
+}
+
+.animate-slide-bottom {
+  animation: slideBottom 1.2s ease-in-out forwards;
+}
 
 .animate-fadeIn {
   animation: fadeIn 0.6s ease forwards;
