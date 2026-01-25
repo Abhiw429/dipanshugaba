@@ -9,32 +9,33 @@ export default function Home() {
   const pathname = usePathname();
   const [showIntro, setShowIntro] = useState(false);
 
-  /* 🎬 RUN INTRO ONLY ON HOME, ONCE PER SESSION */
   useEffect(() => {
     if (pathname !== "/") return;
 
     const seen = sessionStorage.getItem("munzir-intro-seen");
-    if (!seen) {
-      sessionStorage.setItem("munzir-intro-seen", "true");
+    if (seen) return;
 
-      const start = setTimeout(() => {
-        setShowIntro(true);
-      }, 1000); // wait 1s before split IN
+    sessionStorage.setItem("munzir-intro-seen", "true");
 
-      const end = setTimeout(() => {
-        setShowIntro(false);
-      }, 4200); // total animation duration
+    // 1️⃣ Home visible for 1s
+    const startIntro = setTimeout(() => {
+      setShowIntro(true);
+    }, 1000);
 
-      return () => {
-        clearTimeout(start);
-        clearTimeout(end);
-      };
-    }
+    // 2️⃣ REMOVE INTRO ONLY AFTER FULL ANIMATION
+    const removeIntro = setTimeout(() => {
+      setShowIntro(false);
+    }, 5200); // 1s delay + 4.2s animation
+
+    return () => {
+      clearTimeout(startIntro);
+      clearTimeout(removeIntro);
+    };
   }, [pathname]);
 
   return (
     <>
-      {/* 🎬 SPLIT IN → HOLD → SPLIT OUT INTRO */}
+      {/* 🎬 SPLIT IN → HOLD → SPLIT OUT (FULLY VISIBLE) */}
       {showIntro && (
         <div className="fixed inset-0 z-[100] pointer-events-none overflow-hidden">
           
@@ -69,7 +70,7 @@ export default function Home() {
         </div>
       )}
 
-      {/* 🏠 HOME PAGE (VISIBLE BEFORE + AFTER INTRO) */}
+      {/* 🏠 HOME PAGE */}
       <section className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
         <div className="space-y-6">
           <h1 className="text-5xl font-extrabold">
