@@ -33,7 +33,7 @@ export default function MusicPage() {
       {/* Latest */}
       {activeTab === "Latest" && (
         <Link
-          href="/music/camouflage-freeverse"
+          href="/music/projects/pyaaj-malaai/camouflage-freeverse"
           className="flex items-center gap-6 border border-gray-200 rounded-xl p-4 hover:bg-gray-50 transition"
         >
           <Image
