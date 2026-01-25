@@ -53,7 +53,7 @@ export default function SongPage() {
         {/* Spotify */}
         <a
   href={!timeLeft ? "https://open.spotify.com" : undefined}
-  className={`flex items-center gap-3 border px-5 py-3 rounded-full text-sm transition min-w-[200px] ${
+  className={`flex items-center gap-3 border px-5 py-3 rounded-full text-sm transition min-w-[180px] ${
     timeLeft
       ? "text-gray-700 cursor-default"
       : "hover:bg-black hover:text-white"
@@ -80,7 +80,7 @@ export default function SongPage() {
         {/* Apple Music */}
        <a
   href={!timeLeft ? "https://music.apple.com" : undefined}
-  className={`flex items-center gap-3 border px-5 py-3 rounded-full text-sm transition min-w-[200px] ${
+  className={`flex items-center gap-3 border px-5 py-3 rounded-full text-sm transition min-w-[180px] ${
     timeLeft
       ? "text-gray-700 cursor-default"
       : "hover:bg-black hover:text-white"
