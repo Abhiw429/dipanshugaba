@@ -25,8 +25,8 @@ export default function SongPage() {
             <Image
               src="/images/covers/camouflage-freeverse.jpg"
               alt="Camouflage cover"
-              width={200}
-              height={200}
+              width={300}
+              height={300}
               className="rounded-2xl aspect-square object-cover"
               priority
             />
@@ -68,8 +68,8 @@ export default function SongPage() {
           <Image
             src="/images/covers/camouflage-freeverse.jpg"
             alt="Camouflage cover"
-            width={200}
-            height={200}
+            width={300}
+            height={300}
             className="rounded-2xl aspect-square object-cover shadow-lg"
             priority
           />
