@@ -20,7 +20,7 @@ export default function Home() {
 
       const timer = setTimeout(() => {
         setShowIntro(false);
-      }, 3200); // MUST match animation duration
+      }, 3600); // MUST match animation duration
 
       return () => clearTimeout(timer);
     }
