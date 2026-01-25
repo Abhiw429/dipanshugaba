@@ -1,49 +1,82 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 
 export default function SongPage() {
   const [activeTab, setActiveTab] = useState<"lyrics" | "breakdown">("lyrics");
 
   return (
-    <section className="space-y-8 max-w-3xl">
+    <section className="max-w-5xl mx-auto space-y-10">
 
-      {/* Title */}
-      <h1 className="text-2xl font-bold">Camouflage (Freeverse)</h1>
+      {/* HEADER GRID */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
 
-      {/* YouTube Button */}
-      <div>
-        <a
-          href="https://youtu.be/aZblaDVPMXU?si=YfJU1LqeGuHhv7j3"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 border px-5 py-3 rounded-full text-sm hover:bg-black hover:text-white transition"
-        >
-          <svg
-            width="18"
-            height="18"
-            viewBox="0 0 24 24"
-            fill="currentColor"
-            aria-hidden="true"
+        {/* LEFT CONTENT */}
+        <div className="space-y-6">
+
+          {/* Song title */}
+          <h1 className="text-2xl font-bold">
+            Camouflage (Freeverse)
+          </h1>
+
+          {/* Image — mobile AFTER title, desktop on right */}
+          <div className="md:hidden">
+            <Image
+              src="/images/covers/camouflage-freeverse.jpg"
+              alt="Camouflage cover"
+              width={360}
+              height={360}
+              className="rounded-2xl aspect-square object-cover"
+              priority
+            />
+          </div>
+
+          {/* YouTube button */}
+          <a
+            href="https://youtu.be/aZblaDVPMXU?si=YfJU1LqeGuHhv7j3"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 border px-5 py-3 rounded-full text-sm hover:bg-black hover:text-white transition w-fit"
           >
-            <path d="M23.498 6.186a2.996 2.996 0 00-2.108-2.118C19.53 3.5 12 3.5 12 3.5s-7.53 0-9.39.568A2.996 2.996 0 00.502 6.186 31.4 31.4 0 000 12a31.4 31.4 0 00.502 5.814 2.996 2.996 0 002.108 2.118C4.47 20.5 12 20.5 12 20.5s7.53 0 9.39-.568a2.996 2.996 0 002.108-2.118A31.4 31.4 0 0024 12a31.4 31.4 0 00-.502-5.814zM9.75 15.5v-7l6 3.5-6 3.5z" />
-          </svg>
-          <span>Listen on YouTube</span>
-        </a>
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              aria-hidden="true"
+            >
+              <path d="M23.498 6.186a2.996 2.996 0 00-2.108-2.118C19.53 3.5 12 3.5 12 3.5s-7.53 0-9.39.568A2.996 2.996 0 00.502 6.186 31.4 31.4 0 000 12a31.4 31.4 0 00.502 5.814 2.996 2.996 0 002.108 2.118C4.47 20.5 12 20.5 12 20.5s7.53 0 9.39-.568a2.996 2.996 0 002.108-2.118A31.4 31.4 0 0024 12a31.4 31.4 0 00-.502-5.814zM9.75 15.5v-7l6 3.5-6 3.5z" />
+            </svg>
+            <span>Listen on YouTube</span>
+          </a>
+
+          {/* Credits */}
+          <div className="rounded-2xl border bg-gradient-to-br from-gray-50 to-white p-6">
+            <p className="text-xs tracking-widest text-gray-500 font-semibold mb-2">
+              CREDITS:
+            </p>
+            <p className="text-lg">
+              All work created, written, and produced by
+              <span className="block font-bold mt-1">Dipanshu Gaba</span>
+            </p>
+          </div>
+        </div>
+
+        {/* RIGHT IMAGE — desktop only */}
+        <div className="hidden md:flex justify-end">
+          <Image
+            src="/images/covers/camouflage-freeverse.jpg"
+            alt="Camouflage cover"
+            width={360}
+            height={360}
+            className="rounded-2xl aspect-square object-cover shadow-lg"
+            priority
+          />
+        </div>
       </div>
 
-      {/* Credits */}
-      <div className="rounded-2xl border bg-gradient-to-br from-gray-50 to-white p-6">
-        <p className="text-xs tracking-widest text-gray-500 font-semibold mb-2">
-          CREDITS:
-        </p>
-        <p className="text-lg">
-          All work created, written, and produced by
-          <span className="block font-bold mt-1">Dipanshu Gaba</span>
-        </p>
-      </div>
-
-      {/* Tabs */}
+      {/* TABS */}
       <div className="flex gap-6 border-b">
         <button
           onClick={() => setActiveTab("lyrics")}
@@ -68,7 +101,7 @@ export default function SongPage() {
         </button>
       </div>
 
-      {/* Tab Content */}
+      {/* TAB CONTENT */}
       {activeTab === "lyrics" && (
         <pre className="whitespace-pre-wrap font-sans text-base leading-loose text-gray-800">
 {`Prabal mhtav ho ya detya kann
@@ -165,12 +198,9 @@ But...`}
 
       {activeTab === "breakdown" && (
         <div className="text-gray-600 leading-relaxed">
-          <p className="mb-4">
-            Breakdown coming soon.
-          </p>
+          <p className="mb-4">Breakdown coming soon.</p>
           <p className="text-sm text-gray-500">
-            This section will explore themes, references, writing choices, and
-            the intent behind the verses.
+            This section will explore themes, references, and writing choices.
           </p>
         </div>
       )}
