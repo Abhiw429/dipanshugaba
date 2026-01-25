@@ -200,7 +200,7 @@ But...`}
         <div className="text-gray-600 leading-relaxed">
           <p className="mb-4">Breakdown coming soon.</p>
           <p className="text-sm text-gray-500">
-            This section will explore themes, references, and writing choices.
+            This section will explore themes, references, writing choices, and the intent behind the verses.
           </p>
         </div>
       )}
