@@ -48,7 +48,7 @@ body {
 }
 
 .animate-intro {
-  animation: introSequence 4s ease-in-out forwards;
+  animation: introSequence 2s ease-in-out forwards;
 }
 
 /* Optional subtle fade utility (used elsewhere if needed) */
