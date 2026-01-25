@@ -17,7 +17,7 @@ export default function PyaajMalaaiPage() {
         {/* LEFT: Track list (comes SECOND on mobile) */}
         <div className="order-2 md:order-1 space-y-6">
 
-          {/* Track card */}
+          {/* Camouflage */}
           <Link
             href="/music/projects/pyaaj-malaai/camouflage-freeverse"
             className="flex items-center gap-6 border border-gray-200 rounded-xl p-4 hover:bg-gray-50 transition"
@@ -39,45 +39,47 @@ export default function PyaajMalaaiPage() {
               </p>
             </div>
           </Link>
- {/* Munzir */}
-  <div className="flex items-center gap-4 border border-gray-200 rounded-xl p-4 bg-gray-50">
-    <Image
-      src="/images/covers/munzir.jpg"
-      alt="Munzir cover"
-      width={96}
-      height={96}
-      className="rounded-lg"
-    />
 
-    <div>
-      <h3 className="text-lg font-semibold">
-        Munzir
-      </h3>
-      <p className="text-sm text-gray-500">
-        Releasing soon
-      </p>
-    </div>
-  </div>
-</div>
+          {/* Munzir (Upcoming) */}
+          <div className="flex items-center gap-6 border border-gray-200 rounded-xl p-4 bg-gray-50">
+            <Image
+              src="/images/covers/munzir.jpg"
+              alt="Munzir cover"
+              width={96}
+              height={96}
+              className="rounded-lg"
+            />
+
+            <div>
+              <h3 className="text-lg font-semibold">
+                Munzir
+              </h3>
+              <p className="text-sm text-gray-500">
+                Releasing soon
+              </p>
+            </div>
+          </div>
+
           {/* Later you can add more tracks here */}
+
         </div>
 
         {/* RIGHT: EP Cover (comes FIRST on mobile) */}
         <div className="order-1 md:order-2 flex justify-center md:justify-end">
           <Image
-  src="/images/covers/pyaaj-malaai.jpg"
-  alt="Pyaaj Malaai EP cover"
-  width={360}
-  height={360}
-  className="
-    rounded-2xl
-    shadow-lg
-    aspect-square
-    object-cover
-    max-w-[320px] md:max-w-[360px]
-  "
-  priority
-/>
+            src="/images/covers/pyaaj-malaai.jpg"
+            alt="Pyaaj Malaai EP cover"
+            width={360}
+            height={360}
+            priority
+            className="
+              rounded-2xl
+              shadow-lg
+              aspect-square
+              object-cover
+              max-w-[320px] md:max-w-[360px]
+            "
+          />
         </div>
 
       </div>
