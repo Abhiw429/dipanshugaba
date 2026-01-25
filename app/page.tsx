@@ -9,6 +9,7 @@ export default function Home() {
   const pathname = usePathname();
   const [showIntro, setShowIntro] = useState(false);
 
+  /* 🔥 INTRO — ONLY ON HOME, ONLY ONCE PER SESSION */
   useEffect(() => {
     if (pathname !== "/") return;
 
@@ -17,49 +18,46 @@ export default function Home() {
       setShowIntro(true);
       sessionStorage.setItem("munzir-intro-seen", "true");
 
-      const t = setTimeout(() => {
+      const timer = setTimeout(() => {
         setShowIntro(false);
-      }, 1300); // intro duration
+      }, 3200); // MUST match animation duration
 
-      return () => clearTimeout(t);
+      return () => clearTimeout(timer);
     }
   }, [pathname]);
 
   return (
     <>
-      {/* 🔥 SPLIT INTRO */}
+      {/* 🔥 FULLSCREEN SPLIT INTRO */}
       {showIntro && (
-        <div className="fixed inset-0 z-[100] pointer-events-none">
+        <div className="fixed inset-0 z-[100] pointer-events-none overflow-hidden">
           
           {/* TOP HALF */}
-          <div className="absolute top-0 left-0 w-full h-1/2 bg-black animate-slide-top" />
-
-          {/* BOTTOM HALF */}
-          <div className="absolute bottom-0 left-0 w-full h-1/2 bg-black animate-slide-bottom" />
-
-          {/* CENTER CONTENT */}
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="flex flex-col items-center gap-5">
+          <div className="absolute top-0 left-0 w-full h-1/2 bg-black animate-split-top flex items-end justify-center">
+            <div className="mb-6 animate-intro-fade">
               <Image
                 src="/images/covers/munzir.jpg"
                 alt="Munzir Coming Soon"
-                width={280}
-                height={280}
-                className="rounded-2xl shadow-2xl"
+                width={260}
+                height={260}
                 priority
+                className="rounded-xl shadow-2xl"
               />
+            </div>
+          </div>
 
-              <div className="text-center">
-                <p className="text-xs tracking-widest text-gray-400">
-                  UPCOMING
-                </p>
-                <h2 className="text-2xl font-bold text-white">
-                  Munzir
-                </h2>
-                <p className="text-sm text-gray-400">
-                  Coming Soon
-                </p>
-              </div>
+          {/* BOTTOM HALF */}
+          <div className="absolute bottom-0 left-0 w-full h-1/2 bg-black animate-split-bottom flex items-start justify-center">
+            <div className="mt-6 text-center animate-intro-fade">
+              <p className="text-xs tracking-widest text-gray-400">
+                UPCOMING
+              </p>
+              <h2 className="text-2xl font-bold text-white">
+                Munzir
+              </h2>
+              <p className="text-sm text-gray-400">
+                Coming Soon
+              </p>
             </div>
           </div>
         </div>
