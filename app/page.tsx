@@ -103,10 +103,7 @@ export default function Home() {
             {timeLeft ? (
               <>
                 <p className="mt-1 text-xs text-gray-500">
-                  Releasing on all streaming platforms on{" "}
-                  <span className="font-medium text-gray-700">
-                    26/01/2026
-                  </span>
+                  Releasing on all streaming platforms in
                 </p>
 
                 <div className="mt-3 flex gap-6 text-sm font-medium text-gray-800">
