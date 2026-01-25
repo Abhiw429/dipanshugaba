@@ -24,6 +24,10 @@ export default function PyaajMalaaiPage() {
           <h2 className="text-lg font-semibold">
             Camouflage (Freeverse)
           </h2>
+           {/* 👇 NEW LABEL */}
+          <p className="text-sm text-gray-500">
+            Latest release
+          </p>
         </div>
       </Link>
     </section>
