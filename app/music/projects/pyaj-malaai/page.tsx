@@ -1,10 +1,10 @@
 import Link from "next/link";
 import Image from "next/image";
 
-export default function PyajMalaaiPage() {
+export default function PyaajMalaaiPage() {
   return (
     <section className="space-y-8 max-w-3xl">
-      <h1 className="text-3xl font-bold">Pyaj Malaai</h1>
+      <h1 className="text-3xl font-bold">Pyaaj Malaai</h1>
       <p className="text-gray-600">EP</p>
 
       {/* Track list */}
