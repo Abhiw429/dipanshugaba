@@ -46,13 +46,19 @@ export default function PyaajMalaaiPage() {
         {/* RIGHT: EP Cover (comes FIRST on mobile) */}
         <div className="order-1 md:order-2 flex justify-center md:justify-end">
           <Image
-            src="/images/covers/pyaaj-malaai.jpg"
-            alt="Pyaaj Malaai EP cover"
-            width={420}
-            height={420}
-            className="rounded-2xl shadow-lg aspect-square object-cover"
-            priority
-          />
+  src="/images/covers/pyaaj-malaai.jpg"
+  alt="Pyaaj Malaai EP cover"
+  width={360}
+  height={360}
+  className="
+    rounded-2xl
+    shadow-lg
+    aspect-square
+    object-cover
+    max-w-[320px] md:max-w-[360px]
+  "
+  priority
+/>
         </div>
 
       </div>
