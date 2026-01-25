@@ -36,7 +36,7 @@ export default function Home() {
 
       const timer = setTimeout(() => {
         setShowIntro(false);
-      }, 4000);
+      }, 2000);
 
       return () => clearTimeout(timer);
     }
