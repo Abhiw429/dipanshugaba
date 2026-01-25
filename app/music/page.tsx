@@ -72,7 +72,15 @@ export default function MusicPage() {
 
           <div>
             <h2 className="text-xl font-semibold">Pyaaj Malaai</h2>
-            <p className="text-sm text-gray-500">EP</p>
+            <div className="flex items-center gap-3">
+  <span className="text-sm text-gray-500">EP</span>
+
+  {/* Ongoing tag */}
+  <span className="inline-flex items-center gap-1 rounded-full border border-red-200 bg-red-50 px-2 py-0.5 text-xs font-medium text-red-600">
+    <span className="h-2 w-2 rounded-full bg-red-600 animate-pulse-dot" />
+    Ongoing
+  </span>
+</div>
           </div>
         </Link>
       )}
