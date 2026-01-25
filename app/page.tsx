@@ -5,25 +5,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-/* 🎵 CAMOUFLAGE RELEASE DATE */
-const RELEASE_DATE = new Date("2026-01-26T00:00:00");
-
-function getTimeLeft() {
-  const diff = RELEASE_DATE.getTime() - Date.now();
-  if (diff <= 0) return null;
-
-  return {
-    days: Math.floor(diff / (1000 * 60 * 60 * 24)),
-    hours: Math.floor((diff / (1000 * 60 * 60)) % 24),
-    minutes: Math.floor((diff / (1000 * 60)) % 60),
-    seconds: Math.floor((diff / 1000) % 60),
-  };
-}
-
 export default function Home() {
   const pathname = usePathname();
   const [showIntro, setShowIntro] = useState(false);
-  const [timeLeft, setTimeLeft] = useState(getTimeLeft());
 
   /* 🔥 MUNZIR INTRO — ONCE PER SESSION, HOME ONLY */
   useEffect(() => {
@@ -36,24 +20,15 @@ export default function Home() {
 
       const timer = setTimeout(() => {
         setShowIntro(false);
-      }, 2000);
+      }, 2000); // ⏱ 2s intro
 
       return () => clearTimeout(timer);
     }
   }, [pathname]);
 
-  /* ⏳ CAMOUFLAGE COUNTDOWN */
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setTimeLeft(getTimeLeft());
-    }, 1000);
-
-    return () => clearInterval(timer);
-  }, []);
-
   return (
     <>
-      {/* 🌑 FULLSCREEN INTRO (NON-BLOCKING AFTER END) */}
+      {/* 🌑 FULLSCREEN MUNZIR INTRO */}
       {showIntro && (
         <div
           className="
@@ -100,35 +75,6 @@ export default function Home() {
           <p className="text-gray-600 text-lg">
             Artist · Rapper · Songwriter
           </p>
-
-          {/* 🎵 CAMOUFLAGE RELEASE BOX */}
-          <div className="rounded-2xl border border-gray-200 bg-white px-6 py-5 shadow-sm max-w-md">
-            <p className="text-sm font-semibold text-gray-900">
-              Camouflage (Freeverse)
-            </p>
-
-            {timeLeft ? (
-              <>
-                <p className="mt-1 text-xs text-gray-500">
-                  Releasing on all streaming platforms on{" "}
-                  <span className="font-medium text-gray-700">
-                    26/01/2026
-                  </span>
-                </p>
-
-                <div className="mt-3 flex gap-6 text-sm font-medium text-gray-800 tabular-nums">
-                  <span>{timeLeft.days}d</span>
-                  <span>{timeLeft.hours}h</span>
-                  <span>{timeLeft.minutes}m</span>
-                  <span>{timeLeft.seconds}s</span>
-                </div>
-              </>
-            ) : (
-              <p className="mt-2 text-sm text-gray-600">
-                Available now on Spotify & Apple Music
-              </p>
-            )}
-          </div>
 
           <Link
             href="/music"
