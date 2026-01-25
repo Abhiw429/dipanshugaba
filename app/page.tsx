@@ -9,32 +9,38 @@ export default function Home() {
   const pathname = usePathname();
   const [showIntro, setShowIntro] = useState(false);
 
-  /* 🔥 INTRO — ONLY ON HOME, ONLY ONCE PER SESSION */
+  /* 🎬 RUN INTRO ONLY ON HOME, ONCE PER SESSION */
   useEffect(() => {
     if (pathname !== "/") return;
 
     const seen = sessionStorage.getItem("munzir-intro-seen");
     if (!seen) {
-      setShowIntro(true);
       sessionStorage.setItem("munzir-intro-seen", "true");
 
-      const timer = setTimeout(() => {
-        setShowIntro(false);
-      }, 3600); // MUST match animation duration
+      const start = setTimeout(() => {
+        setShowIntro(true);
+      }, 1000); // wait 1s before split IN
 
-      return () => clearTimeout(timer);
+      const end = setTimeout(() => {
+        setShowIntro(false);
+      }, 4200); // total animation duration
+
+      return () => {
+        clearTimeout(start);
+        clearTimeout(end);
+      };
     }
   }, [pathname]);
 
   return (
     <>
-      {/* 🔥 FULLSCREEN SPLIT INTRO */}
+      {/* 🎬 SPLIT IN → HOLD → SPLIT OUT INTRO */}
       {showIntro && (
         <div className="fixed inset-0 z-[100] pointer-events-none overflow-hidden">
           
-          {/* TOP HALF */}
-          <div className="absolute top-0 left-0 w-full h-1/2 bg-black animate-split-top flex items-end justify-center">
-            <div className="mb-6 animate-intro-fade">
+          {/* TOP PANEL */}
+          <div className="absolute top-0 left-0 w-full h-1/2 bg-black animate-split-in-top flex items-end justify-center">
+            <div className="mb-6 animate-intro-content">
               <Image
                 src="/images/covers/munzir.jpg"
                 alt="Munzir Coming Soon"
@@ -46,9 +52,9 @@ export default function Home() {
             </div>
           </div>
 
-          {/* BOTTOM HALF */}
-          <div className="absolute bottom-0 left-0 w-full h-1/2 bg-black animate-split-bottom flex items-start justify-center">
-            <div className="mt-6 text-center animate-intro-fade">
+          {/* BOTTOM PANEL */}
+          <div className="absolute bottom-0 left-0 w-full h-1/2 bg-black animate-split-in-bottom flex items-start justify-center">
+            <div className="mt-6 text-center animate-intro-content">
               <p className="text-xs tracking-widest text-gray-400">
                 UPCOMING
               </p>
@@ -63,10 +69,8 @@ export default function Home() {
         </div>
       )}
 
-      {/* 🏠 HOME CONTENT */}
+      {/* 🏠 HOME PAGE (VISIBLE BEFORE + AFTER INTRO) */}
       <section className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-        
-        {/* Left */}
         <div className="space-y-6">
           <h1 className="text-5xl font-extrabold">
             DIPANSHU GABA
@@ -84,7 +88,6 @@ export default function Home() {
           </Link>
         </div>
 
-        {/* Right */}
         <Image
           src="/images/hero.jpg"
           alt="Dipanshu Gaba"
