@@ -7,7 +7,9 @@ import { usePathname } from "next/navigation";
 
 export default function Home() {
   const pathname = usePathname();
+
   const [showIntro, setShowIntro] = useState(false);
+  const [introActive, setIntroActive] = useState(false);
 
   useEffect(() => {
     if (pathname !== "/") return;
@@ -17,25 +19,29 @@ export default function Home() {
 
     sessionStorage.setItem("munzir-intro-seen", "true");
 
-    // 1️⃣ Home visible for 1s
+    // 1️⃣ Mark intro lifecycle as active immediately
+    setIntroActive(true);
+
+    // 2️⃣ Show intro after 1s
     const startIntro = setTimeout(() => {
       setShowIntro(true);
     }, 1000);
 
-    // 2️⃣ REMOVE INTRO ONLY AFTER FULL ANIMATION
-    const removeIntro = setTimeout(() => {
+    // 3️⃣ End intro AFTER full animation
+    const endIntro = setTimeout(() => {
       setShowIntro(false);
+      setIntroActive(false);
     }, 5200); // 1s delay + 4.2s animation
 
     return () => {
       clearTimeout(startIntro);
-      clearTimeout(removeIntro);
+      clearTimeout(endIntro);
     };
   }, [pathname]);
 
   return (
     <>
-      {/* 🎬 SPLIT IN → HOLD → SPLIT OUT (FULLY VISIBLE) */}
+      {/* 🎬 SPLIT INTRO */}
       {showIntro && (
         <div className="fixed inset-0 z-[100] pointer-events-none overflow-hidden">
           
@@ -71,7 +77,11 @@ export default function Home() {
       )}
 
       {/* 🏠 HOME PAGE */}
-      <section className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+      <section
+        className={`grid grid-cols-1 md:grid-cols-2 gap-12 items-center ${
+          introActive ? "pointer-events-none" : ""
+        }`}
+      >
         <div className="space-y-6">
           <h1 className="text-5xl font-extrabold">
             DIPANSHU GABA
