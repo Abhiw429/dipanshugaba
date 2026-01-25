@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-/* 🔁 CAMOUFLAGE RELEASE DATE */
+/* 🎵 CAMOUFLAGE RELEASE DATE */
 const RELEASE_DATE = new Date("2026-01-26T00:00:00");
 
 function getTimeLeft() {
@@ -25,7 +25,7 @@ export default function Home() {
   const [showIntro, setShowIntro] = useState(false);
   const [timeLeft, setTimeLeft] = useState(getTimeLeft());
 
-  /* 🔒 INTRO — RUN ONLY ONCE, ONLY ON HOME */
+  /* 🔥 MUNZIR INTRO — ONCE PER SESSION, HOME ONLY */
   useEffect(() => {
     if (pathname !== "/") return;
 
@@ -34,11 +34,11 @@ export default function Home() {
       setShowIntro(true);
       sessionStorage.setItem("munzir-intro-seen", "true");
 
-      const t = setTimeout(() => {
+      const timer = setTimeout(() => {
         setShowIntro(false);
       }, 4000);
 
-      return () => clearTimeout(t);
+      return () => clearTimeout(timer);
     }
   }, [pathname]);
 
@@ -53,10 +53,18 @@ export default function Home() {
 
   return (
     <>
-      {/* 🔥 FULLSCREEN MUNZIR INTRO */}
+      {/* 🌑 FULLSCREEN INTRO (NON-BLOCKING AFTER END) */}
       {showIntro && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black animate-fadeOut">
-          <div className="flex flex-col items-center gap-6 animate-scaleIn">
+        <div
+          className="
+            fixed inset-0 z-[100]
+            flex items-center justify-center
+            bg-black
+            animate-intro
+            pointer-events-none
+          "
+        >
+          <div className="flex flex-col items-center gap-6">
             <Image
               src="/images/covers/munzir.jpg"
               alt="Munzir Coming Soon"
@@ -83,7 +91,7 @@ export default function Home() {
 
       {/* 🏠 HOME CONTENT */}
       <section className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-        {/* Text */}
+        {/* Left */}
         <div className="space-y-6">
           <h1 className="text-5xl font-extrabold">
             DIPANSHU GABA
@@ -130,7 +138,7 @@ export default function Home() {
           </Link>
         </div>
 
-        {/* Hero Image */}
+        {/* Right */}
         <Image
           src="/images/hero.jpg"
           alt="Dipanshu Gaba"
