@@ -65,3 +65,18 @@ Timeline (total = 4.2s):
 .animate-intro-content {
   animation: introContent 4.2s ease-in-out forwards;
 }
+@keyframes pulse-dot {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.animate-pulse-dot {
+  animation: pulse-dot 1.2s ease-in-out infinite;
+}
