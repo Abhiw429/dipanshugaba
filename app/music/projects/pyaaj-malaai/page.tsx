@@ -6,15 +6,24 @@ export default function PyaajMalaaiPage() {
     <section className="space-y-10">
 
       {/* Header */}
-      <div>
-        <h1 className="text-3xl font-bold">Pyaaj Malaai</h1>
-        <p className="text-gray-500 mt-1">EP</p>
+      <div className="space-y-2">
+        {/* Text Image Title */}
+        <Image
+          src="/images/text-images/pyaaj-malaai.jpg"
+          alt="Pyaaj Malaai"
+          width={320}
+          height={80}
+          priority
+          className="h-auto w-auto max-w-[280px]"
+        />
+
+        <p className="text-gray-500">EP</p>
       </div>
 
       {/* Main Layout */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
 
-        {/* LEFT: Track list (comes SECOND on mobile) */}
+        {/* LEFT: Track list (SECOND on mobile) */}
         <div className="order-2 md:order-1 space-y-6">
 
           {/* Camouflage */}
@@ -60,11 +69,9 @@ export default function PyaajMalaaiPage() {
             </div>
           </div>
 
-          {/* Later you can add more tracks here */}
-
         </div>
 
-        {/* RIGHT: EP Cover (comes FIRST on mobile) */}
+        {/* RIGHT: EP Cover (FIRST on mobile) */}
         <div className="order-1 md:order-2 flex justify-center md:justify-end">
           <Image
             src="/images/covers/pyaaj-malaai.jpg"
@@ -77,7 +84,7 @@ export default function PyaajMalaaiPage() {
               shadow-lg
               aspect-square
               object-cover
-              max-w-[320px] md:max-w-[360px]
+              max-w-[300px] md:max-w-[360px]
             "
           />
         </div>
