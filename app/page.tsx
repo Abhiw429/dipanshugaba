@@ -103,7 +103,7 @@ export default function Home() {
           src="/images/hero.jpg"
           alt="Dipanshu Gaba"
           width={500}
-          height={600}
+          height={500}
           className="rounded-xl"
           priority
         />
