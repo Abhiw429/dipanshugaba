@@ -19,19 +19,16 @@ export default function Home() {
 
     sessionStorage.setItem("munzir-intro-seen", "true");
 
-    // 1️⃣ Mark intro lifecycle as active immediately
     setIntroActive(true);
 
-    // 2️⃣ Show intro after 1s
     const startIntro = setTimeout(() => {
       setShowIntro(true);
     }, 100);
 
-    // 3️⃣ End intro AFTER full animation
     const endIntro = setTimeout(() => {
       setShowIntro(false);
       setIntroActive(false);
-    }, 5200); // 1s delay + 4.2s animation
+    }, 5200);
 
     return () => {
       clearTimeout(startIntro);
@@ -44,7 +41,6 @@ export default function Home() {
       {/* 🎬 SPLIT INTRO */}
       {showIntro && (
         <div className="fixed inset-0 z-[100] pointer-events-none overflow-hidden">
-          
           {/* TOP PANEL */}
           <div className="absolute top-0 left-0 w-full h-1/2 bg-black animate-split-in-top flex items-end justify-center">
             <div className="mb-6 animate-intro-content">
@@ -78,11 +74,12 @@ export default function Home() {
 
       {/* 🏠 HOME PAGE */}
       <section
-  className={`grid grid-cols-1 md:grid-cols-2 gap-16 items-center ${
-    introActive ? "pointer-events-none" : ""
-  }`}
->
-        <div className="space-y-6">
+        className={`grid grid-cols-1 md:grid-cols-2 gap-16 items-start ${
+          introActive ? "pointer-events-none" : ""
+        }`}
+      >
+        {/* LEFT: TEXT */}
+        <div className="space-y-6 md:pt-28">
           <h1 className="text-5xl font-extrabold">
             DIPANSHU GABA
           </h1>
@@ -99,16 +96,17 @@ export default function Home() {
           </Link>
         </div>
 
-        <div className="flex justify-center md:justify-end md:-mt-10">
-  <Image
-    src="/images/hero.jpg"
-    alt="Dipanshu Gaba"
-    width={420}
-    height={420}
-    priority
-    className="rounded-2xl shadow-lg"
-  />
-</div>
+        {/* RIGHT: IMAGE */}
+        <div className="flex justify-center md:justify-end md:pt-16">
+          <Image
+            src="/images/hero.jpg"
+            alt="Dipanshu Gaba"
+            width={420}
+            height={420}
+            priority
+            className="rounded-2xl shadow-lg"
+          />
+        </div>
       </section>
     </>
   );
