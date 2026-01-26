@@ -7,14 +7,14 @@ export default function PyaajMalaaiPage() {
 
       {/* Header */}
       <div className="space-y-2">
-        {/* Text Image Title */}
+        {/* Custom text image title */}
         <Image
           src="/images/text-images/pyaaj-malaai.jpg"
           alt="Pyaaj Malaai"
-          width={320}
+          width={420}
           height={80}
           priority
-          className="h-auto w-auto max-w-[280px]"
+          className="h-auto w-auto"
         />
 
         <p className="text-gray-500">EP</p>
@@ -76,15 +76,15 @@ export default function PyaajMalaaiPage() {
           <Image
             src="/images/covers/pyaaj-malaai.jpg"
             alt="Pyaaj Malaai EP cover"
-            width={360}
-            height={360}
+            width={320}
+            height={320}
             priority
             className="
               rounded-2xl
               shadow-lg
               aspect-square
               object-cover
-              max-w-[300px] md:max-w-[360px]
+              max-w-[280px] md:max-w-[320px]
             "
           />
         </div>
