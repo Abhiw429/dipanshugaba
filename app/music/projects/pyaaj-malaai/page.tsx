@@ -11,7 +11,7 @@ export default function PyaajMalaaiPage() {
         <Image
           src="/images/text-images/pyaaj-malaai.jpg"
           alt="Pyaaj Malaai"
-          width={320}
+          width={380}
           height={80}
           priority
           className="h-auto w-auto max-w-[280px]"
@@ -76,8 +76,8 @@ export default function PyaajMalaaiPage() {
           <Image
             src="/images/covers/pyaaj-malaai.jpg"
             alt="Pyaaj Malaai EP cover"
-            width={360}
-            height={360}
+            width={320}
+            height={320}
             priority
             className="
               rounded-2xl
