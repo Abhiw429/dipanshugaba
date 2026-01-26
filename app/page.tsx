@@ -78,10 +78,10 @@ export default function Home() {
 
       {/* 🏠 HOME PAGE */}
       <section
-        className={`grid grid-cols-1 md:grid-cols-2 gap-12 items-center ${
-          introActive ? "pointer-events-none" : ""
-        }`}
-      >
+  className={`grid grid-cols-1 md:grid-cols-2 gap-16 items-center ${
+    introActive ? "pointer-events-none" : ""
+  }`}
+>
         <div className="space-y-6">
           <h1 className="text-5xl font-extrabold">
             DIPANSHU GABA
@@ -99,14 +99,16 @@ export default function Home() {
           </Link>
         </div>
 
-        <Image
-          src="/images/hero.jpg"
-          alt="Dipanshu Gaba"
-          width={400}
-          height={400}
-          className="rounded-xl"
-          priority
-        />
+        <div className="flex justify-center md:justify-end md:-mt-10">
+  <Image
+    src="/images/hero.jpg"
+    alt="Dipanshu Gaba"
+    width={420}
+    height={420}
+    priority
+    className="rounded-2xl shadow-lg"
+  />
+</div>
       </section>
     </>
   );
