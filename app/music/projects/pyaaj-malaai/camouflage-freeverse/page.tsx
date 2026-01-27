@@ -177,8 +177,8 @@ That shit no dalgona candy. Woah
 
 There is no camouflage shit, no hidding
 Duniya se, ghaas bhoos, ke ahh peeche
-Bio student the only time I need lines when I write`}
-<em>(Biological name)</em> {`krr
+Bio student the only time I need lines when I write `}
+<em>(Biological name)</em> {` krr
 Solanum Lycopersicum glut cuz sauce bohot when the mak-sad drops
 Ragde bhaang ke podho ko can I? bss kya hi lena
 The pitch goes down the slope nelumbo nucifera
@@ -202,6 +202,9 @@ But...`}
 
      {activeTab === "breakdown" && (
   <div className="space-y-8">
+    <p className="text-sm text-gray-500">
+      This section will explore themes, references, writing choices, and the intent behind the verses.
+    </p>
 
     {/* Breakdown 1 */}
     <div className="rounded-2xl border border-gray-200 bg-white p-6">
