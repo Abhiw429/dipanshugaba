@@ -19,7 +19,11 @@ export default function SongPage() {
           <h1 className="text-2xl font-bold">
             Camouflage (Freeverse)
           </h1>
-
+{/*desciption */}
+          <p className="text-sm italic text-gray-500">
+     CAMOUFLAGE (Cam-of-ledge) lives on the edge of belief, biology, and brutality.
+No hiding — only exposure, where intellect and instinct collide in layered thought.
+    </p>
           {/* Image — mobile AFTER title, desktop on right */}
           <div className="md:hidden">
             <Image
@@ -31,11 +35,7 @@ export default function SongPage() {
               priority
             />
           </div>
-{/*desciption */}
-          <p className="text-sm text-gray-500">
-     CAMOUFLAGE (Cam-of-ledge) lives on the edge of belief, biology, and brutality.
-No hiding — only exposure, where intellect and instinct collide in layered thought.
-    </p>
+
           {/* YouTube button */}
           <a
             href="https://youtu.be/aZblaDVPMXU?si=YfJU1LqeGuHhv7j3"
@@ -217,13 +217,11 @@ They-sees jhola bharke punches, they-sees hilti nhi h pistil, toh noo key-pinn (
       </p>
 
       <p className="text-gray-700 leading-relaxed">
-        A dense cluster of layered references. Holland / Netherlands / tulips
-        collapse geography into wordplay (“two lips”). “Lacking loha paanch se
-        chaar” reframes chemistry into imbalance — iron shifting states as
-        metaphor. “Inverted L” gestures toward a full weekly cycle without
-        progress. The unmoved pistol at the forehead evokes danger without
-        impact, echoing a widely reported near-miss at a political rally — force
-        present, consequence narrowly avoided.
+        A dense cluster of layered references.  
+“Holland / Netherlands / tulips” connects geography with wordplay (two lips).  
+“Lacking loha paanch se chaar” breaks chemistry into metaphor — iron’s shift invokes imbalance and (Five-fe=4) 
+“Inverted L” suggests a full weekly cycle without progress with of seven days (inverted L) .  
+The image of an unmoved pistol at the forehead evokes danger without impact — a metaphor mirrored by a well-reported near-miss at a political rally in the U.S., where a bullet grazed a former world leader’s ear rather than hitting its intended head target.
       </p>
     </div>
 
@@ -253,13 +251,11 @@ Lords kh do, kala hrraaa de sfed ko that's noo vitis vinifera”
       </p>
 
       <p className="text-gray-700 leading-relaxed">
-        Botanical names act as anchors, not ornament. Solanum lycopersicum
-        (tomato) frames excess — abundance turning heavy under pressure.
-        Nelumbo nucifera (lotus) carries layered meanings: lineage, authority,
-        reverence, and the downward tilt of a cricket pitch at Lord’s. The
-        sequence collapses biology, sport, and symbolism into structure.
-        Vitis vinifera closes by stripping illusion — reducing spectacle back
-        to substance.
+        Botanical names are used as anchors rather than ornament.
+Solanum lycopersicum (tomato) grounds the image in excess and saturation — abundance turning heavy, like sauce when pressure hits.
+Nelumbo nucifera (lotus) carries multiple meanings at once: reverence, lineage, and authority. It gestures toward the personal (the mother figure as a guiding presence), the collective (symbols of power), and the literal — the downward slope of a cricket pitch at Lord’s.
+The convergence of biology, sport, and symbolism collapses hierarchy into structure: what people bow to, where momentum tilts, and how meaning shifts depending on where one stands.
+Vitis vinifera closes the sequence by stripping color and illusion, reducing spectacle back to substance.
       </p>
     </div>
   </div>
