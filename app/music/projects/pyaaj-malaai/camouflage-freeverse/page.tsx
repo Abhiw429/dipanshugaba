@@ -177,8 +177,10 @@ That shit no dalgona candy. Woah
 
 There is no camouflage shit, no hidding
 Duniya se, ghaas bhoos, ke ahh peeche
-Bio student the only time I need lines when I write (biological name) krr
-
+<p>
+  Bio student the only time I need lines when I write{" "}
+  <em>(Biological name)</em> krr
+</p>
 Solanum Lycopersicum glut cuz sauce bohot when the mak-sad drops
 Ragde bhaang ke podho ko can I? bss kya hi lena
 The pitch goes down the slope nelumbo nucifera
