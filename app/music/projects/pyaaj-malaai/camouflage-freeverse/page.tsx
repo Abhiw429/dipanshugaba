@@ -202,7 +202,14 @@ But...`}
     {/* Breakdown 1 */}
     <div className="rounded-2xl border border-gray-200 bg-white p-6">
       <p className="text-sm italic text-gray-500 mb-4">
-        “Bacche mein jo tansen plte jb ho bomb drop maaang pe pistil…”
+        “Bacche mein jo tansen plte jb ho bomb drop maaang pe pistil no sindoor shit
+Lacking loha paanch se 4 fifth loaded
+Caught it, Takin L inverted whole week
+Physc! this that cycle neither landing nor of the tulips
+Jb they are in their ladies sangeet justinthat case they are trippin
+Hoelland, wind-mills, trippy maula jbbhi
+They be seekin in my mastisk
+They-sees jhola bharke punches, they-sees hilti nhi h pistil, toh noo key-pinn (keepin) Donald piercing”
       </p>
 
       <p className="text-gray-700 leading-relaxed">
@@ -219,7 +226,9 @@ But...`}
     {/* Breakdown 2 */}
     <div className="rounded-2xl border border-gray-200 bg-white p-6">
       <p className="text-sm italic text-gray-500 mb-4">
-        “There is no camouflage shit, no hidding…”
+        “There is no camouflage shit, no hidding
+Duniya se, ghaas bhoos, ke ahh peeche
+Bio student the only time I need lines when I write (biological name) krr”
       </p>
 
       <p className="text-gray-700 leading-relaxed">
@@ -233,7 +242,10 @@ But...`}
     {/* Breakdown 3 */}
     <div className="rounded-2xl border border-gray-200 bg-white p-6">
       <p className="text-sm italic text-gray-500 mb-4">
-        “Solanum Lycopersicum glut cuz sauce bohot…”
+        “Solanum Lycopersicum glut cuz sauce bohot when the mak-sad drops
+Ragde bhaang ke podho ko can I? bss kya hi lena
+The pitch goes down the slope nelumbo nucifera
+Lords kh do, kala hrraaa de sfed ko that's noo vitis vinifera”
       </p>
 
       <p className="text-gray-700 leading-relaxed">
