@@ -19,11 +19,7 @@ export default function SongPage() {
           <h1 className="text-2xl font-bold">
             Camouflage (Freeverse)
           </h1>
-{/*desciption */}
-          <p className="text-sm italic text-gray-500">
-     CAMOUFLAGE (Cam-of-ledge) lives on the edge of belief, biology, and brutality.
-No hiding — only exposure, where intellect and instinct collide in layered thought.
-    </p>
+
           {/* Image — mobile AFTER title, desktop on right */}
           <div className="md:hidden">
             <Image
@@ -35,7 +31,11 @@ No hiding — only exposure, where intellect and instinct collide in layered tho
               priority
             />
           </div>
-
+{/*desciption */}
+          <p className="text-sm italic text-gray-500">
+     CAMOUFLAGE (Cam-of-ledge) lives on the edge of belief, biology, and brutality.
+No hiding — only exposure, where intellect and instinct collide in layered thought.
+    </p>
           {/* YouTube button */}
           <a
             href="https://youtu.be/aZblaDVPMXU?si=YfJU1LqeGuHhv7j3"
@@ -177,10 +177,8 @@ That shit no dalgona candy. Woah
 
 There is no camouflage shit, no hidding
 Duniya se, ghaas bhoos, ke ahh peeche
-<p>
-  Bio student the only time I need lines when I write{" "}
-  <em>(Biological name)</em> krr
-</p>
+Bio student the only time I need lines when I write`}
+<em>(Biological name)</em> {`krr
 Solanum Lycopersicum glut cuz sauce bohot when the mak-sad drops
 Ragde bhaang ke podho ko can I? bss kya hi lena
 The pitch goes down the slope nelumbo nucifera
