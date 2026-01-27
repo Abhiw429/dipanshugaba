@@ -15,7 +15,9 @@ export async function getSongBySlug(songSlug: string) {
   if (!res.items.length) return null;
 
   const entry = res.items[0];
-  const coverAsset = entry.fields.coverArt as Asset | undefined;
+
+  // ⚠️ FIX: field ID is `coverart`, not `coverArt`
+  const coverAsset = entry.fields.coverart as Asset | undefined;
 
   return {
     title: entry.fields.title as string,
