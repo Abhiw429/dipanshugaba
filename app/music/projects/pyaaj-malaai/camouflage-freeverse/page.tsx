@@ -255,10 +255,10 @@ Lords kh do, kala hrraaa de sfed ko that's noo vitis vinifera”
 
       <p className="text-gray-700 leading-relaxed">
         Botanical names are used as anchors rather than ornament. 
-<em>Solanum Lycopersicum</em> (tomato) grounds the image in excess and saturation — abundance turning heavy, like sauce when pressure hits.
- <em>Nelumbo nucifera</em> (lotus) carries multiple meanings at once: reverence, lineage, and authority. It gestures toward the personal (the mother figure as a guiding presence), the collective (symbols of power), and the literal — the downward slope of a cricket pitch at Lord’s.
+ {" "}<em>Solanum Lycopersicum</em> (tomato) grounds the image in excess and saturation — abundance turning heavy, like sauce when pressure hits.
+ {" "}<em>Nelumbo nucifera</em> (lotus) carries multiple meanings at once: reverence, lineage, and authority. It gestures toward the personal (the mother figure as a guiding presence), the collective (symbols of power), and the literal — the downward slope of a cricket pitch at Lord’s. 
 The convergence of biology, sport, and symbolism collapses hierarchy into structure: what people bow to, where momentum tilts, and how meaning shifts depending on where one stands. 
-<em>Vitis vinifera</em> closes the sequence by stripping color and illusion, reducing spectacle back to substance.
+{" "}<em>Vitis vinifera</em> closes the sequence by stripping color and illusion, reducing spectacle back to substance.
       </p>
     </div>
     {/* Breakdown 4 */}
