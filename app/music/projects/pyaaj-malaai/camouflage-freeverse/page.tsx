@@ -177,12 +177,12 @@ That shit no dalgona candy. Woah
 
 There is no camouflage shit, no hidding
 Duniya se, ghaas bhoos, ke ahh peeche
-Bio student the only time I need lines when I write `}
-<em>(Biological name)</em> {` krr
-Solanum Lycopersicum glut cuz sauce bohot when the mak-sad drops
+Bio student the only time I need lines when I write (Biological name) krr 
+`}
+<em>Solanum Lycopersicum</em>{` glut cuz sauce bohot when the mak-sad drops
 Ragde bhaang ke podho ko can I? bss kya hi lena
-The pitch goes down the slope nelumbo nucifera
-Lords kh do, kala hrraaa de sfed ko that's noo vitis vinifera
+The pitch goes down the slope `}<em>nelumbo nucifera</em>{`
+Lords kh do, kala hrraaa de sfed ko that's noo `}<em>vitis vinifera</em>{`
 Diye bohot saare good flows, ya god flows jb o zubaan pr h logo ki
 Todi clavicle tedhe garibaaan ftti tie bhi h bohoto ki
 
@@ -255,10 +255,23 @@ Lords kh do, kala hrraaa de sfed ko that's noo vitis vinifera”
 
       <p className="text-gray-700 leading-relaxed">
         Botanical names are used as anchors rather than ornament.
-Solanum lycopersicum (tomato) grounds the image in excess and saturation — abundance turning heavy, like sauce when pressure hits.
-Nelumbo nucifera (lotus) carries multiple meanings at once: reverence, lineage, and authority. It gestures toward the personal (the mother figure as a guiding presence), the collective (symbols of power), and the literal — the downward slope of a cricket pitch at Lord’s.
+<em>Solanum Lycopersicum</em> (tomato) grounds the image in excess and saturation — abundance turning heavy, like sauce when pressure hits.
+<em>Nelumbo nucifera</em> (lotus) carries multiple meanings at once: reverence, lineage, and authority. It gestures toward the personal (the mother figure as a guiding presence), the collective (symbols of power), and the literal — the downward slope of a cricket pitch at Lord’s.
 The convergence of biology, sport, and symbolism collapses hierarchy into structure: what people bow to, where momentum tilts, and how meaning shifts depending on where one stands.
-Vitis vinifera closes the sequence by stripping color and illusion, reducing spectacle back to substance.
+<em>Vitis vinifera</em> closes the sequence by stripping color and illusion, reducing spectacle back to substance.
+      </p>
+    </div>
+    {/* Breakdown 4 */}
+    <div className="rounded-2xl border border-gray-200 bg-white p-6">
+      <p className="text-sm italic text-gray-500 mb-4">
+        “But Ab sille kon
+Overused bar used hnn silly kon
+Pumped out chest bahar haan silicon
+Aaya Fresh maal seal h kon todde haayymannn bolle Ki”
+      </p>
+
+      <p className="text-gray-700 leading-relaxed">
+        Just a typical word play with silicon
       </p>
     </div>
   </div>
