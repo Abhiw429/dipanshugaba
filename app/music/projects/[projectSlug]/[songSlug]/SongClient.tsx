@@ -63,7 +63,17 @@ export default function SongClient({ song }: SongClientProps) {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 border px-5 py-3 rounded-full text-sm hover:bg-black hover:text-white transition w-fit"
             >
-              <span>▶</span>
+              <svg
+  width="20"
+  height="20"
+  viewBox="0 0 24 24"
+  aria-hidden="true"
+>
+  <path
+    fill="currentColor"
+    d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31.6 31.6 0 0 0 0 12a31.6 31.6 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31.6 31.6 0 0 0 24 12a31.6 31.6 0 0 0-.5-5.8ZM9.75 15.5v-7l6 3.5-6 3.5Z"
+  />
+</svg>
               <span>Listen on YouTube</span>
             </a>
           )}
