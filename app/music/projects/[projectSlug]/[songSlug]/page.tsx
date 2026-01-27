@@ -1,4 +1,4 @@
-import { contentfulClient } from "@/lib/contentful";
+import { getSongBySlug } from "../../../../lib/contentful";
 import SongClient from "./SongClient";
 
 export default async function Page() {
