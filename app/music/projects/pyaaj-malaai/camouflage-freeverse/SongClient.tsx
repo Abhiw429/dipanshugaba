@@ -3,9 +3,9 @@
 import { useState } from "react";
 import Image from "next/image";
 
-export default function SongPage() {
+export default function SongClient({ song }: { song: any }) {
   const [activeTab, setActiveTab] = useState<"lyrics" | "breakdown">("lyrics");
-
+  
   return (
     <section className="max-w-5xl mx-auto space-y-10">
 
