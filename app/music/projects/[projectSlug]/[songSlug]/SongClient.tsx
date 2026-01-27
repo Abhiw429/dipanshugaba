@@ -84,7 +84,9 @@ export default function SongClient({ song }: SongClientProps) {
               <p className="text-xs tracking-widest text-gray-500 font-semibold mb-2">
                 CREDITS:
               </p>
-              <p className="text-lg whitespace-pre-line">{song.credits}</p>
+              <p className="text-sm text-gray-700 whitespace-pre-line leading-relaxed">
+  {song.credits}
+</p>
             </div>
           )}
         </div>
