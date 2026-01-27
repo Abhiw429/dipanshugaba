@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import ReactMarkdown from "react-markdown";
 
 type SongClientProps = {
   song: {
@@ -31,9 +32,7 @@ export default function SongClient({ song }: SongClientProps) {
         <div className="space-y-6">
 
           {/* Title */}
-          <h1 className="text-2xl font-bold">
-            {song.title}
-          </h1>
+          <h1 className="text-2xl font-bold">{song.title}</h1>
 
           {/* Image (mobile) */}
           {song.coverArt?.url && (
@@ -64,15 +63,7 @@ export default function SongClient({ song }: SongClientProps) {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 border px-5 py-3 rounded-full text-sm hover:bg-black hover:text-white transition w-fit"
             >
-              <svg
-                width="18"
-                height="18"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                aria-hidden="true"
-              >
-                <path d="M23.498 6.186a2.996 2.996 0 00-2.108-2.118C19.53 3.5 12 3.5 12 3.5s-7.53 0-9.39.568A2.996 2.996 0 00.502 6.186 31.4 31.4 0 000 12a31.4 31.4 0 00.502 5.814 2.996 2.996 0 002.108 2.118C4.47 20.5 12 20.5 12 20.5s7.53 0 9.39-.568a2.996 2.996 0 002.108-2.118A31.4 31.4 0 0024 12a31.4 31.4 0 00-.502-5.814zM9.75 15.5v-7l6 3.5-6 3.5z" />
-              </svg>
+              <span>▶</span>
               <span>Listen on YouTube</span>
             </a>
           )}
@@ -83,9 +74,7 @@ export default function SongClient({ song }: SongClientProps) {
               <p className="text-xs tracking-widest text-gray-500 font-semibold mb-2">
                 CREDITS:
               </p>
-              <p className="text-lg whitespace-pre-line">
-                {song.credits}
-              </p>
+              <p className="text-lg whitespace-pre-line">{song.credits}</p>
             </div>
           )}
         </div>
@@ -136,17 +125,17 @@ export default function SongClient({ song }: SongClientProps) {
             )}
           </div>
 
-          {/* Lyrics */}
+          {/* Lyrics (Markdown-rendered) */}
           {activeTab === "lyrics" && song.lyrics && (
-            <pre className="whitespace-pre-wrap font-sans text-base leading-loose text-gray-800">
-              {song.lyrics}
-            </pre>
+            <div className="prose max-w-none text-gray-800 leading-loose">
+              <ReactMarkdown>{song.lyrics}</ReactMarkdown>
+            </div>
           )}
 
-          {/* Breakdown */}
+          {/* Breakdown (Markdown-rendered) */}
           {activeTab === "breakdown" && song.breakdown && (
-            <div className="prose max-w-none text-gray-700 whitespace-pre-line">
-              {song.breakdown}
+            <div className="prose max-w-none text-gray-700">
+              <ReactMarkdown>{song.breakdown}</ReactMarkdown>
             </div>
           )}
         </>
