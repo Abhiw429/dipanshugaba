@@ -258,9 +258,6 @@ Lords kh do, kala hrraaa de sfed ko that's noo vitis vinifera”
         to substance.
       </p>
     </div>
-<p className="text-sm text-gray-500">
-      This section will explore themes, references, writing choices, and the intent behind the verses.
-    </p>
   </div>
 )}
     </section>
