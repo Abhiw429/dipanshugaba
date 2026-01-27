@@ -31,7 +31,11 @@ export default function SongPage() {
               priority
             />
           </div>
-
+{/*desciption */}
+          <p className="text-sm text-gray-500">
+     CAMOUFLAGE (Cam-of-ledge) lives on the edge of belief, biology, and brutality.
+No hiding — only exposure, where intellect and instinct collide in layered thought.
+    </p>
           {/* YouTube button */}
           <a
             href="https://youtu.be/aZblaDVPMXU?si=YfJU1LqeGuHhv7j3"
