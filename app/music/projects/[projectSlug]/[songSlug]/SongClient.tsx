@@ -127,10 +127,23 @@ export default function SongClient({ song }: SongClientProps) {
 
           {/* Lyrics (Markdown-rendered) */}
           {activeTab === "lyrics" && song.lyrics && (
-            <div className="prose max-w-none text-gray-800 leading-loose">
-              <ReactMarkdown>{song.lyrics}</ReactMarkdown>
-            </div>
-          )}
+  <div className="text-gray-800 leading-relaxed text-base">
+    <ReactMarkdown
+      components={{
+        p: ({ children }) => (
+          <div className="whitespace-pre-wrap leading-loose mb-6">
+            {children}
+          </div>
+        ),
+        em: ({ children }) => (
+          <em className="italic font-medium">{children}</em>
+        ),
+      }}
+    >
+      {song.lyrics}
+    </ReactMarkdown>
+  </div>
+)}
 
           {/* Breakdown (Markdown-rendered) */}
           {activeTab === "breakdown" && song.breakdown && (
