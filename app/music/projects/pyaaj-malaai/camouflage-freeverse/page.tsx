@@ -196,14 +196,59 @@ But...`}
         </pre>
       )}
 
-      {activeTab === "breakdown" && (
-        <div className="text-gray-600 leading-relaxed">
-          <p className="mb-4">Breakdown coming soon.</p>
-          <p className="text-sm text-gray-500">
-            This section will explore themes, references, writing choices, and the intent behind the verses.
-          </p>
-        </div>
-      )}
+     {activeTab === "breakdown" && (
+  <div className="space-y-8">
+
+    {/* Breakdown 1 */}
+    <div className="rounded-2xl border border-gray-200 bg-white p-6">
+      <p className="text-sm italic text-gray-500 mb-4">
+        “Bacche mein jo tansen plte jb ho bomb drop maaang pe pistil…”
+      </p>
+
+      <p className="text-gray-700 leading-relaxed">
+        A dense cluster of layered references. Holland / Netherlands / tulips
+        collapse geography into wordplay (“two lips”). “Lacking loha paanch se
+        chaar” reframes chemistry into imbalance — iron shifting states as
+        metaphor. “Inverted L” gestures toward a full weekly cycle without
+        progress. The unmoved pistol at the forehead evokes danger without
+        impact, echoing a widely reported near-miss at a political rally — force
+        present, consequence narrowly avoided.
+      </p>
+    </div>
+
+    {/* Breakdown 2 */}
+    <div className="rounded-2xl border border-gray-200 bg-white p-6">
+      <p className="text-sm italic text-gray-500 mb-4">
+        “There is no camouflage shit, no hidding…”
+      </p>
+
+      <p className="text-gray-700 leading-relaxed">
+        A refusal to disappear. Camouflage and “ghaas-bhoos” stand in for
+        numbing, avoidance, and running from reality — all rejected here.
+        “Lines” is deliberate misdirection: the only lines required are
+        academic ones, grounding focus in discipline rather than escape.
+      </p>
+    </div>
+
+    {/* Breakdown 3 */}
+    <div className="rounded-2xl border border-gray-200 bg-white p-6">
+      <p className="text-sm italic text-gray-500 mb-4">
+        “Solanum Lycopersicum glut cuz sauce bohot…”
+      </p>
+
+      <p className="text-gray-700 leading-relaxed">
+        Botanical names act as anchors, not ornament. Solanum lycopersicum
+        (tomato) frames excess — abundance turning heavy under pressure.
+        Nelumbo nucifera (lotus) carries layered meanings: lineage, authority,
+        reverence, and the downward tilt of a cricket pitch at Lord’s. The
+        sequence collapses biology, sport, and symbolism into structure.
+        Vitis vinifera closes by stripping illusion — reducing spectacle back
+        to substance.
+      </p>
+    </div>
+
+  </div>
+)}
     </section>
   );
 }
