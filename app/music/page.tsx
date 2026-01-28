@@ -65,8 +65,8 @@ const singles = singlesRes.items.map((entry: any) => ({
 
 return (
   <MusicClient
-    latest={latestSong}
+    latest={latestSong}   // ✅ REQUIRED
     projects={projects}
-    singles={singles} // ← empty array is fine
+    singles={singles}     // empty array is totally fine
   />
 );
