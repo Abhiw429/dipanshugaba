@@ -22,22 +22,33 @@ type Props = {
 export default function ProjectClient({ project, songs }: Props) {
   return (
     <section className="max-w-6xl mx-auto">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
-        {/* LEFT COLUMN */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+        {/* LEFT CONTENT */}
         <div className="space-y-6">
           {/* Title */}
-          <div>
-            <h1 className="text-4xl font-bold">{project.title}</h1>
+          <h1 className="text-4xl font-bold">{project.title}</h1>
 
-            {project.description && (
-              <p className="text-gray-500 italic mt-1">
-                {project.description}
-              </p>
-            )}
-          </div>
+          {/* EP / Description */}
+          {project.description && (
+            <p className="italic text-gray-500">{project.description}</p>
+          )}
 
-          {/* TRACKLIST */}
-          <div className="space-y-3">
+          {/* Image — mobile only (comes AFTER title+EP) */}
+          {project.coverArt?.url && (
+            <div className="md:hidden">
+              <Image
+                src={project.coverArt.url}
+                alt={project.coverArt.title || project.title}
+                width={320}
+                height={320}
+                className="rounded-2xl shadow-lg aspect-square object-cover"
+                priority
+              />
+            </div>
+          )}
+
+          {/* Songs */}
+          <div className="space-y-3 pt-2">
             {songs.map((song) => (
               <Link
                 key={song.slug}
@@ -60,14 +71,14 @@ export default function ProjectClient({ project, songs }: Props) {
           </div>
         </div>
 
-        {/* RIGHT COLUMN (IMAGE) */}
+        {/* RIGHT IMAGE — desktop only, vertically centered */}
         {project.coverArt?.url && (
-          <div className="flex justify-end">
+          <div className="hidden md:flex justify-end items-center">
             <Image
               src={project.coverArt.url}
               alt={project.coverArt.title || project.title}
-              width={320}
-              height={320}
+              width={340}
+              height={340}
               className="rounded-2xl shadow-lg aspect-square object-cover"
               priority
             />
