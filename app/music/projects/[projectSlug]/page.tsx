@@ -43,4 +43,17 @@ export default async function ProjectPage({ params }: PageProps) {
       songs={songs}
     />
   );
+  /* ================= LATEST SONG ================= */
+
+export async function getLatestSongSlug() {
+  const res = await contentfulClient.getEntries({
+    content_type: "song",
+    order: ["-sys.createdAt"], // newest first
+    limit: 1,
+  });
+
+  if (!res.items.length) return null;
+
+  return res.items[0].fields.slug as string;
+}
 }
