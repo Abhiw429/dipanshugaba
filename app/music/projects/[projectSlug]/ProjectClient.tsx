@@ -65,8 +65,8 @@ export default function ProjectClient({ project, songs }: Props) {
                 <Image
                   src={song.coverArt}
                   alt={song.title}
-                  width={48}
-                  height={48}
+                  width={96}
+                  height={96}
                   className="rounded-md object-cover"
                 />
               )}
@@ -84,8 +84,8 @@ export default function ProjectClient({ project, songs }: Props) {
           <Image
             src={project.coverArt.url}
             alt={project.coverArt.title || project.title}
-            width={420}
-            height={420}
+            width={320}
+            height={320}
             className="rounded-2xl shadow-lg"
             priority
           />
