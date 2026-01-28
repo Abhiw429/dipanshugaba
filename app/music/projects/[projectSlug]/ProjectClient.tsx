@@ -26,7 +26,7 @@ export default function ProjectClient({ project, songs }: Props) {
   return (
     <section className="grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
       {/* LEFT: TEXT + SONGS */}
-      <div className="space-y-4 md:pt-28">
+      <div className="space-y-4 md:pt-16">
         {/* Title */}
         <h1 className="text-4xl font-extrabold">
           {project.title}
