@@ -28,17 +28,15 @@ export default async function MusicPage() {
         return {
           title: project.fields.title as string,
           slug: project.fields.slug as string,
-          status: project.fields.status === true, // ✅ BOOLEAN
+          status: project.fields.status as boolean | undefined,
           coverArt: project.fields.coverart?.fields?.file?.url
             ? "https:" + project.fields.coverart.fields.file.url
             : undefined,
-          latestSongDate:
-            songsRes.items[0]?.sys.createdAt ?? null,
+          latestSongDate: songsRes.items[0]?.sys.createdAt ?? null,
         };
       })
     );
 
-    // 🔥 Newest project first
     const projects = projectsWithDates.sort((a, b) => {
       if (!a.latestSongDate) return 1;
       if (!b.latestSongDate) return -1;
@@ -49,24 +47,37 @@ export default async function MusicPage() {
     });
 
     /* ================= SINGLES ================= */
-const singlesRes = await contentfulClient.getEntries({
-  content_type: "song",
-  "fields.project[exists]": false, // ✅ only true singles
-  order: ["-sys.createdAt"],       // ✅ newest first
-});
+    const singlesRes = await contentfulClient.getEntries({
+      content_type: "song",
+      "fields.project[exists]": false,
+      order: ["-sys.createdAt"],
+    });
 
-const singles = singlesRes.items.map((entry: any) => ({
-  title: entry.fields.title as string,
-  slug: entry.fields.slug as string,
-  coverArt: entry.fields.coverart?.fields?.file?.url
-    ? "https:" + entry.fields.coverart.fields.file.url
-    : undefined,
-}));
+    const singles = singlesRes.items.map((entry: any) => ({
+      title: entry.fields.title as string,
+      slug: entry.fields.slug as string,
+      coverArt: entry.fields.coverart?.fields?.file?.url
+        ? "https:" + entry.fields.coverart.fields.file.url
+        : undefined,
+    }));
 
-return (
-  <MusicClient
-    latest={latestSong}
-    projects={projects}
-    singles={singles}
-  />
-);
+    return (
+      <MusicClient
+        latest={latestSong}
+        projects={projects}
+        singles={singles}
+      />
+    );
+  } catch (error) {
+    console.error("Music page error:", error);
+
+    return (
+      <section className="space-y-4">
+        <h1 className="text-4xl font-bold">Music</h1>
+        <p className="text-sm text-gray-500">
+          Music content is temporarily unavailable.
+        </p>
+      </section>
+    );
+  }
+}
