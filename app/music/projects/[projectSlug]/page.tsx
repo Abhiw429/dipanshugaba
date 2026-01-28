@@ -1,5 +1,11 @@
 import { notFound } from "next/navigation";
-import { getProjectBySlug, getSongsByProject } from "@/lib/contentful";
+import type { Asset } from "contentful";
+
+import {
+  getProjectBySlug,
+  getSongsByProject,
+} from "../../../../lib/contentful";
+
 import ProjectClient from "./ProjectClient";
 
 type PageProps = {
@@ -17,29 +23,21 @@ export default async function ProjectPage({ params }: PageProps) {
 
   const songs = await getSongsByProject(projectEntry.sys.id);
 
-  // ✅ NORMALIZE PROJECT DATA
+  // ✅ normalize cover art safely
+  const coverAsset = projectEntry.fields.coverart as Asset | undefined;
+
   const project = {
     title: projectEntry.fields.title as string,
     description: projectEntry.fields.description as string | undefined,
-    import type { Asset } from "contentful";
-
-/* ...inside ProjectPage... */
-
-const coverAsset = projectEntry.fields.coverart as Asset | undefined;
-
-const project = {
-  title: projectEntry.fields.title as string,
-  description: projectEntry.fields.description as string | undefined,
-  coverArt: coverAsset?.fields?.file?.url
-    ? {
-        url: "https:" + coverAsset.fields.file.url,
-        title:
-          typeof coverAsset.fields.title === "string"
-            ? coverAsset.fields.title
-            : undefined,
-      }
-    : undefined,
-};
+    coverArt: coverAsset?.fields?.file?.url
+      ? {
+          url: "https:" + coverAsset.fields.file.url,
+          title:
+            typeof coverAsset.fields.title === "string"
+              ? coverAsset.fields.title
+              : undefined,
+        }
+      : undefined,
   };
 
   return <ProjectClient project={project} songs={songs} />;
