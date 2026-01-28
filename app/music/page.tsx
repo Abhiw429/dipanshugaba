@@ -16,7 +16,6 @@ export default async function MusicPage() {
       content_type: "projects",
     });
 
-    // Attach latest song date per project
     const projectsWithDates = await Promise.all(
       projectsRes.items.map(async (project: any) => {
         const songsRes = await contentfulClient.getEntries({
@@ -29,17 +28,16 @@ export default async function MusicPage() {
         return {
           title: project.fields.title as string,
           slug: project.fields.slug as string,
-          status: project.fields.status as string | undefined,
+          status: project.fields.status as string | undefined, // ✅ NEW
           coverArt: project.fields.coverart?.fields?.file?.url
             ? "https:" + project.fields.coverart.fields.file.url
             : undefined,
-          latestSongDate:
-            songsRes.items[0]?.sys.createdAt ?? null,
+          latestSongDate: songsRes.items[0]?.sys.createdAt ?? null,
         };
       })
     );
 
-    // Newest project first
+    // 🔥 newest project first
     const projects = projectsWithDates.sort((a, b) => {
       if (!a.latestSongDate) return 1;
       if (!b.latestSongDate) return -1;
@@ -53,7 +51,7 @@ export default async function MusicPage() {
     const singlesRes = await contentfulClient.getEntries({
       content_type: "song",
       "fields.project[exists]": false,
-      order: ["-sys.createdAt"], // newest first
+      order: ["-sys.createdAt"],
     });
 
     const singles = singlesRes.items.map((entry: any) => ({
@@ -73,14 +71,6 @@ export default async function MusicPage() {
     );
   } catch (error) {
     console.error("Music page error:", error);
-
-    return (
-      <section className="space-y-4">
-        <h1 className="text-4xl font-bold">Music</h1>
-        <p className="text-sm text-gray-500">
-          Music content is temporarily unavailable.
-        </p>
-      </section>
-    );
+    return <p>Music unavailable</p>;
   }
 }
