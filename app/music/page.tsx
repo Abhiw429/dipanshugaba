@@ -49,37 +49,24 @@ export default async function MusicPage() {
     });
 
     /* ================= SINGLES ================= */
-    const singlesRes = await contentfulClient.getEntries({
-      content_type: "song",
-      "fields.project[exists]": false,
-      order: ["-sys.createdAt"],
-    });
+const singlesRes = await contentfulClient.getEntries({
+  content_type: "song",
+  "fields.project[exists]": false, // ✅ only true singles
+  order: ["-sys.createdAt"],       // ✅ newest first
+});
 
-    const singles = singlesRes.items.map((entry: any) => ({
-      title: entry.fields.title as string,
-      slug: entry.fields.slug as string,
-      coverArt: entry.fields.coverart?.fields?.file?.url
-        ? "https:" + entry.fields.coverart.fields.file.url
-        : undefined,
-    }));
+const singles = singlesRes.items.map((entry: any) => ({
+  title: entry.fields.title as string,
+  slug: entry.fields.slug as string,
+  coverArt: entry.fields.coverart?.fields?.file?.url
+    ? "https:" + entry.fields.coverart.fields.file.url
+    : undefined,
+}));
 
-    return (
-      <MusicClient
-        latest={latestSong}
-        projects={projects}
-        singles={singles}
-      />
-    );
-  } catch (error) {
-    console.error("Music page error:", error);
-
-    return (
-      <section className="space-y-4">
-        <h1 className="text-4xl font-bold">Music</h1>
-        <p className="text-sm text-gray-500">
-          Music content is temporarily unavailable.
-        </p>
-      </section>
-    );
-  }
-}
+return (
+  <MusicClient
+    latest={latestSong}
+    projects={projects}
+    singles={singles} // ← empty array is fine
+  />
+);
