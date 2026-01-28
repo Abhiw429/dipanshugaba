@@ -1,11 +1,7 @@
-import {
-  contentfulClient,
-  getLatestSong,
-} from "@/lib/contentful";
+import { contentfulClient, getLatestSong } from "@/lib/contentful";
 import MusicClient from "./MusicClient";
 
 export const dynamic = "force-dynamic";
-
 
 export default async function MusicPage() {
   try {
@@ -29,7 +25,7 @@ export default async function MusicPage() {
         return {
           title: project.fields.title as string,
           slug: project.fields.slug as string,
-          status: project.fields.status as boolean | undefined,
+          status: project.fields.status === true, // boolean
           coverArt: project.fields.coverart?.fields?.file?.url
             ? "https:" + project.fields.coverart.fields.file.url
             : undefined,
@@ -38,6 +34,7 @@ export default async function MusicPage() {
       })
     );
 
+    // newest project first (based on latest song inside project)
     const projects = projectsWithDates.sort((a, b) => {
       if (!a.latestSongDate) return 1;
       if (!b.latestSongDate) return -1;
@@ -51,7 +48,7 @@ export default async function MusicPage() {
     const singlesRes = await contentfulClient.getEntries({
       content_type: "song",
       "fields.project[exists]": false,
-      order: ["-sys.createdAt"],
+      order: ["-sys.createdAt"], // newest first
     });
 
     const singles = singlesRes.items.map((entry: any) => ({
