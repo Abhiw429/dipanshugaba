@@ -21,16 +21,25 @@ export default async function ProjectPage({ params }: PageProps) {
   const project = {
     title: projectEntry.fields.title as string,
     description: projectEntry.fields.description as string | undefined,
-    coverArt:
-      projectEntry.fields.coverart?.fields?.file?.url
-        ? {
-            url: "https:" + projectEntry.fields.coverart.fields.file.url,
-            title:
-              typeof projectEntry.fields.coverart.fields.title === "string"
-                ? projectEntry.fields.coverart.fields.title
-                : undefined,
-          }
-        : undefined,
+    import type { Asset } from "contentful";
+
+/* ...inside ProjectPage... */
+
+const coverAsset = projectEntry.fields.coverart as Asset | undefined;
+
+const project = {
+  title: projectEntry.fields.title as string,
+  description: projectEntry.fields.description as string | undefined,
+  coverArt: coverAsset?.fields?.file?.url
+    ? {
+        url: "https:" + coverAsset.fields.file.url,
+        title:
+          typeof coverAsset.fields.title === "string"
+            ? coverAsset.fields.title
+            : undefined,
+      }
+    : undefined,
+};
   };
 
   return <ProjectClient project={project} songs={songs} />;
