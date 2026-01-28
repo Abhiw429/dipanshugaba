@@ -1,11 +1,11 @@
-import { createClient, type Asset, type Entry } from "contentful";
+import { createClient, type Asset } from "contentful";
 
 export const contentfulClient = createClient({
   space: process.env.CONTENTFUL_SPACE_ID!,
   accessToken: process.env.CONTENTFUL_ACCESS_TOKEN!,
 });
 
-/* ---------------- PROJECTS ---------------- */
+/* ================= PROJECTS ================= */
 
 export async function getAllProjects() {
   const res = await contentfulClient.getEntries({
@@ -20,9 +20,16 @@ export async function getAllProjects() {
       title: entry.fields.title as string,
       slug: entry.fields.slug as string,
       description: entry.fields.description as string | undefined,
-      coverArt: cover?.fields?.file?.url
-        ? "https:" + cover.fields.file.url
-        : null,
+      coverArt:
+        cover?.fields?.file?.url
+          ? {
+              url: "https:" + cover.fields.file.url,
+              title:
+                typeof cover.fields.title === "string"
+                  ? cover.fields.title
+                  : undefined,
+            }
+          : undefined,
     };
   });
 }
@@ -35,10 +42,11 @@ export async function getProjectBySlug(slug: string) {
   });
 
   if (!res.items.length) return null;
+
   return res.items[0];
 }
 
-/* ---------------- SONGS ---------------- */
+/* ================= SONGS ================= */
 
 export async function getSongsByProject(projectEntryId: string) {
   const res = await contentfulClient.getEntries({
@@ -51,11 +59,18 @@ export async function getSongsByProject(projectEntryId: string) {
     const cover = entry.fields.coverart as Asset | undefined;
 
     return {
-      title: entry.fields.title,
-      slug: entry.fields.slug,
-      coverArt: cover?.fields?.file?.url
-        ? "https:" + cover.fields.file.url
-        : null,
+      title: entry.fields.title as string,
+      slug: entry.fields.slug as string,
+      coverArt:
+        cover?.fields?.file?.url
+          ? {
+              url: "https:" + cover.fields.file.url,
+              title:
+                typeof cover.fields.title === "string"
+                  ? cover.fields.title
+                  : undefined,
+            }
+          : undefined,
     };
   });
 }
@@ -73,17 +88,22 @@ export async function getSongBySlug(songSlug: string) {
   const cover = entry.fields.coverart as Asset | undefined;
 
   return {
-    title: entry.fields.title,
-    description: entry.fields.description,
-    youtubeUrl: entry.fields.youtubeUrl,
-    credits: entry.fields.credits,
-    lyrics: entry.fields.lyrics,
-    breakdown: entry.fields.breakdown,
-    coverArt: cover?.fields?.file?.url
-      ? {
-          url: "https:" + cover.fields.file.url,
-          title: cover.fields.title,
-        }
-      : null,
+    title: entry.fields.title as string,
+    description: entry.fields.description as string | undefined,
+    youtubeUrl: entry.fields.youtubeUrl as string | undefined,
+    credits: entry.fields.credits as string | undefined,
+    lyrics: entry.fields.lyrics as string | undefined,
+    breakdown: entry.fields.breakdown as string | undefined,
+
+    coverArt:
+      cover?.fields?.file?.url
+        ? {
+            url: "https:" + cover.fields.file.url,
+            title:
+              typeof cover.fields.title === "string"
+                ? cover.fields.title
+                : undefined,
+          }
+        : undefined,
   };
 }
