@@ -5,6 +5,7 @@ import Image from "next/image";
 
 type Props = {
   projectSlug: string;
+  latestSongSlug?: string | null;
   project: {
     title: string;
     description?: string;
@@ -24,7 +25,9 @@ export default function ProjectClient({
   project,
   songs,
   projectSlug,
+  latestSongSlug,
 }: Props) {
+  // ✅ latest first
   const orderedSongs = [...songs].reverse();
 
   return (
@@ -57,28 +60,42 @@ export default function ProjectClient({
 
         {/* SONG LIST */}
         <div className="space-y-3 pt-3 max-w-xl">
-          {orderedSongs.map((song) => (
-            <Link
-              key={song.slug}
-              prefetch
-              href={`/music/projects/${projectSlug}/${song.slug}`}
-              className="flex items-center gap-4 border rounded-xl p-4
-                         hover:bg-gray-50 hover:shadow-sm transition"
-            >
-              {song.coverArt && (
-                <Image
-                  src={song.coverArt}
-                  alt={song.title}
-                  width={90}
-                  height={90}
-                  className="rounded-md object-cover"
-                />
-              )}
-              <span className="font-medium">
-                {song.title}
-              </span>
-            </Link>
-          ))}
+          {orderedSongs.map((song) => {
+            const isLatest = song.slug === latestSongSlug;
+
+            return (
+              <Link
+                key={song.slug}
+                prefetch
+                href={`/music/projects/${projectSlug}/${song.slug}`}
+                className="relative flex items-center gap-4 border rounded-xl p-4
+                           hover:bg-gray-50 hover:shadow-sm transition"
+              >
+                {song.coverArt && (
+                  <Image
+                    src={song.coverArt}
+                    alt={song.title}
+                    width={90}
+                    height={90}
+                    className="rounded-md object-cover"
+                  />
+                )}
+
+                <div className="flex flex-col">
+                  <span className="font-medium">
+                    {song.title}
+                  </span>
+
+                  {/* ✅ LATEST RELEASE BADGE */}
+                  {isLatest && (
+                    <span className="text-xs font-semibold text-emerald-600 mt-1">
+                      ● Latest Release
+                    </span>
+                  )}
+                </div>
+              </Link>
+            );
+          })}
         </div>
       </div>
 
