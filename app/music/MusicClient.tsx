@@ -25,7 +25,7 @@ export default function MusicClient({
             onClick={() => setActiveTab(tab)}
             className={`pb-3 text-sm font-medium ${
               activeTab === tab
-                ? "border-b-2 border-black text-black"
+                ? "border-b-2 border-black"
                 : "text-gray-500 hover:text-black"
             }`}
           >
@@ -53,9 +53,8 @@ export default function MusicClient({
               className="rounded-lg"
             />
           )}
-
           <div>
-            <p className="text-xs text-green-600 mb-1 font-medium">
+            <p className="text-xs text-green-600 mb-1">
               ● Latest Release
             </p>
             <h3 className="text-xl font-semibold">
@@ -88,9 +87,9 @@ export default function MusicClient({
                 {p.title}
               </h3>
 
-              {/* 🔴 ONGOING BADGE (ONLY ONE PROJECT SHOULD HAVE THIS) */}
+              {/* 🔴 ONGOING BADGE */}
               {p.status === "ongoing" && (
-                <div className="mt-1 flex items-center gap-2 text-xs font-medium text-red-600">
+                <div className="mt-1 inline-flex items-center gap-1 text-xs font-medium text-red-600">
                   <span className="h-2 w-2 rounded-full bg-red-600 animate-pulse" />
                   Ongoing
                 </div>
