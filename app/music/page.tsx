@@ -1,12 +1,14 @@
-import { contentfulClient } from "@/lib/contentful";
+import { contentfulClient, getLatestSongSlug } from "@/lib/contentful";
 import MusicClient from "./MusicClient";
 
 export const dynamic = "force-dynamic";
 
 export default async function MusicPage() {
   try {
+    // 1️⃣ Fetch all projects
     const res = await contentfulClient.getEntries({
       content_type: "projects",
+      order: ["fields.title"],
     });
 
     const projects = res.items.map((entry: any) => ({
@@ -19,7 +21,16 @@ export default async function MusicPage() {
           : undefined,
     }));
 
-    return <MusicClient projects={projects} />;
+    // 2️⃣ Fetch latest song slug (GLOBAL)
+    const latestSongSlug = await getLatestSongSlug();
+
+    // 3️⃣ Pass everything to client
+    return (
+      <MusicClient
+        projects={projects}
+        latestSongSlug={latestSongSlug}
+      />
+    );
   } catch (error) {
     console.error("Contentful error on /music:", error);
 
