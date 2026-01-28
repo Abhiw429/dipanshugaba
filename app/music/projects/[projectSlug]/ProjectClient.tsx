@@ -21,34 +21,34 @@ type Props = {
 
 export default function ProjectClient({ project, songs }: Props) {
   return (
-    <section className="max-w-6xl mx-auto">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-        {/* LEFT CONTENT */}
-        <div className="space-y-6">
+    <section className="max-w-6xl mx-auto px-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+        {/* LEFT COLUMN */}
+        <div className="space-y-5">
           {/* Title */}
           <h1 className="text-4xl font-bold">{project.title}</h1>
 
-          {/* EP / Description */}
+          {/* EP */}
           {project.description && (
             <p className="italic text-gray-500">{project.description}</p>
           )}
 
-          {/* Image — mobile only (comes AFTER title+EP) */}
+          {/* Image — MOBILE ONLY (centered) */}
           {project.coverArt?.url && (
-            <div className="md:hidden">
+            <div className="md:hidden flex justify-center pt-2">
               <Image
                 src={project.coverArt.url}
                 alt={project.coverArt.title || project.title}
-                width={320}
-                height={320}
-                className="rounded-2xl shadow-lg aspect-square object-cover"
+                width={280}
+                height={280}
+                className="rounded-2xl shadow-lg object-cover"
                 priority
               />
             </div>
           )}
 
-          {/* Songs */}
-          <div className="space-y-3 pt-2">
+          {/* Songs — close to EP */}
+          <div className="space-y-3 pt-1">
             {songs.map((song) => (
               <Link
                 key={song.slug}
@@ -59,27 +59,26 @@ export default function ProjectClient({ project, songs }: Props) {
                   <Image
                     src={song.coverArt}
                     alt={song.title}
-                    width={56}
-                    height={56}
+                    width={52}
+                    height={52}
                     className="rounded-md object-cover"
                   />
                 )}
-
-                <h3 className="font-medium">{song.title}</h3>
+                <span className="font-medium">{song.title}</span>
               </Link>
             ))}
           </div>
         </div>
 
-        {/* RIGHT IMAGE — desktop only, vertically centered */}
+        {/* RIGHT IMAGE — DESKTOP ONLY (centered vertically) */}
         {project.coverArt?.url && (
-          <div className="hidden md:flex justify-end items-center">
+          <div className="hidden md:flex justify-center items-center">
             <Image
               src={project.coverArt.url}
               alt={project.coverArt.title || project.title}
               width={340}
               height={340}
-              className="rounded-2xl shadow-lg aspect-square object-cover"
+              className="rounded-2xl shadow-lg object-cover"
               priority
             />
           </div>
