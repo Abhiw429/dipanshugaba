@@ -24,23 +24,22 @@ export default async function ProjectPage({ params }: PageProps) {
   const project = {
     title: projectEntry.fields.title as string,
     description: projectEntry.fields.description as string | undefined,
-    coverArt:
-      coverAsset?.fields?.file?.url
-        ? {
-            url: "https:" + coverAsset.fields.file.url,
-            title:
-              typeof coverAsset.fields.title === "string"
-                ? coverAsset.fields.title
-                : undefined,
-          }
-        : undefined,
+    coverArt: coverAsset?.fields?.file?.url
+      ? {
+          url: "https:" + coverAsset.fields.file.url,
+          title:
+            typeof coverAsset.fields.title === "string"
+              ? coverAsset.fields.title
+              : undefined,
+        }
+      : undefined,
   };
 
   return (
     <ProjectClient
-      projectSlug={params.projectSlug}  // ✅ THIS LINE FIXES EVERYTHING
+      projectSlug={params.projectSlug}
       project={project}
       songs={songs}
     />
   );
- 
+}
