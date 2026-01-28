@@ -9,7 +9,7 @@ export const contentfulClient = createClient({
 
 export async function getAllProjects() {
   const res = await contentfulClient.getEntries({
-    content_type: "projects", // ✅ FIXED (plural)
+    content_type: "projects", // ✅ plural (as per your Contentful)
     order: ["fields.title"],
   });
 
@@ -29,13 +29,12 @@ export async function getAllProjects() {
 
 export async function getProjectBySlug(slug: string) {
   const res = await contentfulClient.getEntries({
-    content_type: "projects", // ✅ FIXED
+    content_type: "projects",
     "fields.slug": slug,
     limit: 1,
   });
 
   if (!res.items.length) return null;
-
   return res.items[0];
 }
 
@@ -45,7 +44,7 @@ export async function getSongsByProject(projectEntryId: string) {
   const res = await contentfulClient.getEntries({
     content_type: "song",
     "fields.project.sys.id": projectEntryId,
-    order: ["fields.title"],
+    order: ["-sys.createdAt"], // ✅ newest first
   });
 
   return res.items.map((entry: any) => {
@@ -61,7 +60,7 @@ export async function getSongsByProject(projectEntryId: string) {
   });
 }
 
-/* ================= SONG ================= */
+/* ================= SINGLE SONG ================= */
 
 export async function getSongBySlug(songSlug: string) {
   const res = await contentfulClient.getEntries({
@@ -92,4 +91,19 @@ export async function getSongBySlug(songSlug: string) {
         }
       : undefined,
   };
+}
+
+/* ================= ⭐ LATEST RELEASE ================= */
+/* ✅ THIS IS THE ONLY NEW LOGIC */
+
+export async function getLatestSongSlug() {
+  const res = await contentfulClient.getEntries({
+    content_type: "song",
+    order: ["-sys.createdAt"], // newest globally
+    limit: 1,
+  });
+
+  if (!res.items.length) return null;
+
+  return res.items[0].fields.slug as string;
 }
