@@ -19,14 +19,14 @@ export default function MusicClient({
 
       {/* TABS */}
       <div className="flex gap-8 border-b">
-        {["latest", "projects", "singles"].map((tab) => (
+        {(["latest", "projects", "singles"] as Tab[]).map((tab) => (
           <button
             key={tab}
-            onClick={() => setActiveTab(tab as Tab)}
+            onClick={() => setActiveTab(tab)}
             className={`pb-3 text-sm font-medium ${
               activeTab === tab
-                ? "border-b-2 border-black"
-                : "text-gray-500"
+                ? "border-b-2 border-black text-black"
+                : "text-gray-500 hover:text-black"
             }`}
           >
             {tab.toUpperCase()}
@@ -34,7 +34,7 @@ export default function MusicClient({
         ))}
       </div>
 
-      {/* LATEST */}
+      {/* ================= LATEST ================= */}
       {activeTab === "latest" && latest && (
         <Link
           href={
@@ -42,7 +42,7 @@ export default function MusicClient({
               ? `/music/projects/${latest.projectSlug}/${latest.slug}`
               : `/music/${latest.slug}`
           }
-          className="flex items-center gap-6 border rounded-xl p-4"
+          className="flex items-center gap-6 border rounded-xl p-4 hover:bg-gray-50 transition"
         >
           {latest.coverArt && (
             <Image
@@ -53,8 +53,9 @@ export default function MusicClient({
               className="rounded-lg"
             />
           )}
+
           <div>
-            <p className="text-xs text-green-600 mb-1">
+            <p className="text-xs text-green-600 mb-1 font-medium">
               ● Latest Release
             </p>
             <h3 className="text-xl font-semibold">
@@ -64,13 +65,13 @@ export default function MusicClient({
         </Link>
       )}
 
-      {/* PROJECTS */}
+      {/* ================= PROJECTS ================= */}
       {activeTab === "projects" &&
         projects.map((p: any) => (
           <Link
             key={p.slug}
             href={`/music/projects/${p.slug}`}
-            className="flex items-center gap-6 border rounded-xl p-4"
+            className="flex items-center gap-6 border rounded-xl p-4 hover:bg-gray-50 transition"
           >
             {p.coverArt && (
               <Image
@@ -81,19 +82,30 @@ export default function MusicClient({
                 className="rounded-lg"
               />
             )}
-            <h3 className="text-xl font-semibold">
-              {p.title}
-            </h3>
+
+            <div>
+              <h3 className="text-xl font-semibold">
+                {p.title}
+              </h3>
+
+              {/* 🔴 ONGOING BADGE (ONLY ONE PROJECT SHOULD HAVE THIS) */}
+              {p.status === "ongoing" && (
+                <div className="mt-1 flex items-center gap-2 text-xs font-medium text-red-600">
+                  <span className="h-2 w-2 rounded-full bg-red-600 animate-pulse" />
+                  Ongoing
+                </div>
+              )}
+            </div>
           </Link>
         ))}
 
-      {/* SINGLES */}
+      {/* ================= SINGLES ================= */}
       {activeTab === "singles" &&
         singles.map((s: any) => (
           <Link
             key={s.slug}
             href={`/music/${s.slug}`}
-            className="flex items-center gap-6 border rounded-xl p-4"
+            className="flex items-center gap-6 border rounded-xl p-4 hover:bg-gray-50 transition"
           >
             {s.coverArt && (
               <Image
