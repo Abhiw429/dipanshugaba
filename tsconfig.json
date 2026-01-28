@@ -17,6 +17,13 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
+
+    // ✅ ADD THESE TWO
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./*"]
+    },
+
     "plugins": [
       {
         "name": "next"
