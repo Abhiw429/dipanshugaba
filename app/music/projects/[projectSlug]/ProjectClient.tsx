@@ -21,23 +21,19 @@ type Props = {
 
 export default function ProjectClient({ project, songs }: Props) {
   return (
-    <section className="max-w-6xl mx-auto space-y-12">
+    <section className="max-w-6xl mx-auto space-y-8">
       {/* HEADER */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
         {/* LEFT */}
-        <div className="space-y-4">
+        <div className="space-y-2">
           <h1 className="text-4xl font-bold">{project.title}</h1>
 
-          <span className="text-sm text-gray-500 italic">EP</span>
-
           {project.description && (
-            <p className="text-gray-600 leading-relaxed">
-              {project.description}
-            </p>
+            <p className="text-gray-500 italic">{project.description}</p>
           )}
         </div>
 
-        {/* RIGHT — COVER IMAGE */}
+        {/* RIGHT IMAGE */}
         {project.coverArt?.url && (
           <div className="flex justify-end">
             <Image
@@ -53,21 +49,13 @@ export default function ProjectClient({ project, songs }: Props) {
       </div>
 
       {/* TRACKLIST */}
-      <div className="space-y-4">
-        {songs.map((song, index) => (
+      <div className="max-w-3xl space-y-3">
+        {songs.map((song) => (
           <Link
             key={song.slug}
-            href={`/music/projects/${project.title
-              .toLowerCase()
-              .replace(/\s+/g, "-")}/${song.slug}`}
+            href={`/music/projects/${song.slug}`}
             className="flex items-center gap-4 border rounded-xl p-4 hover:bg-gray-50 transition"
           >
-            {/* Track number */}
-            <span className="w-6 text-sm text-gray-400">
-              {String(index + 1).padStart(2, "0")}
-            </span>
-
-            {/* Cover */}
             {song.coverArt && (
               <Image
                 src={song.coverArt}
@@ -78,7 +66,6 @@ export default function ProjectClient({ project, songs }: Props) {
               />
             )}
 
-            {/* Title */}
             <h3 className="font-medium">{song.title}</h3>
           </Link>
         ))}
