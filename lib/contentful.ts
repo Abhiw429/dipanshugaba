@@ -70,16 +70,26 @@ export async function getSongBySlug(songSlug: string) {
   };
 }
 
-/* ================= GLOBAL LATEST SONG ================= */
+/* ================= LATEST SONG ================= */
 
-export async function getLatestSongSlug() {
+export async function getLatestSong() {
   const res = await contentfulClient.getEntries({
     content_type: "song",
-    order: ["-sys.createdAt"], // 🔥 GLOBAL newest
+    order: ["-sys.createdAt"], // newest first
     limit: 1,
   });
 
   if (!res.items.length) return null;
 
-  return res.items[0].fields.slug as string;
+  const entry: any = res.items[0];
+  const cover = entry.fields.coverart as Asset | undefined;
+
+  return {
+    title: entry.fields.title as string,
+    slug: entry.fields.slug as string,
+    projectSlug: entry.fields.project?.fields?.slug ?? null,
+    coverArt: cover?.fields?.file?.url
+      ? "https:" + cover.fields.file.url
+      : undefined,
+  };
 }
