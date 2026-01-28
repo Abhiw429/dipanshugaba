@@ -10,19 +10,19 @@ export default async function MusicPage() {
     });
 
     const projects = res.items.map((entry: any) => ({
-      title: entry.fields.title,
-      slug: entry.fields.slug,
-      status: entry.fields.status,
-      coverArt: entry.fields.coverart?.fields?.file?.url
-        ? "https:" + entry.fields.coverart.fields.file.url
-        : null,
+      title: entry.fields.title as string,
+      slug: entry.fields.slug as string,
+      status: entry.fields.status as string | undefined,
+      coverArt:
+        entry.fields.coverart?.fields?.file?.url
+          ? "https:" + entry.fields.coverart.fields.file.url
+          : undefined,
     }));
 
     return <MusicClient projects={projects} />;
   } catch (error) {
     console.error("Contentful error on /music:", error);
 
-    // Fails gracefully instead of white screen
     return (
       <section className="space-y-4">
         <h1 className="text-4xl font-bold">Music</h1>
