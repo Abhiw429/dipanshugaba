@@ -7,21 +7,38 @@ type Props = {
   project: {
     title: string;
     description?: string;
+    coverArt?: {
+      url: string;
+      title?: string;
+    };
   };
   songs: {
     title: string;
     slug: string;
-    coverArt?: string | null;
+    coverArt?: string;
   }[];
 };
 
 export default function ProjectClient({ project, songs }: Props) {
   return (
-    <section className="space-y-10">
-      <header>
+    <section className="space-y-10 max-w-5xl mx-auto">
+
+      <header className="space-y-4">
         <h1 className="text-3xl font-bold">{project.title}</h1>
         {project.description && (
-          <p className="text-gray-500 mt-2">{project.description}</p>
+          <p className="text-gray-500 italic">
+            {project.description}
+          </p>
+        )}
+
+        {project.coverArt?.url && (
+          <Image
+            src={project.coverArt.url}
+            alt={project.coverArt.title || project.title}
+            width={260}
+            height={260}
+            className="rounded-2xl"
+          />
         )}
       </header>
 
@@ -29,8 +46,10 @@ export default function ProjectClient({ project, songs }: Props) {
         {songs.map((song) => (
           <Link
             key={song.slug}
-            href={`/music/projects/pyaaj-malaai/${song.slug}`}
-            className="flex gap-4 border rounded-xl p-4 hover:bg-gray-50"
+            href={`/music/projects/${project.title
+              .toLowerCase()
+              .replace(/\s+/g, "-")}/${song.slug}`}
+            className="flex gap-4 border rounded-xl p-4 hover:bg-gray-50 transition"
           >
             {song.coverArt && (
               <Image
