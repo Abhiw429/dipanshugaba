@@ -1,21 +1,35 @@
 import { contentfulClient } from "@/lib/contentful";
 import MusicClient from "./MusicClient";
 
-export const dynamic = "force-dynamic"; // 🔥 THIS FIXES THE ERROR
+export const dynamic = "force-dynamic";
 
 export default async function MusicPage() {
-  const res = await contentfulClient.getEntries({
-    content_type: "project",
-  });
+  try {
+    const res = await contentfulClient.getEntries({
+      content_type: "project",
+    });
 
-  const projects = res.items.map((entry: any) => ({
-    title: entry.fields.title,
-    slug: entry.fields.slug,
-    status: entry.fields.status,
-    coverArt: entry.fields.coverart?.fields?.file?.url
-      ? "https:" + entry.fields.coverart.fields.file.url
-      : null,
-  }));
+    const projects = res.items.map((entry: any) => ({
+      title: entry.fields.title,
+      slug: entry.fields.slug,
+      status: entry.fields.status,
+      coverArt: entry.fields.coverart?.fields?.file?.url
+        ? "https:" + entry.fields.coverart.fields.file.url
+        : null,
+    }));
 
-  return <MusicClient projects={projects} />;
+    return <MusicClient projects={projects} />;
+  } catch (error) {
+    console.error("Contentful error on /music:", error);
+
+    // Fails gracefully instead of white screen
+    return (
+      <section className="space-y-4">
+        <h1 className="text-4xl font-bold">Music</h1>
+        <p className="text-sm text-gray-500">
+          Music content is temporarily unavailable.
+        </p>
+      </section>
+    );
+  }
 }
