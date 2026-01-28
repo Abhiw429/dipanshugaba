@@ -31,14 +31,10 @@ export default function ProjectClient({
     <section className="grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
       {/* LEFT */}
       <div className="space-y-4 md:pt-16">
-        <h1 className="text-4xl font-extrabold">
-          {project.title}
-        </h1>
+        <h1 className="text-4xl font-extrabold">{project.title}</h1>
 
         {project.description && (
-          <p className="italic text-gray-500">
-            {project.description}
-          </p>
+          <p className="italic text-gray-500">{project.description}</p>
         )}
 
         {/* MOBILE IMAGE */}
@@ -57,36 +53,37 @@ export default function ProjectClient({
 
         {/* SONG LIST */}
         <div className="space-y-3 pt-3 max-w-xl">
-          {songs.map((song) => (
-            <Link
-              key={song.slug}
-              href={`/music/projects/${projectSlug}/${song.slug}`}
-              className="relative flex items-center gap-4 border rounded-xl p-4 hover:bg-gray-50 transition"
-            >
-              {song.coverArt && (
-                <Image
-                  src={song.coverArt}
-                  alt={song.title}
-                  width={90}
-                  height={90}
-                  className="rounded-md object-cover"
-                />
-              )}
+          {songs.map((song) => {
+            const isLatest = song.slug === latestSongSlug;
 
-              <div>
-                <span className="font-medium">
-                  {song.title}
-                </span>
-
-                {/* 🔥 LATEST RELEASE BADGE */}
-                {song.slug === latestSongSlug && (
-                  <div className="text-xs text-green-600 font-medium mt-1">
-                    ● Latest Release
-                  </div>
+            return (
+              <Link
+                key={song.slug}
+                href={`/music/projects/${projectSlug}/${song.slug}`}
+                className="relative flex items-center gap-4 border rounded-xl p-4 hover:bg-gray-50 transition"
+              >
+                {song.coverArt && (
+                  <Image
+                    src={song.coverArt}
+                    alt={song.title}
+                    width={90}
+                    height={90}
+                    className="rounded-md object-cover"
+                  />
                 )}
-              </div>
-            </Link>
-          ))}
+
+                <div>
+                  <span className="font-medium">{song.title}</span>
+
+                  {isLatest && (
+                    <div className="text-xs text-green-600 font-medium mt-1">
+                      ● Latest Release
+                    </div>
+                  )}
+                </div>
+              </Link>
+            );
+          })}
         </div>
       </div>
 
