@@ -21,19 +21,46 @@ type Props = {
 
 export default function ProjectClient({ project, songs }: Props) {
   return (
-    <section className="max-w-6xl mx-auto space-y-8">
-      {/* HEADER */}
+    <section className="max-w-6xl mx-auto">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
-        {/* LEFT */}
-        <div className="space-y-2">
-          <h1 className="text-4xl font-bold">{project.title}</h1>
+        {/* LEFT COLUMN */}
+        <div className="space-y-6">
+          {/* Title */}
+          <div>
+            <h1 className="text-4xl font-bold">{project.title}</h1>
 
-          {project.description && (
-            <p className="text-gray-500 italic">{project.description}</p>
-          )}
+            {project.description && (
+              <p className="text-gray-500 italic mt-1">
+                {project.description}
+              </p>
+            )}
+          </div>
+
+          {/* TRACKLIST */}
+          <div className="space-y-3">
+            {songs.map((song) => (
+              <Link
+                key={song.slug}
+                href={`/music/projects/${song.slug}`}
+                className="flex items-center gap-4 border rounded-xl p-4 hover:bg-gray-50 transition max-w-xl"
+              >
+                {song.coverArt && (
+                  <Image
+                    src={song.coverArt}
+                    alt={song.title}
+                    width={56}
+                    height={56}
+                    className="rounded-md object-cover"
+                  />
+                )}
+
+                <h3 className="font-medium">{song.title}</h3>
+              </Link>
+            ))}
+          </div>
         </div>
 
-        {/* RIGHT IMAGE */}
+        {/* RIGHT COLUMN (IMAGE) */}
         {project.coverArt?.url && (
           <div className="flex justify-end">
             <Image
@@ -46,29 +73,6 @@ export default function ProjectClient({ project, songs }: Props) {
             />
           </div>
         )}
-      </div>
-
-      {/* TRACKLIST */}
-      <div className="max-w-3xl space-y-3">
-        {songs.map((song) => (
-          <Link
-            key={song.slug}
-            href={`/music/projects/${song.slug}`}
-            className="flex items-center gap-4 border rounded-xl p-4 hover:bg-gray-50 transition"
-          >
-            {song.coverArt && (
-              <Image
-                src={song.coverArt}
-                alt={song.title}
-                width={56}
-                height={56}
-                className="rounded-md object-cover"
-              />
-            )}
-
-            <h3 className="font-medium">{song.title}</h3>
-          </Link>
-        ))}
       </div>
     </section>
   );
