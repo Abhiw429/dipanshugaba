@@ -6,7 +6,7 @@ export const dynamic = "force-dynamic";
 export default async function MusicPage() {
   try {
     const res = await contentfulClient.getEntries({
-      content_type: "project",
+      content_type: "projects",
     });
 
     const projects = res.items.map((entry: any) => ({
