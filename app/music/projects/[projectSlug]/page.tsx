@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import {
   getProjectBySlug,
   getSongsByProject,
+  getLatestSong,
 } from "@/lib/contentful";
 import ProjectClient from "./ProjectClient";
 import type { Asset } from "contentful";
@@ -16,28 +17,27 @@ type PageProps = {
 
 export default async function ProjectPage({ params }: PageProps) {
   const projectEntry = await getProjectBySlug(params.projectSlug);
-
-  if (!projectEntry) {
-    notFound();
-  }
+  if (!projectEntry) notFound();
 
   const songs = await getSongsByProject(projectEntry.sys.id);
+
+  // 🔥 GLOBAL latest song
+  const latestSong = await getLatestSong();
 
   const coverAsset = projectEntry.fields.coverart as Asset | undefined;
 
   const project = {
     title: projectEntry.fields.title as string,
     description: projectEntry.fields.description as string | undefined,
-    coverArt:
-      coverAsset?.fields?.file?.url
-        ? {
-            url: "https:" + coverAsset.fields.file.url,
-            title:
-              typeof coverAsset.fields.title === "string"
-                ? coverAsset.fields.title
-                : undefined,
-          }
-        : undefined,
+    coverArt: coverAsset?.fields?.file?.url
+      ? {
+          url: "https:" + coverAsset.fields.file.url,
+          title:
+            typeof coverAsset.fields.title === "string"
+              ? coverAsset.fields.title
+              : undefined,
+        }
+      : undefined,
   };
 
   return (
@@ -45,6 +45,7 @@ export default async function ProjectPage({ params }: PageProps) {
       projectSlug={params.projectSlug}
       project={project}
       songs={songs}
+      latestSongSlug={latestSong?.slug ?? null}
     />
   );
 }
