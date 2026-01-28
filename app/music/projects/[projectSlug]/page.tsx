@@ -2,7 +2,9 @@ import { notFound } from "next/navigation";
 import { getProjectBySlug, getSongsByProject } from "@/lib/contentful";
 import ProjectClient from "./ProjectClient";
 import type { Asset } from "contentful";
+
 export const dynamic = "force-dynamic";
+
 type PageProps = {
   params: {
     projectSlug: string;
@@ -17,7 +19,6 @@ export default async function ProjectPage({ params }: PageProps) {
   }
 
   const songs = await getSongsByProject(projectEntry.sys.id);
-
   const coverAsset = projectEntry.fields.coverart as Asset | undefined;
 
   const project = {
@@ -35,5 +36,11 @@ export default async function ProjectPage({ params }: PageProps) {
         : undefined,
   };
 
-  return <ProjectClient project={project} songs={songs} />;
+  return (
+    <ProjectClient
+      projectSlug={params.projectSlug}  // ✅ THIS LINE FIXES EVERYTHING
+      project={project}
+      songs={songs}
+    />
+  );
 }
