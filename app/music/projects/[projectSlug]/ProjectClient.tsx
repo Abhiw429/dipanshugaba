@@ -4,9 +4,10 @@ import Link from "next/link";
 import Image from "next/image";
 
 type Props = {
+  projectSlug: string;
   project: {
     title: string;
-    description?: string; // EP
+    description?: string;
     coverArt?: {
       url: string;
       title?: string;
@@ -19,27 +20,28 @@ type Props = {
   }[];
 };
 
-export default function ProjectClient({ project, songs }: Props) {
-  // ✅ Latest first
+export default function ProjectClient({
+  project,
+  songs,
+  projectSlug,
+}: Props) {
   const orderedSongs = [...songs].reverse();
 
   return (
     <section className="grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
-      {/* LEFT: TEXT + SONGS */}
+      {/* LEFT */}
       <div className="space-y-4 md:pt-16">
-        {/* Title */}
         <h1 className="text-4xl font-extrabold">
           {project.title}
         </h1>
 
-        {/* EP */}
         {project.description && (
           <p className="italic text-gray-500">
             {project.description}
           </p>
         )}
 
-        {/* IMAGE — MOBILE ONLY (after EP, centered) */}
+        {/* MOBILE IMAGE */}
         {project.coverArt?.url && (
           <div className="md:hidden flex justify-center pt-4">
             <Image
@@ -58,15 +60,17 @@ export default function ProjectClient({ project, songs }: Props) {
           {orderedSongs.map((song) => (
             <Link
               key={song.slug}
-              href={`/music/projects/${song.slug}`}
-              className="flex items-center gap-4 border rounded-xl p-4 hover:bg-gray-50 transition"
+              prefetch
+              href={`/music/projects/${projectSlug}/${song.slug}`}
+              className="flex items-center gap-4 border rounded-xl p-4
+                         hover:bg-gray-50 hover:shadow-sm transition"
             >
               {song.coverArt && (
                 <Image
                   src={song.coverArt}
                   alt={song.title}
-                  width={96}
-                  height={96}
+                  width={90}
+                  height={90}
                   className="rounded-md object-cover"
                 />
               )}
@@ -78,9 +82,9 @@ export default function ProjectClient({ project, songs }: Props) {
         </div>
       </div>
 
-      {/* RIGHT: IMAGE — DESKTOP ONLY */}
+      {/* DESKTOP IMAGE */}
       {project.coverArt?.url && (
-        <div className="hidden md:flex justify-center md:justify-end md:pt-16">
+        <div className="hidden md:flex justify-end md:pt-16">
           <Image
             src={project.coverArt.url}
             alt={project.coverArt.title || project.title}
