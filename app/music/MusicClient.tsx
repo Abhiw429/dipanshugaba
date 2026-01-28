@@ -98,28 +98,32 @@ export default function MusicClient({
           </Link>
         ))}
 
-      {/* ================= SINGLES ================= */}
-      {activeTab === "singles" &&
-        singles.map((s: any) => (
-          <Link
-            key={s.slug}
-            href={`/music/${s.slug}`}
-            className="flex items-center gap-6 border rounded-xl p-4 hover:bg-gray-50 transition"
-          >
-            {s.coverArt && (
-              <Image
-                src={s.coverArt}
-                alt={s.title}
-                width={100}
-                height={100}
-                className="rounded-lg"
-              />
-            )}
-            <h3 className="text-lg font-medium">
-              {s.title}
-            </h3>
-          </Link>
-        ))}
-    </section>
-  );
-}
+     {/* ================= SINGLES ================= */}
+{activeTab === "singles" && (
+  singles.length === 0 ? (
+    <p className="text-sm text-gray-500 italic">
+      Singles coming soon...
+    </p>
+  ) : (
+    singles.map((s: any) => (
+      <Link
+        key={s.slug}
+        href={`/music/${s.slug}`}
+        className="flex items-center gap-6 border rounded-xl p-4 hover:bg-gray-50 transition"
+      >
+        {s.coverArt && (
+          <Image
+            src={s.coverArt}
+            alt={s.title}
+            width={100}
+            height={100}
+            className="rounded-lg"
+          />
+        )}
+        <h3 className="text-lg font-medium">
+          {s.title}
+        </h3>
+      </Link>
+    ))
+  )
+)}
