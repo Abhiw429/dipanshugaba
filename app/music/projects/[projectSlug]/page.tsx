@@ -2,34 +2,42 @@ import { notFound } from "next/navigation";
 import {
   getProjectBySlug,
   getSongsByProject,
-  getLatestSongSlug,
 } from "@/lib/contentful";
 import ProjectClient from "./ProjectClient";
 import type { Asset } from "contentful";
 
 export const dynamic = "force-dynamic";
 
-export default async function ProjectPage({ params }: any) {
+type PageProps = {
+  params: {
+    projectSlug: string;
+  };
+};
+
+export default async function ProjectPage({ params }: PageProps) {
   const projectEntry = await getProjectBySlug(params.projectSlug);
-  if (!projectEntry) notFound();
+
+  if (!projectEntry) {
+    notFound();
+  }
 
   const songs = await getSongsByProject(projectEntry.sys.id);
-  const latestSongSlug = await getLatestSongSlug();
 
   const coverAsset = projectEntry.fields.coverart as Asset | undefined;
 
   const project = {
     title: projectEntry.fields.title as string,
     description: projectEntry.fields.description as string | undefined,
-    coverArt: coverAsset?.fields?.file?.url
-      ? {
-          url: "https:" + coverAsset.fields.file.url,
-          title:
-            typeof coverAsset.fields.title === "string"
-              ? coverAsset.fields.title
-              : undefined,
-        }
-      : undefined,
+    coverArt:
+      coverAsset?.fields?.file?.url
+        ? {
+            url: "https:" + coverAsset.fields.file.url,
+            title:
+              typeof coverAsset.fields.title === "string"
+                ? coverAsset.fields.title
+                : undefined,
+          }
+        : undefined,
   };
 
   return (
@@ -37,7 +45,6 @@ export default async function ProjectPage({ params }: any) {
       projectSlug={params.projectSlug}
       project={project}
       songs={songs}
-      latestSongSlug={latestSongSlug}
     />
   );
 }
