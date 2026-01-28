@@ -88,9 +88,9 @@ export default function MusicClient({
               </h3>
 
               {/* 🔴 ONGOING BADGE */}
-              {p.status === "ongoing" && (
-                <div className="mt-1 inline-flex items-center gap-1 text-xs font-medium text-red-600">
-                  <span className="h-2 w-2 rounded-full bg-red-600 animate-pulse" />
+              {p.status === true && (
+                <div className="mt-1 inline-flex items-center gap-2 text-xs font-medium text-red-600">
+                  <span className="h-2.5 w-2.5 rounded-full bg-red-600 animate-pulse-dot" />
                   Ongoing
                 </div>
               )}
