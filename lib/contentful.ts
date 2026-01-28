@@ -7,26 +7,6 @@ export const contentfulClient = createClient({
 
 /* ================= PROJECTS ================= */
 
-export async function getAllProjects() {
-  const res = await contentfulClient.getEntries({
-    content_type: "projects",
-    order: ["fields.title"],
-  });
-
-  return res.items.map((entry: any) => {
-    const cover = entry.fields.coverart as Asset | undefined;
-
-    return {
-      title: entry.fields.title as string,
-      slug: entry.fields.slug as string,
-      description: entry.fields.description as string | undefined,
-      coverArt: cover?.fields?.file?.url
-        ? "https:" + cover.fields.file.url
-        : undefined,
-    };
-  });
-}
-
 export async function getProjectBySlug(slug: string) {
   const res = await contentfulClient.getEntries({
     content_type: "projects",
@@ -43,7 +23,7 @@ export async function getSongsByProject(projectEntryId: string) {
   const res = await contentfulClient.getEntries({
     content_type: "song",
     "fields.project.sys.id": projectEntryId,
-    order: ["-sys.createdAt"], // 🔥 latest first
+    order: ["-sys.createdAt"], // newest first
   });
 
   return res.items.map((entry: any) => {
@@ -90,12 +70,12 @@ export async function getSongBySlug(songSlug: string) {
   };
 }
 
-/* ================= LATEST RELEASE (GLOBAL) ================= */
+/* ================= GLOBAL LATEST SONG ================= */
 
 export async function getLatestSongSlug() {
   const res = await contentfulClient.getEntries({
     content_type: "song",
-    order: ["-sys.createdAt"], // 🔥 newest song globally
+    order: ["-sys.createdAt"], // 🔥 GLOBAL newest
     limit: 1,
   });
 
