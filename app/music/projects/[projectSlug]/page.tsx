@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 import { getProjectBySlug, getSongsByProject } from "@/lib/contentful";
 import ProjectClient from "./ProjectClient";
 import type { Asset } from "contentful";
-
+export const dynamic = "force-dynamic";
 type PageProps = {
   params: {
     projectSlug: string;
