@@ -35,15 +35,20 @@ export default async function MusicPage() {
     );
 
     // newest project first (based on latest song inside project)
-    const projects = projectsWithDates.sort((a, b) => {
-      if (!a.latestSongDate) return 1;
-      if (!b.latestSongDate) return -1;
-      return (
-        new Date(b.latestSongDate).getTime() -
-        new Date(a.latestSongDate).getTime()
-      );
-    });
+const projects = projectsWithDates.sort((a, b) => {
+  // 1️⃣ Ongoing project always on top
+  if (a.status === true && b.status !== true) return -1;
+  if (a.status !== true && b.status === true) return 1;
 
+  // 2️⃣ Otherwise sort by latest song date
+  if (!a.latestSongDate) return 1;
+  if (!b.latestSongDate) return -1;
+
+  return (
+    new Date(b.latestSongDate).getTime() -
+    new Date(a.latestSongDate).getTime()
+  );
+});
     /* ================= SINGLES ================= */
     const singlesRes = await contentfulClient.getEntries({
       content_type: "song",
