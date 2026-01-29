@@ -17,6 +17,7 @@ type Props = {
     title: string;
     slug: string;
     coverArt?: string;
+    comingSoon?: boolean;
   }[];
   latestSongSlug: string | null;
 };
@@ -27,6 +28,13 @@ export default function ProjectClient({
   projectSlug,
   latestSongSlug,
 }: Props) {
+  // 🔥 Coming soon songs first
+  const orderedSongs = [...songs].sort((a, b) => {
+    if (a.comingSoon && !b.comingSoon) return -1;
+    if (!a.comingSoon && b.comingSoon) return 1;
+    return 0;
+  });
+
   return (
     <section className="grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
       {/* LEFT */}
@@ -53,14 +61,17 @@ export default function ProjectClient({
 
         {/* SONG LIST */}
         <div className="space-y-3 pt-3 max-w-xl">
-          {songs.map((song) => {
-            const isLatest = song.slug === latestSongSlug;
+          {orderedSongs.map((song) => {
+            const isLatest =
+              song.slug === latestSongSlug && !song.comingSoon;
 
-            return (
-              <Link
-                key={song.slug}
-                href={`/music/projects/${projectSlug}/${song.slug}`}
-                className="relative flex items-center gap-4 border rounded-xl p-4 hover:bg-gray-50 transition"
+            const content = (
+              <div
+                className={`relative flex items-center gap-4 border rounded-xl p-4 transition ${
+                  song.comingSoon
+                    ? "opacity-60 cursor-not-allowed bg-gray-50"
+                    : "hover:bg-gray-50"
+                }`}
               >
                 {song.coverArt && (
                   <Image
@@ -72,15 +83,39 @@ export default function ProjectClient({
                   />
                 )}
 
-                <div>
+                <div className="space-y-1">
                   <span className="font-medium">{song.title}</span>
 
+                  {/* 🟡 COMING SOON */}
+                  {song.comingSoon && (
+                    <div className="text-xs text-gray-500">
+                      Coming Soon
+                    </div>
+                  )}
+
+                  {/* ⚪ LATEST RELEASE */}
                   {isLatest && (
-                    <div className="text-xs text-green-600 font-medium mt-1">
-                      ● Latest Release
+                    <div className="flex items-center gap-2 text-xs text-gray-600">
+                      <span className="h-2 w-2 rounded-full bg-gray-500" />
+                      Latest Release
                     </div>
                   )}
                 </div>
+              </div>
+            );
+
+            // ❌ NOT CLICKABLE IF COMING SOON
+            if (song.comingSoon) {
+              return <div key={song.slug}>{content}</div>;
+            }
+
+            // ✅ CLICKABLE IF RELEASED
+            return (
+              <Link
+                key={song.slug}
+                href={`/music/projects/${projectSlug}/${song.slug}`}
+              >
+                {content}
               </Link>
             );
           })}
