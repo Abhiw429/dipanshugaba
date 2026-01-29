@@ -48,16 +48,16 @@ export default function MusicClient({
             <Image
               src={latest.coverArt}
               alt={latest.title}
-              width={100}
-              height={100}
+              width={96}
+              height={96}
               className="rounded-lg"
             />
           )}
 
           <div className="space-y-1">
-            {/* Latest label — neutral */}
-            <div className="flex items-center gap-2 text-xs text-gray-700">
-              <span className="h-2 w-2 rounded-full bg-black" />
+            {/* Latest badge — gray */}
+            <div className="flex items-center gap-2 text-xs text-gray-500">
+              <span className="h-2 w-2 rounded-full bg-gray-500" />
               Latest Release
             </div>
 
@@ -65,7 +65,7 @@ export default function MusicClient({
               {latest.title}
             </h3>
 
-            {/* ✅ PROJECT NAME (not generic text) */}
+            {/* Project name (only if part of project) */}
             {latest.projectTitle && (
               <span className="inline-block text-xs text-gray-600 border px-2 py-0.5 rounded">
                 {latest.projectTitle}
@@ -87,8 +87,8 @@ export default function MusicClient({
               <Image
                 src={p.coverArt}
                 alt={p.title}
-                width={100}
-                height={100}
+                width={96}
+                height={96}
                 className="rounded-lg"
               />
             )}
@@ -98,10 +98,10 @@ export default function MusicClient({
                 {p.title}
               </h3>
 
-              {/* 🔴 ONGOING (only when true) */}
+              {/* 🔴 ONGOING — red + blinking */}
               {p.status === true && (
-                <div className="mt-1 inline-flex items-center gap-2 text-xs font-medium text-gray-700">
-                  <span className="h-2.5 w-2.5 rounded-full bg-black animate-pulse-dot" />
+                <div className="mt-1 inline-flex items-center gap-2 text-xs font-medium text-red-600">
+                  <span className="h-2.5 w-2.5 rounded-full bg-red-600 animate-pulse-dot" />
                   Ongoing
                 </div>
               )}
@@ -129,15 +129,15 @@ export default function MusicClient({
                   <Image
                     src={s.coverArt}
                     alt={s.title}
-                    width={100}
-                    height={100}
+                    width={96}
+                    height={96}
                     className="rounded-lg"
                   />
                 )}
 
                 <div className="space-y-1">
                   {isLatest && (
-                    <div className="flex items-center gap-2 text-xs text-gray-700">
+                    <div className="flex items-center gap-2 text-xs text-gray-500">
                       <span className="h-2 w-2 rounded-full bg-gray-500" />
                       Latest Release
                     </div>
