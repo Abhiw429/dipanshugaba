@@ -25,7 +25,7 @@ export default function MusicClient({
             onClick={() => setActiveTab(tab)}
             className={`pb-3 text-sm font-medium ${
               activeTab === tab
-                ? "border-b-2 border-black"
+                ? "border-b-2 border-black text-black"
                 : "text-gray-500 hover:text-black"
             }`}
           >
@@ -48,18 +48,29 @@ export default function MusicClient({
             <Image
               src={latest.coverArt}
               alt={latest.title}
-              width={100}
-              height={100}
+              width={96}
+              height={96}
               className="rounded-lg"
             />
           )}
-          <div>
-            <p className="text-xs text-green-600 mb-1">
-              ● Latest Release
-            </p>
+
+          <div className="space-y-1">
+            {/* Latest badge – neutral theme */}
+            <div className="inline-flex items-center gap-2 text-xs font-medium text-gray-700">
+              <span className="h-2 w-2 rounded-full bg-black" />
+              Latest Release
+            </div>
+
             <h3 className="text-xl font-semibold">
               {latest.title}
             </h3>
+
+            {/* Project tag if song belongs to a project */}
+            {latest.projectSlug && (
+              <span className="inline-block mt-1 text-xs text-gray-500 border px-2 py-0.5 rounded">
+                Project
+              </span>
+            )}
           </div>
         </Link>
       )}
@@ -76,8 +87,8 @@ export default function MusicClient({
               <Image
                 src={p.coverArt}
                 alt={p.title}
-                width={100}
-                height={100}
+                width={96}
+                height={96}
                 className="rounded-lg"
               />
             )}
@@ -105,26 +116,41 @@ export default function MusicClient({
             Singles coming soon...
           </p>
         ) : (
-          singles.map((s: any) => (
-            <Link
-              key={s.slug}
-              href={`/music/${s.slug}`}
-              className="flex items-center gap-6 border rounded-xl p-4 hover:bg-gray-50 transition"
-            >
-              {s.coverArt && (
-                <Image
-                  src={s.coverArt}
-                  alt={s.title}
-                  width={100}
-                  height={100}
-                  className="rounded-lg"
-                />
-              )}
-              <h3 className="text-lg font-medium">
-                {s.title}
-              </h3>
-            </Link>
-          ))
+          singles.map((s: any) => {
+            const isLatest = latest && s.slug === latest.slug;
+
+            return (
+              <Link
+                key={s.slug}
+                href={`/music/${s.slug}`}
+                className="flex items-center gap-6 border rounded-xl p-4 hover:bg-gray-50 transition"
+              >
+                {s.coverArt && (
+                  <Image
+                    src={s.coverArt}
+                    alt={s.title}
+                    width={96}
+                    height={96}
+                    className="rounded-lg"
+                  />
+                )}
+
+                <div className="space-y-1">
+                  <h3 className="text-lg font-medium">
+                    {s.title}
+                  </h3>
+
+                  {/* Latest badge on singles */}
+                  {isLatest && (
+                    <div className="inline-flex items-center gap-2 text-xs text-gray-700">
+                      <span className="h-2 w-2 rounded-full bg-black" />
+                      Latest Release
+                    </div>
+                  )}
+                </div>
+              </Link>
+            );
+          })
         )
       )}
     </section>
