@@ -109,63 +109,76 @@ export default function MusicClient({
           </Link>
         ))}
 
-      {/* ================= SINGLES ================= */}
-      {activeTab === "singles" && (
-        singles.length === 0 ? (
-          <p className="text-sm text-gray-500 italic">
-            Singles coming soon…
-          </p>
-        ) : (
-          singles.map((s: any) => {
-            const isLatest = latest?.slug === s.slug;
-            const isComingSoon = s.comingSoon === true;
+     {/* ================= SINGLES ================= */}
+{activeTab === "singles" && (
+  singles.length === 0 ? (
+    <p className="text-sm text-gray-500 italic">
+      Singles coming soon…
+    </p>
+  ) : (
+    singles.map((s: any) => {
+      const isLatest = latest?.slug === s.slug;
+      const isComingSoon = s.comingSoon === true;
 
-            const Wrapper: any = isComingSoon ? "div" : Link;
+      const CardContent = (
+        <>
+          {s.coverArt && (
+            <Image
+              src={s.coverArt}
+              alt={s.title}
+              width={96}
+              height={96}
+              className={`rounded-lg ${
+                isComingSoon ? "opacity-60" : ""
+              }`}
+            />
+          )}
 
-            return (
-              <Wrapper
-                key={s.slug}
-                {...(!isComingSoon && { href: `/music/${s.slug}` })}
-                className={`flex items-center gap-6 border rounded-xl p-4
-                  ${isComingSoon
-                    ? "opacity-60 cursor-not-allowed"
-                    : "hover:bg-gray-50 transition"
-                  }`}
-              >
-                {s.coverArt && (
-                  <Image
-                    src={s.coverArt}
-                    alt={s.title}
-                    width={96}
-                    height={96}
-                    className="rounded-lg"
-                  />
-                )}
+          <div className="space-y-1">
+            {isLatest && !isComingSoon && (
+              <div className="flex items-center gap-2 text-xs text-gray-500">
+                <span className="h-2 w-2 rounded-full bg-gray-500" />
+                Latest Release
+              </div>
+            )}
 
-                <div className="space-y-1">
-                  {/* Coming Soon label */}
-                  {isComingSoon && (
-                    <div className="text-xs text-gray-500">
-                      Coming Soon
-                    </div>
-                  )}
+            {isComingSoon && (
+              <div className="text-xs text-gray-500">
+                Coming Soon
+              </div>
+            )}
 
-                  {/* Latest badge for released single */}
-                  {!isComingSoon && isLatest && (
-                    <div className="flex items-center gap-2 text-xs text-gray-500">
-                      <span className="h-2 w-2 rounded-full bg-gray-500" />
-                      Latest Release
-                    </div>
-                  )}
+            <h3 className="text-lg font-medium">
+              {s.title}
+            </h3>
+          </div>
+        </>
+      );
 
-                  <h3 className="text-lg font-medium">
-                    {s.title}
-                  </h3>
-                </div>
-              </Wrapper>
-            );
-          })
-        )
+      // ❌ NOT CLICKABLE if coming soon
+      if (isComingSoon) {
+        return (
+          <div
+            key={s.slug}
+            className="flex items-center gap-6 border rounded-xl p-4 bg-gray-50 cursor-not-allowed"
+          >
+            {CardContent}
+          </div>
+        );
+      }
+
+      // ✅ Clickable only if released
+      return (
+        <Link
+          key={s.slug}
+          href={`/music/${s.slug}`}
+          className="flex items-center gap-6 border rounded-xl p-4 hover:bg-gray-50 transition"
+        >
+          {CardContent}
+        </Link>
+      );
+    })
+  )
       )}
     </section>
   );
