@@ -79,7 +79,7 @@ export async function getSongBySlug(songSlug: string) {
 export async function getLatestSong() {
   const res = await contentfulClient.getEntries({
     content_type: "song",
-    order: ["-sys.createdAt"], // 🔥 newest globally
+    order: ["-sys.createdAt"], // newest globally
     limit: 1,
   });
 
@@ -87,17 +87,28 @@ export async function getLatestSong() {
 
   const entry: any = res.items[0];
   const cover = entry.fields.coverart as Asset | undefined;
+  const project = entry.fields.project;
 
   return {
     title: entry.fields.title as string,
     slug: entry.fields.slug as string,
+
+    // ✅ for routing
     projectSlug:
-      typeof entry.fields.project?.fields?.slug === "string"
-        ? entry.fields.project.fields.slug
+      typeof project?.fields?.slug === "string"
+        ? project.fields.slug
         : null,
+
+    // ✅ for UI tag (project name)
+    projectTitle:
+      typeof project?.fields?.title === "string"
+        ? project.fields.title
+        : null,
+
     coverArt:
       cover?.fields?.file?.url
         ? "https:" + cover.fields.file.url
         : undefined,
   };
+
 }
