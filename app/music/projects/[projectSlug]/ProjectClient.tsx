@@ -60,7 +60,7 @@ export default function ProjectClient({
         )}
 
         {/* SONG LIST */}
-        <div className="space-y-3 pt-3 max-w-xl">
+        <div className="space-y-4 pt-3 max-w-xl">
           {orderedSongs.map((song) => {
             const isLatest =
               song.slug === latestSongSlug && !song.comingSoon;
