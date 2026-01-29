@@ -9,7 +9,7 @@ export const contentfulClient = createClient({
 
 export async function getProjectBySlug(slug: string) {
   const res = await contentfulClient.getEntries({
-    content_type: "projects", // ✅ plural
+    content_type: "projects",
     "fields.slug": slug,
     limit: 1,
   });
@@ -23,7 +23,7 @@ export async function getSongsByProject(projectEntryId: string) {
   const res = await contentfulClient.getEntries({
     content_type: "song",
     "fields.project.sys.id": projectEntryId,
-    order: ["-sys.createdAt"], // ✅ latest first
+    order: ["-sys.createdAt"],
   });
 
   return res.items.map((entry: any) => {
@@ -32,10 +32,10 @@ export async function getSongsByProject(projectEntryId: string) {
     return {
       title: entry.fields.title as string,
       slug: entry.fields.slug as string,
-      coverArt:
-        cover?.fields?.file?.url
-          ? "https:" + cover.fields.file.url
-          : undefined,
+      comingSoon: Boolean(entry.fields.comingSoon),
+      coverArt: cover?.fields?.file?.url
+        ? "https:" + cover.fields.file.url
+        : undefined,
     };
   });
 }
@@ -52,6 +52,12 @@ export async function getSongBySlug(songSlug: string) {
   if (!res.items.length) return null;
 
   const entry: any = res.items[0];
+
+  // ⛔ Block access if song is coming soon
+  if (entry.fields.comingSoon === true) {
+    return null;
+  }
+
   const cover = entry.fields.coverart as Asset | undefined;
 
   return {
@@ -61,16 +67,15 @@ export async function getSongBySlug(songSlug: string) {
     credits: entry.fields.credits as string | undefined,
     lyrics: entry.fields.lyrics as string | undefined,
     breakdown: entry.fields.breakdown as string | undefined,
-    coverArt:
-      cover?.fields?.file?.url
-        ? {
-            url: "https:" + cover.fields.file.url,
-            title:
-              typeof cover.fields.title === "string"
-                ? cover.fields.title
-                : undefined,
-          }
-        : undefined,
+    coverArt: cover?.fields?.file?.url
+      ? {
+          url: "https:" + cover.fields.file.url,
+          title:
+            typeof cover.fields.title === "string"
+              ? cover.fields.title
+              : undefined,
+        }
+      : undefined,
   };
 }
 
@@ -79,7 +84,8 @@ export async function getSongBySlug(songSlug: string) {
 export async function getLatestSong() {
   const res = await contentfulClient.getEntries({
     content_type: "song",
-    order: ["-sys.createdAt"], // newest globally
+    "fields.comingSoon": false, // ✅ ONLY released songs
+    order: ["-sys.createdAt"],
     limit: 1,
   });
 
@@ -93,22 +99,18 @@ export async function getLatestSong() {
     title: entry.fields.title as string,
     slug: entry.fields.slug as string,
 
-    // ✅ for routing
     projectSlug:
       typeof project?.fields?.slug === "string"
         ? project.fields.slug
         : null,
 
-    // ✅ for UI tag (project name)
     projectTitle:
       typeof project?.fields?.title === "string"
         ? project.fields.title
         : null,
 
-    coverArt:
-      cover?.fields?.file?.url
-        ? "https:" + cover.fields.file.url
-        : undefined,
+    coverArt: cover?.fields?.file?.url
+      ? "https:" + cover.fields.file.url
+      : undefined,
   };
-
 }
