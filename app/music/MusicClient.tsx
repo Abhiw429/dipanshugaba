@@ -65,7 +65,7 @@ export default function MusicClient({
               {latest.title}
             </h3>
 
-            {/* Project name (only if part of project) */}
+            {/* Project tag (only if part of project) */}
             {latest.projectTitle && (
               <span className="inline-block text-xs text-gray-600 border px-2 py-0.5 rounded">
                 {latest.projectTitle}
@@ -98,7 +98,7 @@ export default function MusicClient({
                 {p.title}
               </h3>
 
-              {/* 🔴 ONGOING — red + blinking */}
+              {/* 🔴 ONGOING */}
               {p.status === true && (
                 <div className="mt-1 inline-flex items-center gap-2 text-xs font-medium text-red-600">
                   <span className="h-2.5 w-2.5 rounded-full bg-red-600 animate-pulse-dot" />
@@ -118,12 +118,19 @@ export default function MusicClient({
         ) : (
           singles.map((s: any) => {
             const isLatest = latest?.slug === s.slug;
+            const isComingSoon = s.comingSoon === true;
+
+            const Wrapper: any = isComingSoon ? "div" : Link;
 
             return (
-              <Link
+              <Wrapper
                 key={s.slug}
-                href={`/music/${s.slug}`}
-                className="flex items-center gap-6 border rounded-xl p-4 hover:bg-gray-50 transition"
+                {...(!isComingSoon && { href: `/music/${s.slug}` })}
+                className={`flex items-center gap-6 border rounded-xl p-4
+                  ${isComingSoon
+                    ? "opacity-60 cursor-not-allowed"
+                    : "hover:bg-gray-50 transition"
+                  }`}
               >
                 {s.coverArt && (
                   <Image
@@ -136,7 +143,15 @@ export default function MusicClient({
                 )}
 
                 <div className="space-y-1">
-                  {isLatest && (
+                  {/* Coming Soon label */}
+                  {isComingSoon && (
+                    <div className="text-xs text-gray-500">
+                      Coming Soon
+                    </div>
+                  )}
+
+                  {/* Latest badge for released single */}
+                  {!isComingSoon && isLatest && (
                     <div className="flex items-center gap-2 text-xs text-gray-500">
                       <span className="h-2 w-2 rounded-full bg-gray-500" />
                       Latest Release
@@ -147,7 +162,7 @@ export default function MusicClient({
                     {s.title}
                   </h3>
                 </div>
-              </Link>
+              </Wrapper>
             );
           })
         )
