@@ -161,26 +161,26 @@ export default function SongClient({ song }: SongClientProps) {
           {activeTab === "breakdown" && song.breakdown && (
   <div className="text-gray-700 leading-relaxed">
     <ReactMarkdown
-      components={{
-        p: ({ children }) => (
-          <p className="mb-5 leading-relaxed">
-            {children}
-          </p>
-        ),
-        em: ({ children }) => (
-          <em className="italic text-gray-500 block mb-4">
-            {children}
-          </em>
-        ),
-        blockquote: ({ children }) => (
-          <blockquote className="border-l-2 pl-4 italic text-gray-500 mb-6">
-            {children}
-          </blockquote>
-        ),
-      }}
-    >
-      {song.breakdown}
-    </ReactMarkdown>
+  components={{
+    p: ({ children }) => (
+      <p className="mb-5 leading-relaxed">
+        {children}
+      </p>
+    ),
+    em: ({ children }) => (
+      <em className="italic text-gray-500">
+        {children}
+      </em>
+    ),
+    blockquote: ({ children }) => (
+      <blockquote className="border-l-2 pl-4 italic text-gray-500 mb-6">
+        {children}
+      </blockquote>
+    ),
+  }}
+>
+  {song.breakdown}
+</ReactMarkdown>
   </div>
 )}
         </>
