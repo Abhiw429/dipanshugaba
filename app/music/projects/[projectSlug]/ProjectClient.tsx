@@ -60,66 +60,69 @@ export default function ProjectClient({
         )}
 
         {/* SONG LIST */}
-        <div className="space-y-4 pt-3 max-w-xl">
-          {orderedSongs.map((song) => {
-            const isLatest =
-              song.slug === latestSongSlug && !song.comingSoon;
+      <div className="space-y-4 pt-3 max-w-xl">
+  {orderedSongs.map((song) => {
+    const isLatest =
+      song.slug === latestSongSlug && !song.comingSoon;
 
-            const content = (
-              <div
-                className={`relative flex items-center gap-4 border rounded-xl p-4 transition ${
-                  song.comingSoon
-                    ? "opacity-60 cursor-not-allowed bg-gray-50"
-                    : "hover:bg-gray-50"
-                }`}
-              >
-                {song.coverArt && (
-                  <Image
-                    src={song.coverArt}
-                    alt={song.title}
-                    width={90}
-                    height={90}
-                    className="rounded-md object-cover"
-                  />
-                )}
+    const Card = (
+      <div
+        className={`flex items-center gap-4 border rounded-xl p-4 transition ${
+          song.comingSoon
+            ? "opacity-60 cursor-not-allowed bg-gray-50"
+            : "hover:bg-gray-50"
+        }`}
+      >
+        {song.coverArt && (
+          <Image
+            src={song.coverArt}
+            alt={song.title}
+            width={90}
+            height={90}
+            className="rounded-md object-cover"
+          />
+        )}
 
-                <div className="space-y-1">
-                  <span className="font-medium">{song.title}</span>
+        <div className="space-y-1">
+          <span className="font-medium">{song.title}</span>
 
-                  {/* 🟡 COMING SOON */}
-                  {song.comingSoon && (
-                    <div className="text-xs text-gray-500">
-                      Coming Soon
-                    </div>
-                  )}
+          {song.comingSoon && (
+            <div className="text-xs text-gray-500">
+              Coming Soon
+            </div>
+          )}
 
-                  {/* ⚪ LATEST RELEASE */}
-                  {isLatest && (
-                    <div className="flex items-center gap-2 text-xs text-gray-600">
-                      <span className="h-2 w-2 rounded-full bg-gray-500" />
-                      Latest Release
-                    </div>
-                  )}
-                </div>
-              </div>
-            );
-
-            // ❌ NOT CLICKABLE IF COMING SOON
-            if (song.comingSoon) {
-              return <div key={song.slug}>{content}</div>;
-            }
-
-            // ✅ CLICKABLE IF RELEASED
-            return (
-              <Link
-                key={song.slug}
-                href={`/music/projects/${projectSlug}/${song.slug}`}
-              >
-                {content}
-              </Link>
-            );
-          })}
+          {isLatest && (
+            <div className="flex items-center gap-2 text-xs text-gray-600">
+              <span className="h-2 w-2 rounded-full bg-gray-500" />
+              Latest Release
+            </div>
+          )}
         </div>
+      </div>
+    );
+
+    // ⛔ Coming soon → NOT clickable but still spaced
+    if (song.comingSoon) {
+      return (
+        <div key={song.slug} className="block">
+          {Card}
+        </div>
+      );
+    }
+
+    // ✅ Released → clickable + same spacing
+    return (
+      <Link
+        key={song.slug}
+        href={`/music/projects/${projectSlug}/${song.slug}`}
+        className="block"
+      >
+        {Card}
+      </Link>
+    );
+  })}
+</div>
       </div>
 
       {/* DESKTOP IMAGE */}
