@@ -12,7 +12,8 @@ interface PageProps {
 export default async function Page({ params }: PageProps) {
   const song = await getSongBySlug(params.songSlug);
 
-  if (!song) {
+  // ❌ No song OR coming soon → block access
+  if (!song || song.comingSoon === true) {
     notFound();
   }
 
