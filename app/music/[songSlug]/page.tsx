@@ -11,7 +11,8 @@ type PageProps = {
 export default async function SingleSongPage({ params }: PageProps) {
   const song = await getSongBySlug(params.songSlug);
 
-  if (!song) {
+  // 🚫 HARD BLOCK
+  if (!song || song.comingSoon === true) {
     notFound();
   }
 
