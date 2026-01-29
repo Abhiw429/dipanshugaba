@@ -48,15 +48,15 @@ export default function MusicClient({
             <Image
               src={latest.coverArt}
               alt={latest.title}
-              width={96}
-              height={96}
+              width={100}
+              height={100}
               className="rounded-lg"
             />
           )}
 
           <div className="space-y-1">
-            {/* Latest badge – neutral theme */}
-            <div className="inline-flex items-center gap-2 text-xs font-medium text-gray-700">
+            {/* Latest label — neutral */}
+            <div className="flex items-center gap-2 text-xs text-gray-700">
               <span className="h-2 w-2 rounded-full bg-black" />
               Latest Release
             </div>
@@ -65,10 +65,10 @@ export default function MusicClient({
               {latest.title}
             </h3>
 
-            {/* Project tag if song belongs to a project */}
-            {latest.projectSlug && (
-              <span className="inline-block mt-1 text-xs text-gray-500 border px-2 py-0.5 rounded">
-                Project
+            {/* ✅ PROJECT NAME (not generic text) */}
+            {latest.projectTitle && (
+              <span className="inline-block text-xs text-gray-600 border px-2 py-0.5 rounded">
+                {latest.projectTitle}
               </span>
             )}
           </div>
@@ -87,8 +87,8 @@ export default function MusicClient({
               <Image
                 src={p.coverArt}
                 alt={p.title}
-                width={96}
-                height={96}
+                width={100}
+                height={100}
                 className="rounded-lg"
               />
             )}
@@ -98,10 +98,10 @@ export default function MusicClient({
                 {p.title}
               </h3>
 
-              {/* 🔴 ONGOING BADGE */}
+              {/* 🔴 ONGOING (only when true) */}
               {p.status === true && (
-                <div className="mt-1 inline-flex items-center gap-2 text-xs font-medium text-red-600">
-                  <span className="h-2.5 w-2.5 rounded-full bg-red-600 animate-pulse-dot" />
+                <div className="mt-1 inline-flex items-center gap-2 text-xs font-medium text-gray-700">
+                  <span className="h-2.5 w-2.5 rounded-full bg-black animate-pulse-dot" />
                   Ongoing
                 </div>
               )}
@@ -113,11 +113,11 @@ export default function MusicClient({
       {activeTab === "singles" && (
         singles.length === 0 ? (
           <p className="text-sm text-gray-500 italic">
-            Singles coming soon...
+            Singles coming soon…
           </p>
         ) : (
           singles.map((s: any) => {
-            const isLatest = latest && s.slug === latest.slug;
+            const isLatest = latest?.slug === s.slug;
 
             return (
               <Link
@@ -129,24 +129,23 @@ export default function MusicClient({
                   <Image
                     src={s.coverArt}
                     alt={s.title}
-                    width={96}
-                    height={96}
+                    width={100}
+                    height={100}
                     className="rounded-lg"
                   />
                 )}
 
                 <div className="space-y-1">
-                  <h3 className="text-lg font-medium">
-                    {s.title}
-                  </h3>
-
-                  {/* Latest badge on singles */}
                   {isLatest && (
-                    <div className="inline-flex items-center gap-2 text-xs text-gray-700">
-                      <span className="h-2 w-2 rounded-full bg-black" />
+                    <div className="flex items-center gap-2 text-xs text-gray-700">
+                      <span className="h-2 w-2 rounded-full bg-gray-500" />
                       Latest Release
                     </div>
                   )}
+
+                  <h3 className="text-lg font-medium">
+                    {s.title}
+                  </h3>
                 </div>
               </Link>
             );
