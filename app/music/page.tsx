@@ -15,9 +15,11 @@ export default async function MusicPage() {
 
     const projectsWithDates = await Promise.all(
       projectsRes.items.map(async (project: any) => {
+        // 🔥 Only released songs affect project order
         const songsRes = await contentfulClient.getEntries({
           content_type: "song",
           "fields.project.sys.id": project.sys.id,
+          "fields.comingSoon": false,
           order: ["-sys.createdAt"],
           limit: 1,
         });
@@ -25,7 +27,7 @@ export default async function MusicPage() {
         return {
           title: project.fields.title as string,
           slug: project.fields.slug as string,
-          status: project.fields.status === true, // boolean
+          status: project.fields.status === true, // ongoing
           coverArt: project.fields.coverart?.fields?.file?.url
             ? "https:" + project.fields.coverart.fields.file.url
             : undefined,
@@ -34,26 +36,26 @@ export default async function MusicPage() {
       })
     );
 
-    // newest project first (based on latest song inside project)
-const projects = projectsWithDates.sort((a, b) => {
-  // 1️⃣ Ongoing project always on top
-  if (a.status === true && b.status !== true) return -1;
-  if (a.status !== true && b.status === true) return 1;
+    // ✅ Ongoing first → then latest released song
+    const projects = projectsWithDates.sort((a, b) => {
+      if (a.status && !b.status) return -1;
+      if (!a.status && b.status) return 1;
 
-  // 2️⃣ Otherwise sort by latest song date
-  if (!a.latestSongDate) return 1;
-  if (!b.latestSongDate) return -1;
+      if (!a.latestSongDate) return 1;
+      if (!b.latestSongDate) return -1;
 
-  return (
-    new Date(b.latestSongDate).getTime() -
-    new Date(a.latestSongDate).getTime()
-  );
-});
+      return (
+        new Date(b.latestSongDate).getTime() -
+        new Date(a.latestSongDate).getTime()
+      );
+    });
+
     /* ================= SINGLES ================= */
     const singlesRes = await contentfulClient.getEntries({
       content_type: "song",
       "fields.project[exists]": false,
-      order: ["-sys.createdAt"], // newest first
+      "fields.comingSoon": false, // 🚫 hide upcoming singles
+      order: ["-sys.createdAt"],
     });
 
     const singles = singlesRes.items.map((entry: any) => ({
