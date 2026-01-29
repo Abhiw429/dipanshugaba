@@ -15,7 +15,7 @@ export default async function MusicPage() {
 
     const projectsWithDates = await Promise.all(
       projectsRes.items.map(async (project: any) => {
-        // 🔥 Only released songs affect project order
+        // ✅ Only RELEASED songs affect project order
         const songsRes = await contentfulClient.getEntries({
           content_type: "song",
           "fields.project.sys.id": project.sys.id,
@@ -54,13 +54,14 @@ export default async function MusicPage() {
     const singlesRes = await contentfulClient.getEntries({
       content_type: "song",
       "fields.project[exists]": false,
-      "fields.comingSoon": false, // 🚫 hide upcoming singles
+      // ❗ DO NOT filter comingSoon here
       order: ["-sys.createdAt"],
     });
 
     const singles = singlesRes.items.map((entry: any) => ({
       title: entry.fields.title as string,
       slug: entry.fields.slug as string,
+      comingSoon: Boolean(entry.fields.comingSoon), // ✅ REQUIRED
       coverArt: entry.fields.coverart?.fields?.file?.url
         ? "https:" + entry.fields.coverart.fields.file.url
         : undefined,
