@@ -45,6 +45,7 @@ const SoundCloudIcon = () => (
 const AmazonMusicIcon = () => (
   <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
     <path d="M6 18c3.6 2.4 8.4 2.4 12 0l-1-.8c-3 1.9-7 1.9-10 0l-1 .8Zm12-7a6 6 0 1 0-12 0 6 6 0 0 0 12 0Z" />
+  </svg>
 );
 
 /* ================= TYPES ================= */
