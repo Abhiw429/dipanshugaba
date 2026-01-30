@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import ReactMarkdown from "react-markdown";
 
@@ -9,6 +9,11 @@ type SongClientProps = {
     title: string;
     description?: string;
     youtubeUrl?: string;
+    spotifyUrl?: string;
+    appleMusicUrl?: string;
+    soundcloudUrl?: string;
+    youtubeMusicUrl?: string;
+    amazonMusicUrl?: string;
     coverArt?: {
       url: string;
       title?: string;
@@ -21,16 +26,22 @@ type SongClientProps = {
 
 export default function SongClient({ song }: SongClientProps) {
   const [activeTab, setActiveTab] = useState<"lyrics" | "breakdown">("lyrics");
+  const [showModal, setShowModal] = useState(false);
+
+  useEffect(() => {
+    const onEsc = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setShowModal(false);
+    };
+    window.addEventListener("keydown", onEsc);
+    return () => window.removeEventListener("keydown", onEsc);
+  }, []);
 
   return (
     <section className="max-w-5xl mx-auto space-y-10">
-
       {/* HEADER GRID */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
-
         {/* LEFT CONTENT */}
         <div className="space-y-6">
-
           {/* Title */}
           <h1 className="text-2xl font-bold">{song.title}</h1>
 
@@ -55,28 +66,13 @@ export default function SongClient({ song }: SongClientProps) {
             </p>
           )}
 
-          {/* YouTube */}
-          {song.youtubeUrl && (
-            <a
-              href={song.youtubeUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 border px-5 py-3 rounded-full text-sm hover:bg-black hover:text-white transition w-fit"
-            >
-              <svg
-  width="20"
-  height="20"
-  viewBox="0 0 24 24"
-  aria-hidden="true"
->
-  <path
-    fill="currentColor"
-    d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31.6 31.6 0 0 0 0 12a31.6 31.6 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31.6 31.6 0 0 0 24 12a31.6 31.6 0 0 0-.5-5.8ZM9.75 15.5v-7l6 3.5-6 3.5Z"
-  />
-</svg>
-              <span>Listen on YouTube</span>
-            </a>
-          )}
+          {/* ✅ LISTEN NOW BUTTON */}
+          <button
+            onClick={() => setShowModal(true)}
+            className="inline-flex items-center gap-2 border px-6 py-3 rounded-full text-sm hover:bg-black hover:text-white transition w-fit"
+          >
+            Listen Now
+          </button>
 
           {/* Credits */}
           {song.credits && (
@@ -85,8 +81,8 @@ export default function SongClient({ song }: SongClientProps) {
                 CREDITS:
               </p>
               <p className="text-sm text-gray-700 whitespace-pre-line leading-relaxed">
-  {song.credits}
-</p>
+                {song.credits}
+              </p>
             </div>
           )}
         </div>
@@ -137,53 +133,100 @@ export default function SongClient({ song }: SongClientProps) {
             )}
           </div>
 
-          {/* Lyrics (Markdown-rendered) */}
+          {/* Lyrics */}
           {activeTab === "lyrics" && song.lyrics && (
-  <div className="text-gray-800 leading-relaxed text-base">
-    <ReactMarkdown
-      components={{
-        p: ({ children }) => (
-          <div className="whitespace-pre-wrap leading-loose mb-6">
-            {children}
-          </div>
-        ),
-        em: ({ children }) => (
-          <em className="italic font-medium">{children}</em>
-        ),
-      }}
-    >
-      {song.lyrics}
-    </ReactMarkdown>
-  </div>
-)}
+            <div className="text-gray-800 leading-relaxed text-base">
+              <ReactMarkdown
+                components={{
+                  p: ({ children }) => (
+                    <div className="whitespace-pre-wrap leading-loose mb-6">
+                      {children}
+                    </div>
+                  ),
+                  em: ({ children }) => (
+                    <em className="italic font-medium">{children}</em>
+                  ),
+                }}
+              >
+                {song.lyrics}
+              </ReactMarkdown>
+            </div>
+          )}
 
-          {/* Breakdown (Markdown-rendered) */}
+          {/* Breakdown */}
           {activeTab === "breakdown" && song.breakdown && (
-  <div className="text-gray-700 leading-relaxed">
-    <ReactMarkdown
-  components={{
-    p: ({ children }) => (
-      <p className="mb-5 leading-relaxed">
-        {children}
-      </p>
-    ),
-    em: ({ children }) => (
-      <em className="italic text-gray-500">
-        {children}
-      </em>
-    ),
-    blockquote: ({ children }) => (
-      <blockquote className="border-l-2 pl-4 italic text-gray-500 mb-6">
-        {children}
-      </blockquote>
-    ),
-  }}
->
-  {song.breakdown}
-</ReactMarkdown>
-  </div>
-)}
+            <div className="text-gray-700 leading-relaxed">
+              <ReactMarkdown
+                components={{
+                  p: ({ children }) => (
+                    <p className="mb-5 leading-relaxed">{children}</p>
+                  ),
+                  em: ({ children }) => (
+                    <em className="italic text-gray-500">{children}</em>
+                  ),
+                  blockquote: ({ children }) => (
+                    <blockquote className="border-l-2 pl-4 italic text-gray-500 mb-6">
+                      {children}
+                    </blockquote>
+                  ),
+                }}
+              >
+                {song.breakdown}
+              </ReactMarkdown>
+            </div>
+          )}
         </>
+      )}
+
+      {/* ================= LISTEN NOW MODAL ================= */}
+      {showModal && (
+        <div
+          className="fixed inset-0 bg-black/40 z-50 flex items-center justify-center"
+          onClick={() => setShowModal(false)}
+        >
+          <div
+            className="bg-white rounded-2xl p-6 w-full max-w-md space-y-4"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex justify-between items-center">
+              <h2 className="font-semibold">{song.title}</h2>
+              <button onClick={() => setShowModal(false)}>✕</button>
+            </div>
+
+            <div className="grid gap-3">
+              {song.youtubeUrl && (
+                <a href={song.youtubeUrl} target="_blank" className="border rounded-xl px-4 py-3 hover:bg-black hover:text-white transition">
+                  YouTube
+                </a>
+              )}
+              {song.spotifyUrl && (
+                <a href={song.spotifyUrl} target="_blank" className="border rounded-xl px-4 py-3 hover:bg-black hover:text-white transition">
+                  Spotify
+                </a>
+              )}
+              {song.appleMusicUrl && (
+                <a href={song.appleMusicUrl} target="_blank" className="border rounded-xl px-4 py-3 hover:bg-black hover:text-white transition">
+                  Apple Music
+                </a>
+              )}
+              {song.soundcloudUrl && (
+                <a href={song.soundcloudUrl} target="_blank" className="border rounded-xl px-4 py-3 hover:bg-black hover:text-white transition">
+                  SoundCloud
+                </a>
+              )}
+              {song.youtubeMusicUrl && (
+                <a href={song.youtubeMusicUrl} target="_blank" className="border rounded-xl px-4 py-3 hover:bg-black hover:text-white transition">
+                  YouTube Music
+                </a>
+              )}
+              {song.amazonMusicUrl && (
+                <a href={song.amazonMusicUrl} target="_blank" className="border rounded-xl px-4 py-3 hover:bg-black hover:text-white transition">
+                  Amazon Music
+                </a>
+              )}
+            </div>
+          </div>
+        </div>
       )}
     </section>
   );
