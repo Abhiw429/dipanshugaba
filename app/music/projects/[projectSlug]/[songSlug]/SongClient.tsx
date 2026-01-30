@@ -86,50 +86,72 @@ export default function SongClient({ song }: SongClientProps) {
 
   return (
     <section className="max-w-5xl mx-auto space-y-10">
-      {/* HEADER */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
-        <div className="space-y-6">
-          <h1 className="text-2xl font-bold">{song.title}</h1>
+     {/* HEADER */}
+<div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
 
-          {song.description && (
-            <p className="text-sm italic text-gray-500 whitespace-pre-line">
-              {song.description}
-            </p>
-          )}
+  {/* LEFT CONTENT */}
+  <div className="space-y-6">
 
-          {/* LISTEN NOW */}
-          <button
-            onClick={() => setShowModal(true)}
-            className="inline-flex items-center gap-2 border px-6 py-3 rounded-full text-sm hover:bg-black hover:text-white transition w-fit"
-          >
-            <PlayIcon />
-            Listen Now
-          </button>
+    {/* Title */}
+    <h1 className="text-2xl font-bold">{song.title}</h1>
 
-          {/* CREDITS */}
-          {song.credits && (
-            <div className="rounded-2xl border bg-gradient-to-br from-gray-50 to-white p-6">
-              <p className="text-xs tracking-widest text-gray-500 font-semibold mb-2">
-                CREDITS:
-              </p>
-              <p className="text-sm text-gray-700 whitespace-pre-line leading-relaxed">
-                {song.credits}
-              </p>
-            </div>
-          )}
-        </div>
-
-        {song.coverArt?.url && (
-          <Image
-            src={song.coverArt.url}
-            alt={song.coverArt.title || song.title}
-            width={300}
-            height={300}
-            className="rounded-2xl aspect-square object-cover shadow-lg"
-            priority
-          />
-        )}
+    {/* ✅ Image (mobile only, centered, after title) */}
+    {song.coverArt?.url && (
+      <div className="md:hidden flex justify-center">
+        <Image
+          src={song.coverArt.url}
+          alt={song.coverArt.title || song.title}
+          width={260}
+          height={260}
+          className="rounded-2xl aspect-square object-cover shadow-lg"
+          priority
+        />
       </div>
+    )}
+
+    {/* Description */}
+    {song.description && (
+      <p className="text-sm italic text-gray-500 whitespace-pre-line">
+        {song.description}
+      </p>
+    )}
+
+    {/* Listen Now */}
+    <button
+      onClick={() => setShowModal(true)}
+      className="inline-flex items-center gap-2 border px-6 py-3 rounded-full text-sm hover:bg-black hover:text-white transition w-fit"
+    >
+      <PlayIcon />
+      Listen Now
+    </button>
+
+    {/* Credits */}
+    {song.credits && (
+      <div className="rounded-2xl border bg-gradient-to-br from-gray-50 to-white p-6">
+        <p className="text-xs tracking-widest text-gray-500 font-semibold mb-2">
+          CREDITS:
+        </p>
+        <p className="text-sm text-gray-700 whitespace-pre-line leading-relaxed">
+          {song.credits}
+        </p>
+      </div>
+    )}
+  </div>
+
+  {/* ✅ Image (desktop only — EXACTLY like your working code) */}
+  {song.coverArt?.url && (
+    <div className="hidden md:flex justify-end">
+      <Image
+        src={song.coverArt.url}
+        alt={song.coverArt.title || song.title}
+        width={300}
+        height={300}
+        className="rounded-2xl aspect-square object-cover shadow-lg"
+        priority
+      />
+    </div>
+  )}
+</div>
 
       {/* TABS */}
       {(song.lyrics || song.breakdown) && (
