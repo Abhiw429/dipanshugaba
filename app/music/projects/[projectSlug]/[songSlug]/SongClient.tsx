@@ -53,12 +53,11 @@ const AmazonMusicIcon = () => (
     strokeLinecap="round"
     strokeLinejoin="round"
   >
-    {/* Amazon smile */}
-    <path d="M4 15c3.5 2.5 12.5 2.5 16 0" />
-    <path d="M14.5 15.5l1.5-1.5-1.5-1.5" />
+    {/* Smile curve */}
+    <path d="M4 15c3.5 2.3 12.5 2.3 16 0" />
 
-    {/* Music note */}
-    <path d="M9 5v9a2 2 0 1 1-1-1.7V6l7-1.5V12a2 2 0 1 1-1-1.7V5z" />
+    {/* Arrow at end */}
+    <path d="M17.5 15l1.8-1.5-1.8-1.5" />
   </svg>
 );
 
