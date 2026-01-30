@@ -43,8 +43,22 @@ const SoundCloudIcon = () => (
 );
 
 const AmazonMusicIcon = () => (
-  <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
-    <path d="M6.5 18.5c3.4 2.1 7.6 2.1 11 0l-.7-.9c-2.8 1.6-6.5 1.6-9.6 0l-.7.9zM17 9.5a5 5 0 1 0-10 0 5 5 0 0 0 10 0z"/>
+  <svg
+    width="22"
+    height="22"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="1.8"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    {/* Amazon smile */}
+    <path d="M4 15c3.5 2.5 12.5 2.5 16 0" />
+    <path d="M14.5 15.5l1.5-1.5-1.5-1.5" />
+
+    {/* Music note */}
+    <path d="M9 5v9a2 2 0 1 1-1-1.7V6l7-1.5V12a2 2 0 1 1-1-1.7V5z" />
   </svg>
 );
 
