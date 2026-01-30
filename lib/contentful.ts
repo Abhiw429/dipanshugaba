@@ -45,6 +45,8 @@ export async function getSongsByProject(projectEntryId: string) {
 
 /* ================= SINGLE SONG ================= */
 
+/* ================= SINGLE SONG ================= */
+
 export async function getSongBySlug(songSlug: string) {
   const res = await contentfulClient.getEntries({
     content_type: "song",
@@ -55,12 +57,6 @@ export async function getSongBySlug(songSlug: string) {
   if (!res.items.length) return null;
 
   const entry: any = res.items[0];
-
-  // ⛔ HARD BLOCK unreleased songs
-  if (entry.fields.comingSoon === true) {
-    return null;
-  }
-
   const cover = entry.fields.coverart as Asset | undefined;
 
   return {
@@ -70,13 +66,15 @@ export async function getSongBySlug(songSlug: string) {
     breakdown: entry.fields.breakdown as string | undefined,
     credits: entry.fields.credits as string | undefined,
 
-    // ✅ STREAMING LINKS
     youtubeUrl: entry.fields.youtubeUrl as string | undefined,
     youtubeMusicUrl: entry.fields.youtubeMusicUrl as string | undefined,
     spotifyUrl: entry.fields.spotifyUrl as string | undefined,
     appleMusicUrl: entry.fields.appleMusicUrl as string | undefined,
     soundcloudUrl: entry.fields.soundcloudUrl as string | undefined,
     amazonMusicUrl: entry.fields.amazonMusicUrl as string | undefined,
+
+    // ✅ THIS IS WHAT WAS MISSING FOR TYPES
+    comingSoon: entry.fields.comingSoon === true,
 
     coverArt: cover?.fields?.file?.url
       ? {
