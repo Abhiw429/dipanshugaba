@@ -33,7 +33,7 @@ export async function getSongsByProject(projectEntryId: string) {
       title: entry.fields.title as string,
       slug: entry.fields.slug as string,
 
-      // ✅ ALWAYS RETURN THIS
+      // ✅ used by project UI
       comingSoon: entry.fields.comingSoon === true,
 
       coverArt: cover?.fields?.file?.url
@@ -55,18 +55,28 @@ export async function getSongBySlug(songSlug: string) {
   if (!res.items.length) return null;
 
   const entry: any = res.items[0];
+
+  // ⛔ HARD BLOCK unreleased songs
+  if (entry.fields.comingSoon === true) {
+    return null;
+  }
+
   const cover = entry.fields.coverart as Asset | undefined;
 
   return {
     title: entry.fields.title as string,
     description: entry.fields.description as string | undefined,
-    youtubeUrl: entry.fields.youtubeUrl as string | undefined,
-    credits: entry.fields.credits as string | undefined,
     lyrics: entry.fields.lyrics as string | undefined,
     breakdown: entry.fields.breakdown as string | undefined,
+    credits: entry.fields.credits as string | undefined,
 
-    // ✅ CRITICAL — DO NOT OMIT
-    comingSoon: entry.fields.comingSoon === true,
+    // ✅ STREAMING LINKS
+    youtubeUrl: entry.fields.youtubeUrl as string | undefined,
+    youtubeMusicUrl: entry.fields.youtubeMusicUrl as string | undefined,
+    spotifyUrl: entry.fields.spotifyUrl as string | undefined,
+    appleMusicUrl: entry.fields.appleMusicUrl as string | undefined,
+    soundcloudUrl: entry.fields.soundcloudUrl as string | undefined,
+    amazonMusicUrl: entry.fields.amazonMusicUrl as string | undefined,
 
     coverArt: cover?.fields?.file?.url
       ? {
@@ -85,7 +95,7 @@ export async function getSongBySlug(songSlug: string) {
 export async function getLatestSong() {
   const res = await contentfulClient.getEntries({
     content_type: "song",
-    "fields.comingSoon": false, // ✅ released ONLY
+    "fields.comingSoon": false, // ✅ ONLY released
     order: ["-sys.createdAt"],
     limit: 1,
   });
@@ -100,11 +110,13 @@ export async function getLatestSong() {
     title: entry.fields.title as string,
     slug: entry.fields.slug as string,
 
+    // routing
     projectSlug:
       typeof project?.fields?.slug === "string"
         ? project.fields.slug
         : null,
 
+    // UI label
     projectTitle:
       typeof project?.fields?.title === "string"
         ? project.fields.title
